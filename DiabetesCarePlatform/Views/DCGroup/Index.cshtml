@@ -1,0 +1,425 @@
+﻿@using DiabetesCarePlatform.Models
+@model DCGroupIndexViewModel
+@{
+    ViewBag.Title = "群組總覽";
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bs3wizard")" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+<link href="@Styles.Url("~/assets/css/jvectormap")" rel="stylesheet" />
+
+<link href="@Styles.Url("~/assets/css/plugins/dataTables/media/bs")" rel="stylesheet" />
+<style>
+    tfoot {
+        display: table-header-group;
+    }
+
+    .dataTables_filter, .dataTables_info {
+        display: none;
+    }
+</style>
+
+}
+
+<div class="widget widget-stats bg-blue-grey-50 row">
+        <a class="btn btn-primary" href="@Url.Action("CreateMedicalTeam", "DCGroup")" data-toggle="modal" onclick="">新增團隊</a>
+        &nbsp;
+        <a class="btn btn-success" href="@Url.Action("Index", "DCGroup")" data-toggle="modal" onclick="">群組總覽</a>
+   
+</div>
+
+<ul class="nav nav-tabs">
+    <li class="@Model.Tabs[0]" style="width:50%;"><a href="#Man" data-toggle="tab">管理階層</a></li>
+    <li class="@Model.Tabs[1]" style="width:50%"><a href="#Group" data-toggle="tab">團隊群組階層</a></li>
+  
+</ul>
+<div class="tab-content" id="tabs">
+    <div class="tab-pane @Model.Tabs[0]" id="Man">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="col-md-5">
+
+                    <table class="table table-striped table-bordered" id="dataTables1">
+                        <thead>
+                            <tr>
+                                <th>主管階層名稱</th>
+                                <th>醫療人員數</th>
+
+                                <th>詳細</th>
+                                <th>修改</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ManagerLevelReport)
+                            {
+                            <tr>
+                                <td>
+                                    @item.UnitName
+                                </td>
+                                <td>
+                                    @item.SYSUserCount
+                                </td>
+                                <td>
+                                    <a class="btn btn-success btn-icon btn-circle btn-lg" data-toggle="modal" onclick="GetInfo(@item.UnitID,'@item.UnitName')"><i class="fa fa-2x fa-info-circle"></i></a>
+                                </td>
+                                <td>
+                                    @if (!(item.UnitID == 0 || item.UnitID == 1))
+                                        {
+                                        <a class="btn btn-primary" id="delM" href="/DCGroup/EditMedicalTeam?ID=@item.UnitID">修改</a>
+                                        }
+                                </td>
+                            </tr>
+
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="hID" value="" />
+                </div>
+                <div class="col-md-7">
+
+                    <div class="row">
+                        <label class="col-md-1 control-label ">團隊名稱</label>
+                        <div class="col-md-3">
+                            <label class="form-control required" id="ManagerName"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-2 control-label ">醫療人員</label>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-bordered" id="dataTables">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>@Reslang.Resource.Account</th>
+                                    <th>@Reslang.Resource.Name</th>
+                                    <th>@Reslang.Resource.Sex</th>
+                                    <th>職稱</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane @Model.Tabs[1]" id="Group">
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="col-md-5">
+
+                    <table class="table table-striped table-bordered" id="GroupTables2">
+                        <thead>
+                            <tr>
+                                <th>所屬管理階層</th>
+                                <th>醫療團隊名稱</th>
+                                <th>醫療人員數</th>
+                                <th>個案數</th>
+                                <th>詳細</th>
+                                <th>修改醫療人員</th>
+                                <th>修改個案</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.GroupLevelReport)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.ParentUnitName
+                                    </td>
+                                    <td>
+                                        @item.UnitName
+                                    </td>
+                                    <td>
+                                        @item.SYSUserCount
+                                    </td>
+                                    <td>
+                                        @item.DMCount
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success btn-icon btn-circle btn-lg" data-toggle="modal" onclick="GetGroupIDInfo(@item.UnitID,'@item.UnitName')"><i class="fa fa-2x fa-info-circle"></i></a>
+                                    </td>
+                                    <td>
+                                        @if (!(item.UnitID == 0 || item.UnitID == 1))
+                                        {
+                                            <a class="btn btn-primary" id="delM" href="/DCGroup/EditMedicalTeam?ID=@item.UnitID">修改</a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!(item.UnitID == 0 || item.UnitID == 1))
+                                        {
+                                            <a class="btn btn-primary" id="delM" href="/DCGroup/EditTeamDM?ID=@item.UnitID">修改</a>
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="hGroupID" value="" />
+                </div>
+                <div class="col-md-7">
+
+                    <div class="row">
+                        <label class="col-md-1 control-label ">團隊名稱</label>
+                        <div class="col-md-3">
+                            <label class="form-control required" id="GroupName"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-2 control-label ">醫療人員</label>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-bordered" id="GroupTable3">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>@Reslang.Resource.Account</th>
+                                    <th>@Reslang.Resource.Name</th>
+                                    <th>@Reslang.Resource.Sex</th>
+                                    <th>職稱</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-1 control-label ">個案</label>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-bordered" id="DMTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>病歷號碼</th>
+                                    <th>@Reslang.Resource.Name</th>
+                                    <th>@Reslang.Resource.Sex</th>
+                                    <th>@Reslang.Resource.DateofBirth</th>
+                                    <th>慢性病</th>
+                                    <th>慢性病種類</th>
+                                    <th>團隊收案時間</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/plugins/bs3wizard")"></script>
+ <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/parsley/dist/parsley.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+   <script src="~/Content/ColorAdmin/assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+@*<script src="@Scripts.Url("~/assets/js/plugins/bs3wizard")"></script>
+<script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+<script src="@Scripts.Url("~/assets/js/plugins/timepicker")"></script>*@
+@*<script src="~/Content/ColorAdmin/assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>*@
+<script src="~/Content/ColorAdmin/assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+
+}
+@section scripts{
+   
+    <script>
+        var handleBootstrapWizardsValidation = function () {
+            "use strict";
+            $("#wizard").bwizard(
+                
+                    {show:1,  backBtnText: "上一步", nextBtnText: "下一步" });
+        };
+
+      
+        var FormWizardValidation = function () {
+            "use strict";
+            return {
+                //main function
+                init: function () {
+                    handleBootstrapWizardsValidation();
+                }
+            };
+        }();
+        
+
+      
+        $(document).ready(function () {
+            App.init();
+            FormWizardValidation.init();
+           
+           
+        });
+
+       
+
+      
+    </script>
+    <script>
+   
+        var example_table = $('#dataTables').DataTable({
+            responsive: true,
+            paging: false,
+            fixedColumns: true,
+            "columnDefs": [{ "orderable": false, "targets": 0 }],
+            'ajax': {
+                "type": "POST",
+                "url": '/DCGroup/GetUnitInfo',
+                "data": function (d) {
+                    d.ID = $("#hID").val();
+                },
+                "dataSrc": ""
+            },
+
+            "aoColumns": [
+
+    { "mData": "UserID" },
+    { "mData": "Account" },
+    { "mData": "Name" },
+    { "mData": "SexID" },
+    { "mData": "JobTitle" }]
+            ,
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+
+                if (aData.SexID == 1) {
+                    $('td', nRow).eq(3).html('男性');
+                } else {
+                    $('td', nRow).eq(3).html('女性');
+                }
+
+            }
+        });
+
+        function GetInfo(ID,name) {
+            document.getElementById('ManagerName').innerHTML = name;
+           
+            $("#hID").val(ID);
+            example_table.ajax.reload();
+        }
+
+        var GroupTable3 = $('#GroupTable3').DataTable({
+            responsive: true,
+            paging: false,
+            fixedColumns: true,
+            "columnDefs": [{ "orderable": false, "targets": 0 }],
+            'ajax': {
+                "type": "POST",
+                "url": '/DCGroup/GetUnitInfo',
+                "data": function (d) {
+                    d.ID = $("#hGroupID").val();
+                },
+                "dataSrc": ""
+            },
+
+            "aoColumns": [
+
+    { "mData": "UserID" },
+    { "mData": "Account" },
+    { "mData": "Name" },
+    { "mData": "SexID" },
+    { "mData": "JobTitle" }]
+    ,
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+
+                if (aData.SexID == 1) {
+                    $('td', nRow).eq(3).html('男性');
+                } else {
+                    $('td', nRow).eq(3).html('女性');
+                }
+
+            }
+        });
+        var DMTable = $('#DMTable').DataTable({
+            responsive: true,
+            paging: false,
+            fixedColumns: true,
+            "columnDefs": [{ "orderable": false, "targets": 0 }],
+            'ajax': {
+                "type": "POST",
+                "url": '/DCGroup/GetDMInfo',
+                "data": function (d) {
+                    d.ID = $("#hGroupID").val();
+                },
+                "dataSrc": ""
+            },
+
+            "aoColumns": [
+
+    { "mData": "PatientID" },
+    { "mData": "MedicalNumber" },
+    { "mData": "PatientName" },
+    { "mData": "SexID" },
+    { "mData": "Birthday" }, { "mData": "ChronicName" },
+    { "mData": "ChronicSubName" },
+      { "mData": "StartDate" }
+            ]
+   ,
+            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+               
+
+                var Birthday = FormateJosDate(aData.Birthday.substr(6));
+                $('td', nRow).eq(4).html(Birthday);
+
+                var StartDate = FormateJosDate(aData.StartDate.substr(6)); 
+                $('td', nRow).eq(7).html(StartDate);
+
+                if (aData.SexID == 1) {
+                    $('td', nRow).eq(3).html('男性');
+                } else {
+                    $('td', nRow).eq(3).html('女性');
+                }
+
+            }
+        });
+        function GetGroupIDInfo(ID, name) {
+            document.getElementById('GroupName').innerHTML = name;
+
+            $("#hGroupID").val(ID);
+            GroupTable3.ajax.reload();
+            DMTable.ajax.reload();
+        }
+        function FormateJosDate(str)
+        {
+            str = "/Date(" + str;
+            var dateString = str.substr(6);
+            var currentTime = new Date(parseInt(dateString));
+            var month = currentTime.getMonth() + 1;
+            var day = currentTime.getDate();
+            var year = currentTime.getFullYear();
+            var date = year + "/" + month + "/" + day;
+            return date;
+        }
+       
+
+    </script>
+}

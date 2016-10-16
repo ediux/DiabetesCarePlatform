@@ -1,0 +1,533 @@
+﻿@{
+    ViewBag.Title = @Reslang.Resource.DM + @Reslang.Resource.Overview;
+}
+
+
+@section pagelevelcss{
+    @Styles.Render("~/assets/css/plugins/jq-circliful")
+    <link href="@Styles.Url("~/assets/css/plugins/dataTables/media/bs")" rel="stylesheet" />
+}
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/gritter")"></script>
+
+    <script src="@Scripts.Url("~/assets/js/resize")"></script>
+    <script src="@Scripts.Url("~/assets/js/jquery-jvectormap")"></script>
+
+    <script src="@Scripts.Url("~/assets/js/jq-dataTables")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/dataTables/media/bs")"></script>
+    <script src="@Scripts.Url("~/assets/js/extensions/Responsive/dataTables/responsive")"></script>
+    @*<!-- KNOB JS -->
+        <!--[if IE]>
+        <script type="text/javascript" src="@Scripts.Url("~/assets/js/plugins/knob-execanvas")"></script>
+        <![endif]-->
+        <script src="@Scripts.Url("~/assets/js/plugins/knob")"></script>
+        <script src="@Scripts.Url("~/assets/js/plugins/jq-circliful")"></script>*@
+}
+<!--列表-->
+<div style="width:100%;margin:0px auto;">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="widget widget-stats bg-blue-grey">
+
+                <div class="pull-left">
+                    <a class="btn btn-info" href="@Url.Action("CreateDMIndex", "DCSetUp")" type="button" role="button" data-toggle="modal">@Reslang.Resource.CreateDMIndex</a>
+                    &nbsp; &nbsp; &nbsp;
+
+                    <a class="btn btn-info" href="#searchAcct" data-toggle="modal" onclick="">@Reslang.Resource.CreateExistAccountDMIndex</a>
+
+                </div>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- begin panel -->
+                            <div class="panel panel-inverse">
+                                <div class="panel-body">
+                                    <div class="widget widget-stats">
+                                        <div class="pull-left" style="color:black;font-size:medium">
+                                            待@(Reslang.Resource.Audit + Reslang.Resource.MemerList)
+                                        </div>
+                                        <div class="pull-right">
+                                            <a class="btn btn-success" href="#addUser" type="button" role="button" data-toggle="modal">@Reslang.Resource.DMAuditHistory</a>
+                                        </div>
+                                    </div>
+                                    <table id="data-table" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>@Reslang.Resource.Name</th>
+                                                <th>@Reslang.Resource.Sex</th>
+                                                <th>@Reslang.Resource.IDNo</th>
+                                                <th>@Reslang.Resource.DateofBirth</th>
+                                                <th>@Reslang.Resource.Bloodtype</th>
+                                                <th>@Reslang.Resource.PhoneNumber</th>
+                                                <th>@Reslang.Resource.Information</th>
+                                                <th>@Reslang.Resource.Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td>王小美</td>
+                                                <td>男</td>
+                                                <td>A999999999</td>
+                                                <td>1888/1/1</td>
+                                                <td>B</td>
+                                                <td>0999999999</td>
+                                                <td>
+                                                    <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                                                </td>
+                                                <td>
+                                                    @(Reslang.Resource.Audit)中
+                                                </td>
+                                                <td>
+
+                                                    <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                                                    <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                                                </td>
+                                            </tr>
+                                            <tr class="even gradeC">
+                                                <td>王小美</td>
+                                                <td>男</td>
+                                                <td>A999999999</td>
+                                                <td>1888/1/1</td>
+                                                <td>B</td>
+                                                <td>0999999999</td>
+                                                <td>
+                                                    <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                                                </td>
+                                                <td>
+                                                    @(Reslang.Resource.Audit)中
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                                                <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd gradeA">
+                                            <td>王小美</td>
+                                            <td>男</td>
+                                            <td>A999999999</td>
+                                            <td>1888/1/1</td>
+                                            <td>B</td>
+                                            <td>0999999999</td>
+                                            <td>
+                                                <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                                            </td>
+                                            <td>
+                                                @(Reslang.Resource.Audit)中
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                                            <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="even gradeA">
+                                        <td>王小美</td>
+                                        <td>男</td>
+                                        <td>A999999999</td>
+                                        <td>1888/1/1</td>
+                                        <td>B</td>
+                                        <td>0999999999</td>
+                                        <td>
+                                            <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                                        </td>
+                                        <td>
+                                            @(Reslang.Resource.Audit)中
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                                        <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                                    </td>
+                                </tr>
+                                <tr class="odd gradeA">
+                                    <td>王小美</td>
+                                    <td>男</td>
+                                    <td>A999999999</td>
+                                    <td>1888/1/1</td>
+                                    <td>B</td>
+                                    <td>0999999999</td>
+                                    <td>
+                                        <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                                    </td>
+                                    <td>
+                                        @(Reslang.Resource.Audit)中
+                                </td>
+                                <td>
+                                    <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                                    <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                                </td>
+                            </tr>
+                            <tr class="even gradeA">
+                                <td>王小美</td>
+                                <td>男</td>
+                                <td>A999999999</td>
+                                <td>1888/1/1</td>
+                                <td>B</td>
+                                <td>0999999999</td>
+                                <td>
+                                    <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                                </td>
+                                <td>
+                                    @(Reslang.Resource.Audit)中
+                            </td>
+                            <td>
+                                <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                                <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                            </td>
+                        </tr>
+                        <tr class="gradeA">
+                            <td>王小美</td>
+                            <td>男</td>
+                            <td>A999999999</td>
+                            <td>1888/1/1</td>
+                            <td>B</td>
+                            <td>0999999999</td>
+                            <td>
+                                <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                            </td>
+                            <td>
+                                @(Reslang.Resource.Audit)中
+                        </td>
+                        <td>
+                            <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                            <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                        </td>
+                    </tr>
+                    <tr class="gradeA">
+                        <td>王小美</td>
+                        <td>男</td>
+                        <td>A999999999</td>
+                        <td>1888/1/1</td>
+                        <td>B</td>
+                        <td>0999999999</td>
+                        <td>
+                            <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                        </td>
+                        <td>
+                            @(Reslang.Resource.Audit)中
+                    </td>
+                    <td>
+                        <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                        <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                    </td>
+                </tr>
+                <tr class="gradeA">
+                    <td>王小美</td>
+                    <td>男</td>
+                    <td>A999999999</td>
+                    <td>1888/1/1</td>
+                    <td>B</td>
+                    <td>0999999999</td>
+                    <td>
+                        <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                    </td>
+                    <td>
+                        @(Reslang.Resource.Audit)中
+                </td>
+                <td>
+                    <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                    <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+                </td>
+            </tr>
+            <tr class="gradeA">
+                <td>王小美</td>
+                <td>男</td>
+                <td>A999999999</td>
+                <td>1888/1/1</td>
+                <td>B</td>
+                <td>0999999999</td>
+                <td>
+                    <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+                </td>
+                <td>
+                    @(Reslang.Resource.Audit)中
+            </td>
+            <td>
+                <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+                <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+            </td>
+        </tr>
+        <tr class="gradeA">
+            <td>王小美</td>
+            <td>男</td>
+            <td>A999999999</td>
+            <td>1888/1/1</td>
+            <td>B</td>
+            <td>0999999999</td>
+            <td>
+                <a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a>
+            </td>
+            <td>
+                @(Reslang.Resource.Audit)中
+        </td>
+        <td>
+            <a class="btn btn-info" href="#editUser" data-toggle="modal">@Reslang.Resource.Accept</a>
+            <a class="btn btn-info" href="#rejectDM" data-toggle="modal" onclick="">@Reslang.Resource.Reject</a>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+
+<!-- end panel -->
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--@Reslang.Resource.Reject-->
+<div class="modal fade" id="rejectDM" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    @(Reslang.Resource.Reject + Reslang.Resource.Reason)
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-6">
+                                <label class="col-sm-6 control-label">
+                                    @Reslang.Resource.Reason
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="addName" name="Name" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger" onclick=";">
+                    @Reslang.Resource.OK
+                </button>
+            </div>
+            @*<input type="hidden" name="jsfields" id="jsfields" value="" />*@
+        </div>
+    </div>
+</div>
+
+<!--預覽審核資訊-->
+<div class="modal fade" id="ApplyInfo" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    @Reslang.Resource.Information
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group clearfix">
+                    <label class="col-md-3 control-label " for="Fullname">@Reslang.Resource.Name</label>
+                    <div class="col-md-3">
+                        王小美
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-3">@Reslang.Resource.Sex</label>
+                    <div class="col-md-3">
+                        男
+                    </div>
+
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-3 control-label " for="IDNumber">@Reslang.Resource.IDNo</label>
+                    <div class="col-md-3">
+                        12345678912
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-3">@Reslang.Resource.DateofBirth</label>
+                    <div class="col-md-3">
+
+                        <div class="input-group date" id="birthday">
+                            1988/1/1
+                        </div>
+                        <!-- input-group -->
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-3">@Reslang.Resource.Bloodtype</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            B
+                        </div>
+                        <!-- input-group -->
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-3">@Reslang.Resource.Nation</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            漢族
+                        </div>
+                        <!-- input-group -->
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-3 control-label " for="cellphone">@Reslang.Resource.Mobilephone</label>
+                    <div class="col-md-3">
+                        0912345678
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-3 control-label " for="telphone">@Reslang.Resource.PhoneNumber</label>
+                    <div class="col-md-3">
+                        02-1234567
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Living</label>
+
+                    <div class="col-md-9">
+                        廣東省深圳區OOOOOOOOOOO
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger" onclick=";">
+                    確認
+                </button>
+            </div>
+            @*<input type="hidden" name="jsfields" id="jsfields" value="" />*@
+        </div>
+    </div>
+</div>
+
+<!--連結已有帳戶-->
+
+<div class="modal fade" id="searchAcct" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+
+        <div class="modal-content">
+            @using (Html.BeginForm("ConfirmApp", "DCSetUp", FormMethod.Post))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel1">
+                        驗證帳戶
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group col-lg-6">
+                                    <label class="col-sm-6 control-label">
+                                        E-Mail
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="addEmail" name="addEmail" required />
+
+                                    </div>
+                                    @*<div class="col-sm-6">
+                                        <a class="btn btn-info" id="btn1" type="button" role="button" data-toggle="modal">驗證帳戶</a>
+                                        </div>*@
+                                </div>
+                                <div class="form-group col-lg-6">
+
+                                    <div class="col-sm-6">
+                                        <a class="btn btn-info" id="btn1" type="button" role="button" data-toggle="modal">搜尋</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div id="showresults"></div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="btnVerify" id="btnVerify" class="btn btn-danger" disabled="disabled">
+                        進入個案建立
+                    </button>
+                </div>
+                @*<div class="modal-footer">
+                        <a class="btn btn-info" href="@Url.Action("CreateExistAccountDMIndex", "DCSetUp")" type=" button" role="button" data-toggle="modal">進入個案建立</a>
+                    </div>*@
+            }
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+        $('#Birthday').datepicker({
+            todayHighlight: true
+              , format: 'yyyy-mm-dd'
+            //, onSelect: function () {
+            //    $('#CopyBirthday').val(this.value);
+
+            // }
+        });
+        $('#btn1').click(function () {
+            // var div = document.getElementById('showresults');
+            $('#showresults').empty();
+            $.ajax({
+                type: "POST",
+                url: "/DCSetUp/VerifyAccount",
+                datatype: "Json",
+                data: { accout: $('#addEmail').val() },
+                success: function (data) {
+
+                    var div = document.getElementById('showresults');
+                    var sbmt = document.getElementById("btnVerify");
+                    if (data == "") {
+                        //document.getElementById("btnVerify").disabled = true;
+                        sbmt.disabled = true;
+                        //$("#btnVerify").prop("disabled", true);
+                        //  var div = document.getElementById('showresults');
+                        div.innerHTML = div.innerHTML + '<div class="form-group col-lg-6"><label class="col-sm-6 control-label">查無此帳戶!</label></div>';
+                    }
+                    else {
+                        $.each(data, function (index, value) {
+                            if (index == "ID") {
+                                div.innerHTML = div.innerHTML + '<input type="hidden" name="AppID" id="AppID" value="' + value + '" />';
+                            } else {
+                                div.innerHTML = div.innerHTML +
+                             '<div class="form-group col-lg-6"><label class="col-sm-6 control-label">' + index + '</label><div class="col-sm-6"><input type="text" class="form-control" value="' + value + '"  readonly/> </div></div>';
+                            }
+
+                        });
+                        sbmt.disabled = false;
+                        //$("#btnVerify").prop("disabled", false);
+                        //document.getElementById("btnVerify").disabled = false;
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#btnVerify").prop("disabled", true);
+                    var div = document.getElementById('showresults');
+                    div.innerHTML = div.innerHTML + '<div class="form-group col-lg-6"><label class="col-sm-6 control-label"></label></div>';
+                },
+
+                complete: function (xhr, status) {
+                    //$('#showresults').slideDown('slow')
+                }
+            });
+        });
+
+    </script>
+}

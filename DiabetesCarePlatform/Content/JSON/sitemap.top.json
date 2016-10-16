@@ -1,0 +1,69 @@
+﻿[
+    {
+        "Title": "首頁",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "Home",
+        "RoutedValues": { },
+
+        "IconCSSClass": "",
+        "IconName": "home",
+        "ItemCSSClass": "waves-effect",
+
+        "SubMenus": [
+            {
+                "Title": "首頁",
+                "Area": "",
+                "ActionName": "Index",
+                "ControllerName": "Home",
+                "RoutedValues": { },
+
+                "IconCSSClass": "",
+                "IconName": "home",
+                "ItemCSSClass": "waves-effect",
+
+                "SubMenus": null
+            },
+            {
+                "Title": "首頁",
+                "Area": "",
+                "ActionName": "Index",
+                "ControllerName": "Home",
+                "RoutedValues": { },
+
+                "IconCSSClass": "",
+                "IconName": "home",
+                "ItemCSSClass": "waves-effect",
+
+                "SubMenus": null
+            }
+
+        ]
+    },
+    {
+        "Title": "關於",
+        "Area": "",
+        "ActionName": "About",
+        "ControllerName": "Home",
+        "RoutedValues": { },
+
+        "IconCSSClass": "",
+        "IconName": "home",
+        "ItemCSSClass": "dropdown-toggle waves-effect",
+
+        "SubMenus": null
+    },
+    {
+        "Title": "連絡方式",
+        "Area": "",
+        "ActionName": "Contact",
+        "ControllerName": "Home",
+        "RoutedValues": { },
+
+        "IconCSSClass": "",
+        "IconName": "home",
+        "ItemCSSClass": "dropdown-toggle waves-effect",
+
+        "SubMenus": null
+    }
+]

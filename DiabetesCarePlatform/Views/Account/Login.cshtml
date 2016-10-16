@@ -1,0 +1,121 @@
+﻿@using DiabetesCarePlatform.Models
+@model LoginViewModel
+@{
+    Layout = null;
+    ViewBag.Title =  Html.Geti18nText("Login");
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title> @Html.Geti18nText(Html.GetConfigValue("WebSite:Name").ToHtmlString())  | @ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="@Html.GetConfigValue("webpages:Description")" name="description" />
+    <meta content="@Html.GetConfigValue("webpages:Author")" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @Styles.Render("~/assets/css/jquery-ui")
+    @Styles.Render("~/assets/css/bootstrap")
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link href="@Styles.Url("~/assets/css/animate")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/style")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/default")" rel="stylesheet" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    @*<script src="@Scripts.Url("~/assets/js/pace")"></script>*@
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body class="pace-top">
+    <!-- begin #page-loader -->
+    <div id="page-loader">
+        <div class="material-loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+            <div class="message">@Html.Geti18nText("Loading")</div>
+        </div>
+    </div>
+    <!-- end #page-loader -->
+    <div class="login-cover">
+        <div class="login-cover-image"><img src="@Url.Content("https://www.pakutaso.com/shared/img/thumb/PAK85_shirukunokiji20141206163701_TP_V.jpg")" data-id="login-cover-image" alt="" /></div>
+        <div class="login-cover-bg"></div>
+    </div>
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade">
+        <!-- begin login -->
+        <div class="login login-v2" data-pageload-addclass="animated fadeIn">
+            <!-- begin brand -->
+            <div class="login-header">
+                <div class="brand">
+                    <span class="logo"></span>@Html.Geti18nText(Html.GetConfigValue("WebSite:Name").ToHtmlString())
+                    @*<small>照護平台</small>*@
+                </div>
+                <div class="icon">
+                    <i class="material-icons">lock</i>
+                </div>
+            </div>
+            <!-- end brand -->
+            <div class="login-content">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "margin-bottom-0", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group m-b-20">
+                        @Html.TextBoxFor(m => m.Account, new { @class = "form-control input-lg", @placeholder = "Account" })
+                        @Html.ValidationMessageFor(m => m.Account, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group m-b-20">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="checkbox m-b-20">
+                        <label>
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                    <div class="login-buttons">
+                        <button type="submit" class="btn btn-info btn-block btn-lg">@Html.Geti18nText("Login_Button_Text")</button>
+                    </div>
+                    <div class="m-t-20">
+                        @Html.Geti18nText("ForgetPassword")
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- end login -->
+    </div>
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+
+    <script src="@Scripts.Url("~/assets/js/jquery")"></script>
+    <script src="@Scripts.Url("~/assets/js/migrate")"></script>
+    <script src="@Scripts.Url("~/assets/js/jquery-ui")"></script>
+    <script src="@Scripts.Url("~/assets/js/bootstrap")"></script>
+    <!--[if lt IE 9]>
+        <script src="@Scripts.Url("~/assets/js/html5shiv")"></script>
+        <script src="@Scripts.Url("~/assets/js/respond")"></script>
+        <script src="@Scripts.Url("~/assets/js/excanvas")"></script>
+    <![endif]-->
+    <script src="@Scripts.Url("~/assets/js/slimscroll")"></script>
+    <script src="@Scripts.Url("~/assets/js/cookie")"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Scripts.Url("~/assets/js/app")"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "新增" + ViewData["RecordItem"] + "紀錄";
+}
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/plugins/dataTables/media/bs")" rel="stylesheet" />
+}
+
+@Html.Action("DCIndexMenu")
+
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-body">
+
+                <div id="wizard">
+                    <ol>
+                        <li>
+                            @Reslang.Resource.SetUp1@Reslang.Resource.GeneralData
+                        </li>
+                        <li>
+                            運動執行情況
+                        </li>
+                        <li>
+                            短期目標設定
+                        </li>
+                        <li>
+                            自我照顧情形
+                        </li>
+                    </ol>
+                    <!-- begin wizard step-1 -->
+                    <div>
+                        <fieldset>
+                            <legend class="pull-left width-full">衛教前評估：</legend>
+                            <!-- begin row -->
+                            <div class="form-group clearfix">
+                                <label class="col-md-3 control-label">是否瞭解糖尿病控制的重要性及飲食、運動、藥物需互相配合之相關性？</label>
+                                <div class="col-md-3">
+                                    <input class="form-control required" id="LastName" name="LastName" type="text" onkeyup="sync(this.id)">
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="col-md-3 control-label " for="confirm1">病患對糖尿病自我照顧之學習配合意願：</label>
+                                <div class="col-md-3">
+                                    <select class="form-control">
+                                        <option>強烈</option>
+                                        <option>普通</option>
+                                        <option>勉強</option>
+                                        <option>無</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="col-md-3 control-label " for="confirm1">是否按醫囑規律服藥</label>
+                                <div class="col-md-3">
+                                    <select class="form-control">
+                                        <option>是</option>
+                                        <option>否</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- end row -->
+                        </fieldset>
+                    </div>
+                    <!-- end wizard step-1 -->
+                    <!-- begin wizard step-2 -->
+                    <div>
+                        <fieldset></fieldset>
+                    </div>
+                    <!-- end wizard step-2 -->
+                    <!-- begin wizard step-3 -->
+                    <div>
+                        <fieldset></fieldset>
+                    </div>
+                    <!-- end wizard step-3 -->
+                </div>
+
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/plugins/bs3wizard")"></script>
+    <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/timepicker")"></script>
+}
+@section scripts{
+    <script>
+        var handleBootstrapWizards = function () {
+            "use strict";
+            $("#wizard").bwizard({
+                backBtnText: "上一步",
+                nextBtnText: "下一步",
+                onTabShow: function (tab, navigation, index) {
+                    var $total = navigation.find('li').length;
+                    var $current = index + 1;
+                    var $percent = ($current / $total) * 100;
+                    $('#wizard').find('.bar').css({ width: $percent + '%' });
+
+                    // If it's the last tab then hide the last button and show the finish instead
+                    if ($current >= $total) {
+                        $('#wizard').find('.pager .next').hide();
+                        $('#wizard').find('.pager .finish').show();
+                        $('#wizard').find('.pager .finish').removeClass('disabled');
+                    } else {
+                        $('#wizard').find('.pager .next').show();
+                        $('#wizard').find('.pager .finish').hide();
+                    }
+
+                },
+                activeIndexChanged: function (e, ui) {
+
+                }
+            });
+
+            $('#wizard .finish').click(function () {
+                alert('Finished!, Starting over!');
+                $('#wizard').find("a[href*='tab1']").trigger('click');
+            });
+
+            $('#birthday').datepicker({
+                todayHighlight: true
+            });
+
+            $('#datepicker-autoclose5').datepicker({ todayHighlight: true });
+            $('#datepicker-autoclose6').datepicker({ todayHighlight: true });
+        };
+
+        var FormWizard = function () {
+            "use strict";
+            return {
+                //main function
+                init: function () {
+                    handleBootstrapWizards();
+                }
+            };
+        }();
+
+        function page_init() {
+            FormWizard.init();
+        }
+    </script>
+}

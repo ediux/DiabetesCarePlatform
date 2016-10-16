@@ -1,0 +1,91 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    Layout = null;
+    ViewBag.Title = "錯誤";
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>@Html.Geti18nText(Html.GetConfigValue("WebSite:Name").ToHtmlString()) | @ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/Content/ColorAdmin/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/css/style.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body class="pace-top bg-grey-800">
+    <!-- begin #page-loader -->
+    <div id="page-loader">
+        <div class="material-loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+            <div class="message">@Html.Geti18nText("Loading")</div>
+        </div>
+    </div>
+    <!-- end #page-loader -->
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade">
+        <!-- begin error -->
+        <div class="error">
+            <div class="error-code m-b-10 text-yellow">@ViewBag.StatusCode <i class="material-icons">warning</i></div>
+            <div class="error-content bg-grey-700">
+                <div class="error-message">@ViewBag.Message</div>
+                <div class="error-desc m-b-20">
+                    @ViewBag.StackTrace
+                </div>
+                <div>
+                    <a href="@Url.Action("Index","DCP")" class="btn btn-inverse text-yellow"><i class="material-icons pull-left f-s-18 m-t-1 m-r-5">arrow_back</i> @Html.Geti18nText("Back_to_Home_Page")</a>
+                </div>
+            </div>
+        </div>
+        <!-- end error -->
+        <!-- begin scroll to top btn -->
+        <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+        <!-- end scroll to top btn -->
+    </div>
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Content/ColorAdmin/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="~/Content/ColorAdmin/assets/crossbrowserjs/html5shiv.js"></script>
+        <script src="~/Content/ColorAdmin/assets/crossbrowserjs/respond.min.js"></script>
+        <script src="~/Content/ColorAdmin/assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/Content/ColorAdmin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/Content/ColorAdmin/assets/js/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+</body>
+</html>
+

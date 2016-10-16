@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewBag.Title = "醫療團隊群組維護";
+}
+<!--列表-->
+<div class="widget widget-stats bg-blue-grey-50 row">
+    <div class="col-md-6 col-sm-6">
+        <a class="btn btn-success" href="@Url.Action("Index", "DCGroup")" data-toggle="modal" onclick="">病患歸屬負責醫療團隊</a>
+        &nbsp;
+        <a class="btn btn-success" href="@Url.Action("MedicalTeamMember", "DCGroup")" data-toggle="modal" onclick="">醫療人員歸屬醫療團隊群組</a>
+        &nbsp;
+        <a class="btn btn-success" href="@Url.Action("MedicalTeamGroup", "DCGroup")" data-toggle="modal" onclick="">醫療團隊群組維護</a>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <a class="btn btn-success" href="#AddGroup" data-toggle="modal" onclick="">新增團隊</a>
+                <div class="dataTables_filter" id="data-table_filter"><label>Search:<input aria-controls="data-table" placeholder="" class="form-control input-sm" type="search"></label></div>
+                <div>
+                    <table class="table table-striped table-bordered" id="dataTables">
+                        <thead>
+                            <tr>
+                                <th>醫療團隊名稱</th>
+                                <th>醫療人員數</th>
+                                <th>個案人數</th>
+                                <th>詳細</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>所有醫療團隊</td>
+                                <td>52</td>
+                                <td>103</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#TeamInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>未分配</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#TeamInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a></td>
+                            </tr>
+                            <tr>
+                             
+                                <td>醫療A</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#TeamInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a></td>
+
+                            </tr>
+                            <tr>
+                               
+                                <td>醫療B</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#TeamInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>醫療C</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#TeamInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>醫療D</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#TeamInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>醫療E</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#TeamInfo" data-toggle="modal"><i class="fa fa-2x fa-info-circle"></i></a></td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--新增團隊-->
+<div class="modal fade" id="AddGroup" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+
+        <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="formclear()" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增團隊
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group col-lg-6">
+                                    <label class="col-sm-4 control-label">
+                                        編號
+                                    </label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" value="-" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group col-lg-6">
+                                    <label class="col-sm-4 control-label">
+                                        群組名稱
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="addName" name="Name" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" onclick="">
+                        確認
+                    </button>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+<!--預覽資訊-->
+<div class="modal fade" id="TeamInfo" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    團隊資訊
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-lg-12">
+                    <label class="col-sm-2 control-label">
+                        團隊名稱
+                    </label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="addName" name="Name" value="團隊A" required />
+                    </div>
+                    <div class="col-sm-6"><a class="btn btn-success" href="" onclick="">更新</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                       
+                            <a class="btn btn-danger" href="" onclick="">刪除</a>
+                        </div>
+                </div>
+                <table class="table table-striped table-bordered" id="dataTables">
+                    <thead>
+                        <tr>
+                            <th> 團隊成員</th>
+                            <th>職稱</th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>王OO</td>
+                            <td>個案管理師管理師</td>
+                        </tr>
+                        <tr>
+                            <td>林OO</td>
+                            <td>個案管理師管理師</td>
+                        </tr>
+                        <tr>
+
+                            <td>林OO</td>
+                            <td>管理師</td>
+                        </tr>
+                        <tr>
+                            <td>王OO</td>
+                            <td>管理師</td>
+                        </tr>
+                    </tbody>
+                </table>
+              
+                <table class="table table-striped table-bordered" id="dataTables">
+                    <thead>
+                        
+                        <tr>
+                            <th>個案姓名</th>
+                            <th>病歷號碼</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>陳OO</td>
+                            <td>A123456</td>
+                        </tr>
+                        <tr>
+                            <td>林OO</td>
+                            <td>B123456</td>
+                        </tr>
+                        <tr>
+
+                            <td>林OO</td>
+                            <td>C123456</td>
+                        </tr>
+                        <tr>
+                            <td>王OO</td>
+                            <td>D123456</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var FormWizard = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleBootstrapWizards();
+                }
+            };
+        }();
+
+        $(document).ready(function () {
+            App.init();
+            FormWizard.init();
+        });
+    </script>
+
+    <script>
+
+    </script>
+}

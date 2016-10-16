@@ -1,0 +1,177 @@
+﻿@model DiabetesCarePlatform.Models.ZoomNetMeeting.MeetingRoomViewModel
+
+@{
+    ViewBag.Title = Html.Geti18nText("EditMeetingRoom");
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/ionRangeSlider")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/ionRangeSlider-skinNice")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-colorpicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-timepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/password-indicator")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-combobox")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-select")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-tagsinput")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/jquery-tag-it")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-daterangepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/select2")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-eonasdan-datetimepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/DataTables")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/pluging/extensions/DataTables-FixedHeader")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/extensions/DataTables-Responsive")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/gritter")" rel="stylesheet" />
+}
+
+<!-- begin row -->
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="@Url.Action("CreateMeetingRoom")" class="btn btn-success btn-xs"></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">@Html.Geti18nText("CreateMeetingRoom")</h4>
+            </div>
+            <div class="panel-body m-10">
+                <fieldset>
+                    @using (Html.BeginForm("EditMeetingRoom", "VideoSchedule", FormMethod.Post, new { @class = "form-inline" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group m-r-10">
+                            <label class="control-label" for="newname">@Html.Geti18nText("MeetingRoomName")</label>
+                        </div>
+                        <div class="form-group m-r-10">
+                            @Html.TextBoxFor(p => p.Name, new { @class = "form-control", @placeholder = Html.Geti18nText("MeetingRoomName") })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="@Html.Geti18nText("Save")" />
+                        </div>
+                    }
+                    <legend>@Html.Geti18nText("AssignTimes")</legend>
+                    @using (Html.BeginForm("AssignTimesForRoom", "VideoSchedule", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(p=>p.Id)
+                        
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">套用至星期</label>
+                            <div class="col-md-9">
+                                <select class="form-control">
+                                    <option value="1">一</option>
+                                    <option value="2">二</option>
+                                    <option value="3">三</option>
+                                    <option value="4">四</option>
+                                    <option value="5">五</option>
+                                    <option value="6">六</option>
+                                    <option value="7">日</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+        
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="check">
+                                    <label>
+                                   
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                   
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">@Html.Geti18nText("Save")</button>
+                            <a class="btn btn-primary" href="@Url.Action("AssignTimesForRoom")">管理服務時段</a>
+                        </div>
+                    }
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>MR_MeetingRooms</h4>
+        <hr />
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-datepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/ionRangeSlider")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-colorpicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/masked-input")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-timepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/password-indicator")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-combobox")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-select")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-tagsinput")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/jquery-tag-it")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-daterangepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/select2")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/moment2")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-eonasdan-datetimepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/DataTables")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/extensions/DataTables-Responsive")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/extensions/DataTables-FixedHeader")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/gritter")"></script>
+    <script src="@Scripts.Url("~/bundles/jqueryval")"></script>
+}
+
+@section Scripts {
+    <script>
+        function showdialog() {
+            $('#').html('');
+            $('#modal-dialog').modal('show');
+
+        }
+        function page_init() {
+            $('.page-header').hide();
+            if ($('#data-table').length !== 0) {
+                $('#data-table').DataTable({
+                    fixedHeader: {
+                        header: true,
+                        headerOffset: $('#header').height()
+                    },
+                    responsive: true
+                });
+            }
+            $('#timepicker').timepicker();
+
+        }
+    </script>
+}

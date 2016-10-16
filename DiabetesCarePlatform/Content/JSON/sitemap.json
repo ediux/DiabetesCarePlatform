@@ -1,0 +1,128 @@
+﻿[
+    {
+        "Index": 0,
+        "Title": "總覽",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "DCP",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "dashboard",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 1,
+        "Title": "個案建立",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "DCSetUp",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 2,
+        "Title": "糖特關懷群組",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "DCGroup",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 3,
+        "Title": "個案管理",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "DCCare",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 4,
+        "Title": "平台管理",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "User",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 5,
+        "Title": "衛教資訊",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "HealthEdu",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 6,
+        "Title": "視訊排程",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "VideoSchedule",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 7,
+        "Title": "報表",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "Report",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    },
+    {
+        "Index": 8,
+        "Title": "通知設定",
+        "Area": "",
+        "ActionName": "Index",
+        "ControllerName": "Notify",
+        "RoutedValues": { },
+
+        "IconCSSClass": "material-icons",
+        "IconName": "home",
+        "ItemCSSClass": "",
+
+        "SubMenus": null
+    }
+]

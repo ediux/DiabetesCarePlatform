@@ -1,0 +1,1105 @@
+﻿@using DiabetesCarePlatform.Models;
+@model BasicInformationModel
+@{
+    ViewBag.Title = "基本資料";
+}
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+}
+
+@Html.Action("DCIndexMenu")
+
+@{
+    var AllergyList = from data in Model.PathologyList
+                      where data.PathologyTypeID == 4
+                      select data;
+    var HistoryList = from data in Model.PathologyList
+                      where data.PathologyTypeID == 2
+                      && data.ResultValue == "Y"
+                      select data;
+}
+@{
+    <!--個人基本資料-->
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="#EditorBasicInformation" class="btn btn-xs btn-icon btn-circle btn-success" data-toggle="modal"><i class=" fa fa-pencil"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+            </div>
+            <h4 class="panel-title">個人基本資料</h4>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>病歷號</dt>
+                <dd><label id="PatientID">@Model.BIDMItem.PatientID</label></dd>
+                <dt>姓名</dt>
+                <dd>@Model.BIDMItem.PatientName</dd>
+                <dt>身分證字號</dt>
+                <dd>@Model.BIDMItem.IdentityNumber</dd>
+                <dt>性別</dt>
+                <dd>@Model.BIDMItem.SexName</dd>
+                <dt>生日</dt>
+                <dd>@Model.BIDMItem.Birthday</dd>
+                <dt>慢病類型</dt>
+                <dd>@Model.BIDMItem.ChronicSubName</dd>
+                <dt>血型</dt>
+                <dd>@Model.BIDMItem.BloodTypeName 型  @Model.BIDMItem.BloodRhTypeName</dd>
+                <dt>民族</dt>
+                <dd>@Model.BIDMItem.RaceTypeName</dd>
+                <dt>語言</dt>
+                <dd>@Model.BIDMItem.LanguageTypeName</dd>
+                <dt>宗教</dt>
+                <dd>@Model.BIDMItem.ReligionTypeName</dd>
+                <dt>職業</dt>
+                <dd>@Model.BIDMItem.ProfessionTypeName</dd>
+                <dt>教育程度</dt>
+                <dd>@Model.BIDMItem.EducationLevelName</dd>
+                <dt>身心障礙</dt>
+                <dd>@Model.BIDMItem.DisabledID</dd>
+            </dl>
+        </div>
+    </div>
+    <!--生活習慣-->
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="#EditorHobby" class="btn btn-xs btn-icon btn-circle btn-success" data-toggle="modal"><i class=" fa fa-pencil"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+            </div>
+            <h4 class="panel-title">生活狀況與習慣</h4>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>婚姻狀況</dt>
+                <dd>@Model.BIDMItem.MaritalStatusName</dd>
+                <dt>居住狀況</dt>
+                <dd>@Model.BIDMItem.LivingStatusName</dd>
+                <dt>吸菸習慣</dt>
+                <dd>@Model.BIDMItem.SmokeTypeName</dd>
+                <dt>飲酒習慣</dt>
+                <dd>@Model.BIDMItem.DrinkTypeName</dd>
+                <dt>檳榔習慣</dt>
+                <dd>@Model.BIDMItem.ArecaTypeName</dd>
+            </dl>
+        </div>
+    </div>
+    <!--聯絡資料-->
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="#EditorContact" class="btn btn-xs btn-icon btn-circle btn-success" data-toggle="modal"><i class=" fa fa-pencil"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+            </div>
+
+            <h4 class="panel-title">聯絡資料</h4>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>手機</dt>
+                <dd>@Model.BIDMItem.CellPhone</dd>
+                <dt>家用電話</dt>
+                <dd>@Model.BIDMItem.HomeTelphone</dd>
+                <dt>辦公室電話</dt>
+                <dd>@Model.BIDMItem.OfficeTelphone</dd>
+                <dt>E-Mail</dt>
+                <dd>@Model.BIDMItem.eMail</dd>
+                <dt>戶籍地址</dt>
+                <dd>@Model.BIDMItem.CountryName @Model.BIDMItem.StateName @Model.BIDMItem.CityName @Model.BIDMItem.DistrictName @Model.BIDMItem.RegisterAddress</dd>
+                <dt>通訊地址</dt>
+                <dd>@Model.BIDMItem.NowCountryName @Model.BIDMItem.NowStateName @Model.BIDMItem.NowCityName @Model.BIDMItem.NowDistrictName @Model.BIDMItem.NowAddress</dd>
+            </dl>
+        </div>
+    </div>
+}
+<!--病史資料-->
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <div class="panel-heading-btn">
+            <a href="#EditorPMRHitory" class="btn btn-xs btn-icon btn-circle btn-success" data-toggle="modal"><i class=" fa fa-pencil"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+        </div>
+
+        <h4 class="panel-title">病史資料</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>過敏史</dt>
+            <dd>
+                @foreach (var item in AllergyList)
+                {
+                    @item.ResultValue
+                }
+            </dd>
+
+            <dt>過去病史</dt>
+            <dd>
+                @foreach (var item in HistoryList)
+                {
+                    @item.PMR_TagName <br />
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+<!--緊急聯絡人-->
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <div class="panel-heading-btn">
+            <a href="#EditorContactPerson" class="btn btn-xs btn-icon btn-circle btn-success" data-toggle="modal"><i class=" fa fa-pencil"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+        </div>
+
+        <h4 class="panel-title">緊急聯絡人</h4>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            @foreach (var item in Model.ContactPersonList)
+            {
+            <dt>姓名</dt>
+            <dd>@item.ContactName</dd>
+            <dt>關係</dt>
+            <dd>@item.Description</dd>
+            <dt>性別</dt>
+            <dd>@item.SexName</dd>
+            <dt>手機</dt>
+            <dd>@item.CellPhone</dd>
+            <dt>家用電話</dt>
+            <dd>@item.HomeTelphone</dd>
+            <dt>辦公室電話</dt>
+            <dd>@item.OfficeTelphone</dd>
+            <dt>E-Mail</dt>
+            <dd>@item.MailAddress</dd>
+            }
+        </dl>
+    </div>
+</div>
+
+<!--修改個人基本資料-->
+<div class="modal fade" id="EditorBasicInformation" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        @using (Html.BeginForm("EditBasicInformation", "DCcare", FormMethod.Post, new { name = "form-wizard" }))
+        {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改個人基本資料
+                </h4>
+            </div>
+            <div class="modal-body">
+                @{
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    病歷號
+                                </label>
+                                <div class="col-sm-8">
+                                    <input name="PatientID" type="text" class="form-control" value=@Model.BIDMItem.PatientID readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    姓名
+                                </label>
+                                <div class="col-sm-8">
+                                    <input name="PatientName" id="PatientName" type="text" class="form-control" value=@Model.BIDMItem.PatientName required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    身分證字號
+                                </label>
+                                <div class="col-sm-8">
+                                    <input id="IdentityNumber" type="text" class="form-control" value=@Model.BIDMItem.IdentityNumber readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    性別
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("SexType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.SexName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    生日
+                                </label>
+                                <div class="col-sm-8">
+                                    <div class="input-group date" id="Birthday">
+                                        <input name="Birthday" id="Birthdaytext" type="text" class="form-control" value=@Model.BIDMItem.Birthday required />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    慢病類型
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("ChronicSubType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.ChronicSubName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    血型
+                                </label>
+                                <div class="col-sm-4">
+                                    @Html.DropDownList("BloodType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.BloodTypeName, new { @class = "form-control" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.DropDownList("BloodRhType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.BloodRhTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    民族
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("RaceType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.RaceTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    語言
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("LanguageType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.LanguageTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    宗教
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("ReligionType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.ReligionTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    職業
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("ProfessionType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.ProfessionTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    教育程度
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("EducationLevel", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.EducationLevelName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    身心障礙
+                                </label>
+                                <div class="col-sm-8">
+                                    <input name="DisabledID" id="DisabledID" type="text" class="form-control" value=@Model.BIDMItem.DisabledID />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">
+                    @Reslang.Resource.OK
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+<!--修改生活狀況與習慣-->
+<div class="modal fade" id="EditorHobby" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        @using (Html.BeginForm("EditHobby", "DCcare", FormMethod.Post, new { name = "form-wizard" }))
+        {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改生活狀況與習慣
+                    <input name="PatientID" type="hidden" class="form-control" value=@Model.BIDMItem.PatientID />
+                </h4>
+            </div>
+            <div class="modal-body">
+                @{
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    婚姻狀況
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("MaritalStatus", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.MaritalStatusName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    居住狀況
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("LivingStatus", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.LivingStatusName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    吸菸習慣
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("SmokeType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.SmokeTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    飲酒習慣
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("DrinkType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.DrinkTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    檳榔習慣
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("ArecaType", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.ArecaTypeName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">
+                    @Reslang.Resource.OK
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+<!--修改聯絡資料-->
+<div class="modal fade" id="EditorContact" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        @using (Html.BeginForm("EditContact", "DCcare", FormMethod.Post, new { name = "form-wizard" }))
+        {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改
+                    <input name="PatientID" type="hidden" class="form-control" value=@Model.BIDMItem.PatientID />
+                </h4>
+            </div>
+            <div class="modal-body">
+                @{
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    手機
+                                </label>
+                                <div class="col-sm-8">
+                                    <input name="CellPhone" id="CellPhone" type="text" class="form-control" value=@Model.BIDMItem.CellPhone required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    家用電話
+                                </label>
+                                <div class="col-sm-8">
+                                    <input name="HomeTelphone" id="HomeTelphone" type="text" class="form-control" value=@Model.BIDMItem.HomeTelphone required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    辦公室電話
+
+                                </label>
+                                <div class="col-sm-8">
+                                    <input name="OfficeTelphone" id="OfficeTelphone" type="text" class="form-control" value=@Model.BIDMItem.OfficeTelphone required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    E-Mail
+                                </label>
+                                <div class="col-sm-8">
+                                    <input name="eMail" id="eMail" type="text" class="form-control" value=@Model.BIDMItem.eMail required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    戶籍地址
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("CountryName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.CountryName, new { @class = "form-control" })
+                                    @Html.DropDownList("StateName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.StateName, new { @class = "form-control" })
+                                    @Html.DropDownList("CityName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.CityName, new { @class = "form-control" })
+                                    @Html.DropDownList("DistrictName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.DistrictName, new { @class = "form-control" })
+                                    <input name="RegisterAddress" id="RegisterAddress" type="text" class="form-control" value=@Model.BIDMItem.RegisterAddress required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-10">
+                                <label class="col-sm-4 control-label">
+                                    通訊地址
+                                </label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("NowCountryName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.NowCountryName, new { @class = "form-control" })
+                                    @Html.DropDownList("NowStateName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.NowStateName, new { @class = "form-control" })
+                                    @Html.DropDownList("NowCityName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.NowCityName, new { @class = "form-control" })
+                                    @Html.DropDownList("NowDistrictName", new SelectList(string.Empty, "Value", "Text"), @Model.BIDMItem.NowDistrictName, new { @class = "form-control" })
+                                    <input name="NowAddress" id="NowAddress" type="text" class="form-control" value=@Model.BIDMItem.NowAddress required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">
+                    @Reslang.Resource.OK
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+<!--修改病史資料-->
+<div class="modal fade" id="EditorPMRHitory" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        @using (Html.BeginForm("EditContact", "DCcare", FormMethod.Post, new { name = "form-wizard" }))
+        {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改
+                    <input name="PatientID" type="hidden" class="form-control" value=@Model.BIDMItem.PatientID />
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-10">
+                            <label class="col-sm-4 control-label">
+                                過敏史
+                            </label>
+                            <div class="col-sm-8">
+                                @foreach (var item in AllergyList)
+                                    {
+                                    @item.ResultValue
+
+                                    }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-10">
+                            <label class="col-sm-4 control-label">
+                                過去病史
+                            </label>
+                            <div class="col-sm-8">
+                                @foreach (var item in HistoryList)
+                                    {
+                                    @item.PMR_TagName <br />
+                                    }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">
+                    @Reslang.Resource.OK
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+<!--修改緊急連絡人資料-->
+<div class="modal fade" id="EditorContactPerson" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        @using (Html.BeginForm("EditContact", "DCcare", FormMethod.Post, new { name = "form-wizard" }))
+        {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改
+                    <input name="PatientID" type="hidden" class="form-control" value=@Model.BIDMItem.PatientID />
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-10">
+                            <label class="col-sm-4 control-label">
+                                姓名
+                            </label>
+                            <div class="col-sm-8">
+                                @foreach (var item in Model.ContactPersonList)
+                                    {
+                                        //姓名
+                                    @item.ContactName
+                                        //關係
+                                    @item.Description
+                                        // 性別
+                                    @item.SexName
+                                        //手機
+                                    @item.CellPhone
+                                        //家用電話
+                                    @item.HomeTelphone
+                                        //辦公室電話
+                                    @item.OfficeTelphone
+                                        // E-Mail
+                                    @item.MailAddress
+                                    }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">
+                        @Reslang.Resource.OK
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+    <script>
+
+        function ResetSelect(id, showtext) {
+            $(id).empty();
+            $(id).append(' <option value="" disabled selected>' + showtext + '</option>');
+            $(id).addClass("form-control required parsley-success");
+        }
+
+        $(function () {
+            $('#Birthday').datepicker({
+                todayHighlight: true,
+                format: 'yyyy-mm-dd'
+            });
+
+            $("#PatientName").on('change keydown paste input', function () {
+                $("#PatientName").addClass("form-control required parsley-success");
+            });
+            $("#IdentityNumber").on('change keydown paste input', function () {
+                $("#IdentityNumber").addClass("form-control required parsley-success");
+            });
+            $("#SexType").on('change keydown paste input', function () {
+                $("#SexType").addClass("form-control required parsley-success");
+            });
+            $("#Birthdaytext").change(function () {
+                $("#Birthdaytext").addClass("form-control required parsley-success");
+            });
+            $("#DisabledID").on('change keydown paste input', function () {
+                $("#DisabledID").addClass("form-control required parsley-success");
+            });
+            $("#ChronicSubType").change(function () {
+                $("#ChronicSubType").addClass("form-control required parsley-success");
+            });
+            $("#BloodType").change(function () {
+                $("#BloodType").addClass("form-control required parsley-success");
+            });
+            $("#BloodRhType").change(function () {
+                $("#BloodRhType").addClass("form-control required parsley-success");
+            });
+            $("#RaceType").change(function () {
+                $("#RaceType").addClass("form-control required parsley-success");
+            });
+            $("#LanguageType").change(function () {
+                $("#LanguageType").addClass("form-control required parsley-success");
+            });
+            $("#ReligionType").change(function () {
+                $("#ReligionType").addClass("form-control required parsley-success");
+            });
+            $("#EducationLevel").change(function () {
+                $("#EducationLevel").addClass("form-control required parsley-success");
+            });
+            $("#ProfessionType").change(function () {
+                $("#ProfessionType").addClass("form-control required parsley-success");
+            });
+            $("#MaritalStatus").change(function () {
+                $("#MaritalStatus").addClass("form-control required parsley-success");
+            });
+            $("#LivingStatus").change(function () {
+                $("#LivingStatus").addClass("form-control required parsley-success");
+            });
+            $("#SmokeType").change(function () {
+                $("#SmokeType").addClass("form-control required parsley-success");
+            });
+            $("#DrinkType").change(function () {
+                $("#DrinkType").addClass("form-control required parsley-success");
+            });
+            $("#ArecaType").change(function () {
+                $("#ArecaType").addClass("form-control required parsley-success");
+            });
+
+            $("#StateName").change(function () {
+                $("#StateName").addClass("form-control required parsley-success");
+                ResetSelect('#CityName', '縣市');
+                ResetSelect('#DistrictName', '區');
+                $.ajax({
+                    type: "POST",
+                    url: "/DCCare/GetCityByStateId",
+                    datatype: "Json",
+                    data: { stateId: $('#StateName').val() },
+                    success: function (data) {
+                        var total = data.length;
+                        $.each(data, function (index, value) {
+                            $('#CityName').append('<option value="' + value.CityID + '">' + value.CityName + '</option>');
+                        });
+                    }
+                });
+            });
+
+            $("#CityName").change(function () {
+                $("#CityName").addClass("form-control required parsley-success");
+                ResetSelect('#DistrictName', '區');
+                $.ajax({
+                    type: "POST",
+                    url: "/DCCare/GetDistrictByCityId",
+                    datatype: "Json",
+                    data: { cityId: $('#CityName').val() },
+                    success: function (data) {
+                        var total = data.length;
+                        $.each(data, function (index, value) {
+                            $('#DistrictName').append('<option value="' + value.DistrictID + '">' + value.DistrictName + '</option>');
+                        });
+                    }
+                });
+            });
+            $("#RegisterAddress").on('change keydown paste input', function () {
+                $("#RegisterAddress").addClass("form-control required parsley-success");
+            });
+
+            // 性別
+            $("#SexType").show(function() {
+                if (document.getElementById('SexType').childElementCount <= 1)
+                {
+                    $("#SexType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSSexType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#SexType').append('<option value="' + value.SexID + '">' + value.SexName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('SexType').value = @Model.BIDMItem.SexID;
+                    });
+                }
+            });
+
+            // 糖尿病類型
+            $("#ChronicSubType").show(function() {
+                if (document.getElementById('ChronicSubType').childElementCount <= 1)
+                {
+                    $("#ChronicSubType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSChronicSubType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#ChronicSubType').append('<option value="' + value.ChronicSubTypeID + '">' + value.ChronicSubName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('ChronicSubType').value = @Model.BIDMItem.ChronicSubTypeID;
+                    });
+                }
+            });
+
+            // 血型
+            $("#BloodType").show(function() {
+                if (document.getElementById('BloodType').childElementCount <= 1)
+                {
+                    $("#BloodType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSBloodType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#BloodType').append('<option value="' + value.BloodTypeID + '">' + value.BloodTypeName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('BloodType').value = @Model.BIDMItem.BloodTypeID;
+                    });
+                }
+            });
+
+            // RH血型
+            $("#BloodRhType").show(function() {
+                if (document.getElementById('BloodRhType').childElementCount <= 1)
+                {
+                    $("#BloodRhType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSBloodRHType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#BloodRhType').append('<option value="' + value.BloodRhTypeID + '">' + value.BloodRhTypeName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('BloodRhType').value = @Model.BIDMItem.BloodRhTypeID;
+                    });
+                }
+            });
+
+            // 民族
+            $("#RaceType").show(function() {
+                if (document.getElementById('RaceType').childElementCount <= 1)
+                {
+                    $("#RaceType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSRaceType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#RaceType').append('<option value="' + value.RaceTypeID + '">' + value.RaceTypeName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('RaceType').value = @Model.BIDMItem.RaceTypeID;
+                    });
+                }
+            });
+
+            // 語言
+            $("#LanguageType").show(function() {
+                if (document.getElementById('LanguageType').childElementCount <= 1)
+                {
+                    $("#LanguageType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSLanguageType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#LanguageType').append('<option value="' + value.LanguageTypeID + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('LanguageType').value = @Model.BIDMItem.LanguageTypeID;
+                    });
+                }
+            });
+
+            // 宗教
+            $("#ReligionType").show(function() {
+                if (document.getElementById('ReligionType').childElementCount <= 1)
+                {
+                    $("#ReligionType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSReligionType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#ReligionType').append('<option value="' + value.ReligionTypeID + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('ReligionType').value = @Model.BIDMItem.ReligionTypeID;
+                    });
+                }
+            });
+
+            // 教育程度
+            $("#EducationLevel").show(function() {
+                if (document.getElementById('EducationLevel').childElementCount <= 1)
+                {
+                    $("#EducationLevel").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSEducationLevel",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#EducationLevel').append('<option value="' + value.EducationLevelID + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('EducationLevel').value = @Model.BIDMItem.EducationLevelID;
+                    });
+                }
+            });
+
+            // 職業
+            $("#ProfessionType").show(function() {
+                if (document.getElementById('ProfessionType').childElementCount <= 1)
+                {
+                    $("#ProfessionType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSProfessionType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#ProfessionType').append('<option value="' + value.ProfessionID + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('ProfessionType').value = @Model.BIDMItem.ProfessionID;
+                    });
+                }
+            });
+
+            // 婚姻狀況
+            $("#MaritalStatus").show(function() {
+                if (document.getElementById('MaritalStatus').childElementCount <= 1)
+                {
+                    $("#MaritalStatus").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSMaritalStatus",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#MaritalStatus').append('<option value="' + value.MaritalStatus + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('MaritalStatus').value = @Model.BIDMItem.MaritalStatus;
+                    });
+                }
+            });
+
+            // 居住狀況
+            $("#LivingStatus").show(function() {
+                if (document.getElementById('LivingStatus').childElementCount <= 1)
+                {
+                    $("#LivingStatus").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSLivingStatus",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#LivingStatus').append('<option value="' + value.LivingStatus + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('LivingStatus').value = @Model.BIDMItem.LivingStatus;
+                    });
+                }
+            });
+
+            // 吸菸習慣
+            $("#SmokeType").show(function() {
+                if (document.getElementById('SmokeType').childElementCount <= 1)
+                {
+                    $("#SmokeType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSSmokeType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#SmokeType').append('<option value="' + value.SmokeTypeID + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('SmokeType').value = @Model.BIDMItem.SmokeTypeID;
+                    });
+                }
+            });
+
+            // 飲酒習慣
+            $("#DrinkType").show(function() {
+                if (document.getElementById('DrinkType').childElementCount <= 1)
+                {
+                    $("#DrinkType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSDrinkType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#DrinkType').append('<option value="' + value.DrinkTypeID + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('DrinkType').value = @Model.BIDMItem.DrinkTypeID;
+                    });
+                }
+            });
+
+            // 檳榔習慣
+            $("#ArecaType").show(function() {
+                if (document.getElementById('ArecaType').childElementCount <= 1)
+                {
+                    $("#ArecaType").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetSYSArecaType",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#ArecaType').append('<option value="' + value.ArecaTypeID + '">' + value.Description + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('ArecaType').value = @Model.BIDMItem.ArecaTypeID;
+                    });
+                }
+            });
+
+            // 省
+            $("#StateName").show(function() {
+                if (document.getElementById('StateName').childElementCount <= 1)
+                {
+                    $("#StateName").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetState",
+                        datatype: "Json",
+                        data: {},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#StateName').append('<option value="' + value.StateID + '">' + value.StateName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('StateName').value = @Model.BIDMItem.RegisterStateID;
+                    });
+                }
+            });
+
+            // 市
+            $("#CityName").show(function() {
+                if (document.getElementById('CityName').childElementCount <= 1)
+                {
+                    $("#CityName").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetCityByStateId",
+                        datatype: "Json",
+                        data: {stateId: @Model.BIDMItem.RegisterStateID},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#CityName').append('<option value="' + value.CityID + '">' + value.CityName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('CityName').value = @Model.BIDMItem.RegisterCityID;
+                    });
+                }
+            });
+            // 區
+            $("#DistrictName").show(function() {
+                if (document.getElementById('DistrictName').childElementCount <= 1)
+                {
+                    $("#DistrictName").empty();
+                    $.ajax({
+                        type: "POST",
+                        url: "/DCCare/GetDistrictByCityId",
+                        datatype: "Json",
+                        data: {cityId: @Model.BIDMItem.RegisterCityID},
+                        success: function (data) {
+                            $.each(data, function (index, value) {
+                                $('#DistrictName').append('<option value="' + value.DistrictID + '">' + value.DistrictName + '</option>');
+                            });
+                        }
+                    }).done(function() {
+                        document.getElementById('DistrictName').value = @Model.BIDMItem.RegisterDistrictID;
+                    });
+                }
+            });
+        })
+    </script>
+}

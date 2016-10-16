@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DiabetesCarePlatform.Models.ZoomNetMeeting.AssignedTimeViewModel>
+<label class="col-md-3 control-label">服務時間</label>
+<div class="col-md-6">
+    <select class=" form-control" name="NewTimeSectionId">
+        @foreach (var time in Model)
+        {
+            <option value="@time.TimeSectionId">@string.Format("{0}:{1}~{2}:{3}", time.StartTime.Hours, time.StartTime.Minutes, time.EndTime.Hours, time.EndTime.Minutes)</option>
+        }
+    </select>
+</div>

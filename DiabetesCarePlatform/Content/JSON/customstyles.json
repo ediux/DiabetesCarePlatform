@@ -1,0 +1,16 @@
+﻿{
+    "logo": "md md-equalizer",
+    "mainmenurootul": "nav",
+    "notifymenuitemrootul": "nav navbar-nav navbar-right pull-right",
+    "submenurootul": "list-unstyled",
+    "menuitem.li.a": "waves-effect waves-primary",
+    "menuitem.li.a.active": "active",
+    "submenuitem.li.a.active": "has_sub active",
+    "menuitem.li.submenu": "has_sub",
+    "menuitem.li.submenu.menuarrow": "caret pull-right",
+    "topmenurootul": "nav navbar-nav hidden-xs",
+    "topmenurootli.submenu": "dropdown",
+    "topmenusubul": "dropdown-menu",
+    "topmenuhyperlink.dropdown": "dropdown-toggle",
+    "topmenuhyperlink.span": "caret"
+}

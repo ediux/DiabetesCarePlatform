@@ -1,0 +1,354 @@
+﻿@using DiabetesCarePlatform.Models
+@model MemberPage
+@{
+    ViewBag.Title = Reslang.Resource.VIPMember + Reslang.Resource.Maintain;
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bs3wizard")" rel="stylesheet" />
+    <link href="@Styles.Url("~/Content/ColorAdmin/assets/plugins/switchery/switchery.min.css")" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+<link href="~/Content/ColorAdmin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/ColorAdmin/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+}
+<!--列表-->
+<div style="width:100%;margin:0px auto;">
+    <div class="col-lg-12">
+        <div class="panel-heading heading-font-size row">
+            <div class="pull-left">
+                <a class="btn btn-success" href="@Url.Action("Index", "User")" type="button" role="button" data-toggle="modal">@Reslang.Resource.Convert@Reslang.Resource.To@Reslang.Resource.Medical@Reslang.Resource.Member@Reslang.Resource.Maintain</a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>
+                    <table class="table table-striped table-bordered" id="tbUser">
+                        <thead>
+                            <tr>
+                                <th>@Reslang.Resource.Name</th>
+                                <th>@Reslang.Resource.Sex</th>
+                                <th>@Reslang.Resource.VIPMember 類型</th>
+                                <th>@Reslang.Resource.Account</th>
+                                <th width="7%">@Reslang.Resource.Status</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.UserList)
+                            {
+                                var PaymentTypeStr = item.PaymentType == 1 ? "自費" : "非自費";
+                                var StatusStr = item.Enable ? Reslang.Resource.Acitve : Reslang.Resource.Disable;
+                                var SexName = Model.SexTypeList[item.SexID - 1].SexName;
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@SexName</td>
+                                    <td>@PaymentTypeStr</td>
+                                    <td>@item.MailAddress</td>
+                                    <td>@StatusStr</td>
+                                    <td>
+                                        <a class="btn btn-info" href="#editUser" data-toggle="modal" onclick="listEditClick(@item.AppUserID)">@Reslang.Resource.Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--編輯-->
+<div class="modal fade" id="editUser" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:50%;">
+        @using (Html.BeginForm("EditMember", "User", FormMethod.Post, new { name = "form-wizard" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        @Reslang.Resource.Edit
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="col-sm-3 control-label" style="text-align: right">
+                                    @Reslang.Resource.Account：
+                                </label>
+                                <label class="col-sm-9 control-label" id="editAccount">
+                                    帳號
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="col-sm-3 control-label" style="text-align: right">
+                                    @Reslang.Resource.Name：
+                                </label>
+                                <label class="col-sm-9 control-label" id="editName">
+                                    林OO
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="col-sm-3 control-label" style="text-align: right">
+                                    @Reslang.Resource.Sex：
+                                </label>
+                                <label class="col-sm-9 control-label" id="editSex">
+                                    女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="col-sm-3 control-label" style="text-align: right">
+                                    @Reslang.Resource.VIPMember 類型：
+                                </label>
+                                <div class="col-sm-3">
+                                    <label>
+                                        <input type="radio" name="PaymentType" value="1" id="editPaymentType1" />
+                                        自費
+                                    </label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>
+                                        <input type="radio" name="PaymentType" value="2" id="editPaymentType2" />
+                                        非自費
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="col-sm-3 control-label" style="text-align: right">
+                                    @Reslang.Resource.Status：
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="checkbox" data-render="switchery" data-theme="default" checked name="Enable" id="editEnable" data-change="check-switchery-state-text" />
+                                    <label data-id="switchery-state-text">true</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="col-sm-3 control-label" style="text-align: right">
+                                    群組：
+                                </label>
+                                <div id="jsarea" class="col-sm-9">
+                                    <div id="jstree" ></div>
+                                </div>
+                                <input type="hidden" id="editPatientID" name="PatientID" />
+                                <input type="hidden" id="editUnitTree" name="UnitTree" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="AppUserID" id="editAppUserID" />
+                    <button type="submit" class="btn btn-danger" onclick="return GetTreeValue();">
+                        @Reslang.Resource.OK
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script src="@Styles.Url("~/Content/ColorAdmin/assets/plugins/switchery/switchery.min.js")"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/jstree/dist/jstree.min.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+
+    <script>var UserList=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.UserList));</script>
+    <script>var SexTypeList=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.SexTypeList));</script>
+    <script>var UnitTree=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.UnitTree));</script>
+    <!--Switcher-->
+    <script>
+        var green = '#00acac',
+            red = '#ff5b57',
+            blue = '#348fe2',
+            purple = '#727cb6',
+            orange = '#f59c1a',
+            black = '#2d353c';
+        var renderSwitcher = function() {
+            if ($('[data-render=switchery]').length !== 0) {
+                $('[data-render=switchery]').each(function() {
+                    var themeColor = green;
+                    if ($(this).attr('data-theme')) {
+                        switch ($(this).attr('data-theme')) {
+                            case 'red':
+                                themeColor = red;
+                                break;
+                            case 'blue':
+                                themeColor = blue;
+                                break;
+                            case 'purple':
+                                themeColor = purple;
+                                break;
+                            case 'orange':
+                                themeColor = orange;
+                                break;
+                            case 'black':
+                                themeColor = black;
+                                break;
+                        }
+                    }
+                    var option = {};
+                    option.color = themeColor;
+                    option.secondaryColor = ($(this).attr('data-secondary-color')) ? $(this).attr('data-secondary-color') : '#dfdfdf';
+                    option.className = ($(this).attr('data-classname')) ? $(this).attr('data-classname') : 'switchery';
+                    option.disabled = ($(this).attr('data-disabled')) ? true : false;
+                    option.disabledOpacity = ($(this).attr('data-disabled-opacity')) ? parseFloat($(this).attr('data-disabled-opacity')) : 0.5;
+                    option.speed = ($(this).attr('data-speed')) ? $(this).attr('data-speed') : '0.5s';
+                    var switchery = new Switchery(this, option);
+                });
+            }
+        };
+        var checkSwitcherState = function() {
+            $('[data-change="check-switchery-state-text"]').live('change', function() {
+                var stateText=$(this).prop('checked')==true?'@Reslang.Resource.Acitve':'@Reslang.Resource.Disable';
+                $('[data-id="switchery-state-text"]').text(stateText);
+            });
+        };
+        var FormSliderSwitcher = function () {
+            "use strict";
+            return {
+                init: function () {
+                    renderSwitcher();
+                    checkSwitcherState();
+                }
+            };
+        }(); </script>
+    <!--Tree-->
+    <script>
+        var handleJstreeCheckable = function () {
+            $('#jstree').jstree({
+                'plugins': ["wholerow", "checkbox", "types"],
+                'core': {
+                    "themes": {
+                        "responsive": false
+                    },
+                    'data': UnitTree
+                },
+                "types": {
+                    "default": {
+                        "icon": "fa fa-user text-primary fa-lg"
+                    }
+                }
+            });
+        };
+
+        var TreeView = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleJstreeCheckable();
+                }
+            };
+        }();
+    </script>
+    <!--datatable-->
+    <script>
+        var handleDataTableDefault = function() {
+            "use strict";
+            if ($('#tbUser').length !== 0) {
+                $('#tbUser').DataTable({
+                    responsive: true,
+                    info: false,
+                    language: {"search": "搜尋：","zeroRecords": "查無資料",
+                        "lengthMenu":     "顯示 _MENU_ 筆資料",
+                        "paginate": {
+                            "next":       "下一頁",
+                            "previous":   "上一頁"
+                        },},
+                });
+            }
+        };
+        var TableManageDefault = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableDefault();
+                }
+            };
+        }();
+    </script>
+    <!--init-->
+    <script>
+        $(document).ready(function () {
+            App.init();
+            TableManageDefault.init();
+        });
+    </script>
+    <script>
+        function listEditClick(id){
+            var one=getUser(id);
+            if(one!=null){
+                document.getElementById("editPatientID").value=one.PatientID;
+                document.getElementById("editAppUserID").value=one.AppUserID;
+                document.getElementById("editAccount").innerHTML=one.MailAddress;
+                document.getElementById("editName").innerHTML=one.Name;
+                document.getElementById("editSex").innerHTML=SexTypeList[one.SexID-1].SexName;
+                if(one.PaymentType==1)   {document.getElementById("editPaymentType1").checked = true;}
+                else {document.getElementById("editPaymentType2").checked = true;}
+                if(one.Enable==true){
+                    document.getElementById("editEnable").setAttribute("checked", "checked");
+                    document.getElementById("editEnable").checked = true;
+                    $('[data-id="switchery-state-text"]').text('@Reslang.Resource.Acitve');
+                }
+                else{
+                    document.getElementById("editEnable").setAttribute("checked", ""); // For IE
+                    document.getElementById("editEnable").removeAttribute("checked"); // For other browsers
+                    document.getElementById("editEnable").checked = false;
+                    $('[data-id="switchery-state-text"]').text('@Reslang.Resource.Disable');
+                }
+                $("span.switchery").remove();
+                FormSliderSwitcher.init();
+
+                for (var i = 0; i < UnitTree.length; i++) {
+                    var root=UnitTree[i];
+                    if(root.children!=null){
+                        for (var j = 0; j < root.children.length; j++) {
+                            var leaf=root.children[j];
+                            var selectd=false;
+                            for (var k = 0; k < one.UnitList.length; k++) {
+                                if(leaf.id==one.UnitList[k]){
+                                    selectd=true;
+                                    break;
+                                }
+                            }
+                            leaf.state.selected=selectd;
+                        }
+                    }
+                }
+                $('#jsarea').empty();
+                $('#jsarea').html('<div id="jstree" ></div>');
+                TreeView.init();
+            }
+        }
+        function getUser(id){
+            var index=-1;
+            for (var i = 0; i < UserList.length; i++) {
+                if(UserList[i]["AppUserID"]==id){
+                    index=i;
+                    break;
+                }
+            }
+            if(index>-1)return UserList[index];
+            else return null;
+        }
+        function GetTreeValue() {
+            var checked_ids = $('#jstree').jstree('get_checked');
+            $("#editUnitTree").val(checked_ids);
+        }
+    </script>
+}

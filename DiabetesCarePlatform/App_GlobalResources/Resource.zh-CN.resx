@@ -1,0 +1,750 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Helps" xml:space="preserve">
+    <value>联机帮助</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>主菜单</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>提醒通知</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>脱机</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>在线</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>个人化设定</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜寻...</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>性别</value>
+  </data>
+  <data name="Nation" xml:space="preserve">
+    <value>民族</value>
+  </data>
+  <data name="Occupation" xml:space="preserve">
+    <value>职业</value>
+  </data>
+  <data name="Religion" xml:space="preserve">
+    <value>宗教信仰</value>
+  </data>
+  <data name="Smoking" xml:space="preserve">
+    <value>吸烟</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>身高</value>
+  </data>
+  <data name="Pulse" xml:space="preserve">
+    <value>脉搏</value>
+  </data>
+  <data name="Symptom" xml:space="preserve">
+    <value>症状</value>
+  </data>
+  <data name="Obesity" xml:space="preserve">
+    <value>肥胖</value>
+  </data>
+  <data name="Hypertension" xml:space="preserve">
+    <value>高血压</value>
+  </data>
+  <data name="COPD" xml:space="preserve">
+    <value>慢性阻塞性肺疾病</value>
+  </data>
+  <data name="Cancer" xml:space="preserve">
+    <value>癌症</value>
+  </data>
+  <data name="Triglyceride" xml:space="preserve">
+    <value>甘油三酯</value>
+  </data>
+  <data name="Electrocardiography" xml:space="preserve">
+    <value>心电图</value>
+  </data>
+  <data name="Cataract" xml:space="preserve">
+    <value>白内障</value>
+  </data>
+  <data name="Amputation" xml:space="preserve">
+    <value>截肢</value>
+  </data>
+  <data name="Blindness" xml:space="preserve">
+    <value>失明</value>
+  </data>
+  <data name="Dialysis" xml:space="preserve">
+    <value>透析</value>
+  </data>
+  <data name="Corn" xml:space="preserve">
+    <value>鸡眼</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>运动</value>
+  </data>
+  <data name="Insulin" xml:space="preserve">
+    <value>胰岛素</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>总览</value>
+  </data>
+  <data name="listings" xml:space="preserve">
+    <value>清单</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>预约</value>
+  </data>
+  <data name="Reporting" xml:space="preserve">
+    <value>报表管理</value>
+  </data>
+  <data name="Lockscreen" xml:space="preserve">
+    <value>屏幕锁定</value>
+  </data>
+  <data name="SendFeedback" xml:space="preserve">
+    <value>体验回馈</value>
+  </data>
+  <data name="SysSettings" xml:space="preserve">
+    <value>系统设定</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>基本资料</value>
+  </data>
+  <data name="Medicalprescription" xml:space="preserve">
+    <value>处方</value>
+  </data>
+  <data name="Individualstandardvalues" xml:space="preserve">
+    <value>个体化标准值</value>
+  </data>
+  <data name="Basicpersonalinformation" xml:space="preserve">
+    <value>个人基本资料</value>
+  </data>
+  <data name="IDNo" xml:space="preserve">
+    <value>身份证号码</value>
+  </data>
+  <data name="DateofBirth" xml:space="preserve">
+    <value>出生年月日</value>
+  </data>
+  <data name="Bloodtype" xml:space="preserve">
+    <value>血型</value>
+  </data>
+  <data name="Rhbloodgroupsystem" xml:space="preserve">
+    <value>Rh血型</value>
+  </data>
+  <data name="Disabilitymanual" xml:space="preserve">
+    <value>身心障碍手册</value>
+  </data>
+  <data name="Maritalstatus" xml:space="preserve">
+    <value>婚姻状况</value>
+  </data>
+  <data name="Domicileaddress" xml:space="preserve">
+    <value>户籍住址</value>
+  </data>
+  <data name="Living" xml:space="preserve">
+    <value>现居住地</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>文化程度</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>居住状况</value>
+  </data>
+  <data name="Contactmethod" xml:space="preserve">
+    <value>联系方式</value>
+  </data>
+  <data name="Mobilephone" xml:space="preserve">
+    <value>手机</value>
+  </data>
+  <data name="EmergencyContact" xml:space="preserve">
+    <value>紧急联系人</value>
+  </data>
+  <data name="Primarycaregivers" xml:space="preserve">
+    <value>主要照顾者</value>
+  </data>
+  <data name="Therelationshipwiththepatient" xml:space="preserve">
+    <value>与病人关系</value>
+  </data>
+  <data name="livinghabit" xml:space="preserve">
+    <value>生活习惯</value>
+  </data>
+  <data name="Commonlanguage" xml:space="preserve">
+    <value>常用语言</value>
+  </data>
+  <data name="Alcoholconsumption" xml:space="preserve">
+    <value>饮酒</value>
+  </data>
+  <data name="Chewingbetelnut" xml:space="preserve">
+    <value>嚼槟榔</value>
+  </data>
+  <data name="Pathologicaldata" xml:space="preserve">
+    <value>病理资料</value>
+  </data>
+  <data name="PersonalHistory" xml:space="preserve">
+    <value>个人史</value>
+  </data>
+  <data name="Familyhistory" xml:space="preserve">
+    <value>家族史</value>
+  </data>
+  <data name="Dateofdiagnosis" xml:space="preserve">
+    <value>确诊日期</value>
+  </data>
+  <data name="Diabetesmellitus" xml:space="preserve">
+    <value>糖尿病</value>
+  </data>
+  <data name="Gestationaldiabetes" xml:space="preserve">
+    <value>妊娠糖尿病</value>
+  </data>
+  <data name="Inspectiondate" xml:space="preserve">
+    <value>检验日期</value>
+  </data>
+  <data name="Typesofdrugs" xml:space="preserve">
+    <value>药物种类</value>
+  </data>
+  <data name="Medicationhistory" xml:space="preserve">
+    <value>用药史</value>
+  </data>
+  <data name="Allergyhistory" xml:space="preserve">
+    <value>过敏史</value>
+  </data>
+  <data name="HealthcareInformation" xml:space="preserve">
+    <value>医疗信息</value>
+  </data>
+  <data name="Physicalexamination" xml:space="preserve">
+    <value>体检</value>
+  </data>
+  <data name="Bodyweight" xml:space="preserve">
+    <value>体重</value>
+  </data>
+  <data name="Bloodpressure" xml:space="preserve">
+    <value>血压</value>
+  </data>
+  <data name="Hypotensionpostural" xml:space="preserve">
+    <value>体位性低血压</value>
+  </data>
+  <data name="Anginapectoris" xml:space="preserve">
+    <value>心绞痛</value>
+  </data>
+  <data name="Peripheralneuropathy" xml:space="preserve">
+    <value>周围神经病变</value>
+  </data>
+  <data name="Lowerlimbintermittentclaudication" xml:space="preserve">
+    <value>下肢间歇性跛行</value>
+  </data>
+  <data name="Relateddiseases" xml:space="preserve">
+    <value>相关疾病</value>
+  </data>
+  <data name="Diabeticketoacidosis" xml:space="preserve">
+    <value>糖尿病酮症酸中毒</value>
+  </data>
+  <data name="Severehypoglycemia" xml:space="preserve">
+    <value>严重低血糖</value>
+  </data>
+  <data name="Diabetichyperosmolarcoma" xml:space="preserve">
+    <value>糖尿病高渗性昏迷</value>
+  </data>
+  <data name="Coronaryheartdisease" xml:space="preserve">
+    <value>冠心病</value>
+  </data>
+  <data name="Dyslipidemia" xml:space="preserve">
+    <value>血脂异常</value>
+  </data>
+  <data name="Neuropathy" xml:space="preserve">
+    <value>神经病变</value>
+  </data>
+  <data name="Kidneydisease" xml:space="preserve">
+    <value>肾脏病变</value>
+  </data>
+  <data name="Stroke" xml:space="preserve">
+    <value>脑中风</value>
+  </data>
+  <data name="Severelowbloodfat" xml:space="preserve">
+    <value>严重低血脂</value>
+  </data>
+  <data name="Heartdisease" xml:space="preserve">
+    <value>心脏病</value>
+  </data>
+  <data name="Digestivesystem" xml:space="preserve">
+    <value>消化系统（肝、胆、肠、胃）</value>
+  </data>
+  <data name="Urinarytractdisease" xml:space="preserve">
+    <value>泌尿道疾病</value>
+  </data>
+  <data name="Immunediseases" xml:space="preserve">
+    <value>免疫疾病</value>
+  </data>
+  <data name="Otherrespiratorydiseases" xml:space="preserve">
+    <value>其他呼吸系统疾病</value>
+  </data>
+  <data name="Testdata" xml:space="preserve">
+    <value>检验资料</value>
+  </data>
+  <data name="Biochemicalexamination" xml:space="preserve">
+    <value>生化检查</value>
+  </data>
+  <data name="Fastingbloodglucose" xml:space="preserve">
+    <value>餐前血糖(mg/dl)</value>
+  </data>
+  <data name="Postprandialbloodglucose" xml:space="preserve">
+    <value>餐后血糖(mg/dl)</value>
+  </data>
+  <data name="Glycatedhemoglobin" xml:space="preserve">
+    <value>糖化血色素(%)</value>
+  </data>
+  <data name="Totalcholesterol" xml:space="preserve">
+    <value>总胆固醇</value>
+  </data>
+  <data name="LDL" xml:space="preserve">
+    <value>低密度脂蛋白(mg/dl)</value>
+  </data>
+  <data name="Creatinine" xml:space="preserve">
+    <value>肌酐(mg/dl)</value>
+  </data>
+  <data name="Serumaspartateaminotransferase" xml:space="preserve">
+    <value>血清谷草转氨酶(u/l)</value>
+  </data>
+  <data name="Serumalanineaminotransferase" xml:space="preserve">
+    <value>血清谷丙转氨酶(u/l)</value>
+  </data>
+  <data name="Ureanitrogen" xml:space="preserve">
+    <value>尿素氮(mg/dl)</value>
+  </data>
+  <data name="Uricacid" xml:space="preserve">
+    <value>尿酸(mg/dl)</value>
+  </data>
+  <data name="Albumin" xml:space="preserve">
+    <value>白蛋白(mg/dl)</value>
+  </data>
+  <data name="Urinetestdate" xml:space="preserve">
+    <value>尿液检测日期</value>
+  </data>
+  <data name="Urinaryprotein" xml:space="preserve">
+    <value>尿蛋白</value>
+  </data>
+  <data name="Urine" xml:space="preserve">
+    <value>尿糖</value>
+  </data>
+  <data name="Eyeexams" xml:space="preserve">
+    <value>眼睛检查</value>
+  </data>
+  <data name="Fundusexamination" xml:space="preserve">
+    <value>眼底检查</value>
+  </data>
+  <data name="Photocoagulationtreatment" xml:space="preserve">
+    <value>光凝治疗</value>
+  </data>
+  <data name="Proliferativeretinopathybefore" xml:space="preserve">
+    <value>增殖前视网膜病变</value>
+  </data>
+  <data name="Retinalexamination" xml:space="preserve">
+    <value>视网膜检查</value>
+  </data>
+  <data name="Proliferativeretinopathy" xml:space="preserve">
+    <value>增殖性视网膜病变</value>
+  </data>
+  <data name="Maculardegeneration" xml:space="preserve">
+    <value>黄斑部病变</value>
+  </data>
+  <data name="Advanceddiabeticeyedisease" xml:space="preserve">
+    <value>晚期糖尿病眼病</value>
+  </data>
+  <data name="Footexamination" xml:space="preserve">
+    <value>足部检查</value>
+  </data>
+  <data name="Chroniccomplications" xml:space="preserve">
+    <value>慢性并发症</value>
+  </data>
+  <data name="Healtheducation" xml:space="preserve">
+    <value>卫生宣教</value>
+  </data>
+  <data name="IssueTracker" xml:space="preserve">
+    <value>问题跟踪</value>
+  </data>
+  <data name="Oralmedication" xml:space="preserve">
+    <value>口服药</value>
+  </data>
+  <data name="Createpatientfiles" xml:space="preserve">
+    <value>建立病人档案</value>
+  </data>
+  <data name="CareGroup" xml:space="preserve">
+    <value>关怀小组</value>
+  </data>
+  <data name="Care" xml:space="preserve">
+    <value>照护</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>视讯</value>
+  </data>
+  <data name="Assignagents" xml:space="preserve">
+    <value>指派代理人</value>
+  </data>
+  <data name="Notificationsettings" xml:space="preserve">
+    <value>通知设定</value>
+  </data>
+  <data name="AccountSetup" xml:space="preserve">
+    <value>帐号设定</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>固定电话</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>帐号</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>设定</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>小组</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>图片</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Binding" xml:space="preserve">
+    <value>绑定</value>
+  </data>
+  <data name="Acitve" xml:space="preserve">
+    <value>启动</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>确定要删除吗?</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>停用</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>切换</value>
+  </data>
+  <data name="DMDoctor" xml:space="preserve">
+    <value>个案管理师</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>男性</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>女性</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>详细</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>人员</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Medical" xml:space="preserve">
+    <value>医疗</value>
+  </data>
+  <data name="VIPMember" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="Maintain" xml:space="preserve">
+    <value>维护</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>至</value>
+  </data>
+  <data name="PieChart" xml:space="preserve">
+    <value>圆饼图</value>
+  </data>
+  <data name="BarChart" xml:space="preserve">
+    <value>长条图</value>
+  </data>
+  <data name="TrendChart" xml:space="preserve">
+    <value>趋势图</value>
+  </data>
+  <data name="DM" xml:space="preserve">
+    <value>个案</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>拒绝</value>
+  </data>
+  <data name="PleaseChoose" xml:space="preserve">
+    <value>请选择...</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="SetUp1" xml:space="preserve">
+    <value>建立</value>
+  </data>
+  <data name="ProfileFamilies" xml:space="preserve">
+    <value>家属资料</value>
+  </data>
+  <data name="Uplimit" xml:space="preserve">
+    <value>上限</value>
+  </data>
+  <data name="Lowlimit" xml:space="preserve">
+    <value>下限</value>
+  </data>
+  <data name="AbnormalValue" xml:space="preserve">
+    <value>异常值</value>
+  </data>
+  <data name="Audit" xml:space="preserve">
+    <value>审核</value>
+  </data>
+  <data name="Couple" xml:space="preserve">
+    <value>夫妻</value>
+  </data>
+  <data name="FatherSon" xml:space="preserve">
+    <value>父子</value>
+  </data>
+  <data name="Brothers" xml:space="preserve">
+    <value>兄弟</value>
+  </data>
+  <data name="GrandAndChild" xml:space="preserve">
+    <value>祖孙</value>
+  </data>
+  <data name="Classmate" xml:space="preserve">
+    <value>同学</value>
+  </data>
+  <data name="Sisters" xml:space="preserve">
+    <value>姊妹</value>
+  </data>
+  <data name="FatherDaughter" xml:space="preserve">
+    <value>父女</value>
+  </data>
+  <data name="MotherSon" xml:space="preserve">
+    <value>母子</value>
+  </data>
+  <data name="ElderSisterYoungerBrother" xml:space="preserve">
+    <value>姊弟</value>
+  </data>
+  <data name="ElderBrotherYoungerSister" xml:space="preserve">
+    <value>兄妹</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>纪录</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="MotherDaughter" xml:space="preserve">
+    <value>母女</value>
+  </data>
+  <data name="Colleague" xml:space="preserve">
+    <value>同事</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>列表</value>
+  </data>
+  <data name="MemerList" xml:space="preserve">
+    <value>名单</value>
+  </data>
+  <data name="ApplyFor" xml:space="preserve">
+    <value>申请中</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>接受</value>
+  </data>
+  <data name="DMAuditHistory" xml:space="preserve">
+    <value>审核历史纪录</value>
+  </data>
+  <data name="CreateDMIndex" xml:space="preserve">
+    <value>新增个案及帐号</value>
+  </data>
+  <data name="CreateExistAccountDMIndex" xml:space="preserve">
+    <value>已有帐号仅建立个案</value>
+  </data>
+  <data name="GeneralData" xml:space="preserve">
+    <value>一般项目</value>
+  </data>
+  <data name="CreateMeetingRoom" xml:space="preserve">
+    <value>建立会议室</value>
+  </data>
+  <data name="ID_1" xml:space="preserve">
+    <value>识别码</value>
+  </data>
+  <data name="Name_1" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="AssignTimes" xml:space="preserve">
+    <value>时段指定</value>
+  </data>
+  <data name="MeetingRoomName" xml:space="preserve">
+    <value>会议室名称</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="VideoSchedule" xml:space="preserve">
+    <value>视讯排程</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>载入中...</value>
+  </data>
+  <data name="Back_to_Home_Page" xml:space="preserve">
+    <value>回到首页</value>
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>忘记密码?</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="Login_Button_Text" xml:space="preserve">
+    <value>登 入</value>
+  </data>
+  <data name="WebSiteName" xml:space="preserve">
+    <value>糖特护照</value>
+  </data>
+</root>

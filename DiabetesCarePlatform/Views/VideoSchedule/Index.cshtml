@@ -1,0 +1,423 @@
+﻿@model DiabetesCarePlatform.Models.ZoomNetMeeting.VideoSchedule_Index_ViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+    ViewBag.Title = "视讯排程";
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/ionRangeSlider")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/ionRangeSlider-skinNice")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-colorpicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-timepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/password-indicator")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-combobox")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-select")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-tagsinput")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/jquery-tag-it")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-daterangepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/select2")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bootstrap-eonasdan-datetimepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/DataTables")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/gritter")" rel="stylesheet" />
+
+    <link href="@Styles.Url("~/assets/css/plugins/fullcalendar-print")" rel=" stylesheet" media='print' />
+    @Styles.Render("~/assets/css/plugins/fullcalendar")
+    <link href="@Styles.Url("~/assets/css/plugins/jquery-countdown")" rel="stylesheet" />
+}
+<!-- begin row -->
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">@Html.Geti18nText("VideoSchedule")</h4>
+            </div>
+            <div class="panel-toolbar">
+                <div class="btn-group m-r-5">
+                    <a class="btn btn-white" href="javascript:btnAddWorkShift_Click(false);" title="新增排班"><i class="fa fa-plus"></i></a>
+                    <a class="btn btn-white" href="javascript:btnEditWorkShift_Click();" title="修改時段"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-white" href="javascript:btnDeleteWorkShift_Click();" title="刪除排班"><i class="fa fa-remove"></i></a>
+                </div>
+                <div class="btn-group m-r-5">
+                    <a class="btn btn-white" href="javascript:btnManageRooms_Click();" title="管理會議室"><i class="fa fa-wrench"></i></a>
+                    <a class="btn btn-white" href="javascript:btnTimeAssign_Click();" title="管理時段"><i class="fa fa-clock-o"></i></a>
+                </div>
+            </div>
+            <div class="panel-body p-0">
+                <div class="vertical-box">
+                    <div class="vertical-box-column p-15 width-400 bg-silver">
+                        <div class="timer">
+                            <label class="text-center">距離下個視訊會議還有</label>
+                            <div class="height-50" id="timer"></div>
+                            <div class="height-100 p-10">
+                                <a href="@Model.NextSchedule.Start_Url" class="col-lg-12 btn btn-success"> 開啟視訊 </a>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <div class="height-600">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr><th>時間</th><th>帳號</th><th>服務內容</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td></td><td></td><td></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="calendar" class="vertical-box-column p-15 calendar"></div>
+                </div>
+
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+
+
+</div>
+
+
+<!-- #modal-dialog -->
+<div class="modal fade" id="modal-dialog">
+
+</div>
+@section libjs{
+    <script src="@Scripts.Url("~/assets/js/plugins/fullcalendar/lib/moment")"></script>
+}
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-datepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/ionRangeSlider")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-colorpicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/masked-input")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-timepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/password-indicator")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-combobox")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-select")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-tagsinput")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/jquery-tag-it")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-daterangepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/select2")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/moment2")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-eonasdan-datetimepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/DataTables")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/extensions/DataTables-Responsive")"></script>
+
+
+    <script src="@Scripts.Url("~/assets/js/plugins/fullcalendar")"></script>
+    <script src="@Scripts.Url("~/assets/js/plusing/jquery-countdown")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap-menu")"></script>
+
+
+}
+
+<script type="text/javascript">
+    var eventsource = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Schedules));
+
+</script>
+@section scripts{
+
+    <script>
+        var selecteddate = new Date();
+        var selectevent = null;
+
+        var handleCountdownTimer = function () {
+            var nextmeeting = new Date(@Model.NextSchedule.StartTime.ToString("yyyy,M-1,dd,HH,mm,ss"));
+            console.log(nextmeeting);
+            $('#timer').countdown({ until: nextmeeting });
+        };
+
+        var handleCalendarDemo = function () {
+            var menu;
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'month,agendaWeek,agendaDay',
+                    center: 'title',
+                    right: 'prev,today,next '
+                },
+                droppable: true, // this allows things to be dropped onto the calendar
+                drop: function ( date, jsEvent, ui, resourceId ) {
+                    $(this).remove();
+                },
+                eventDragStop:function( event, jsEvent, ui, view ) {
+                    console.log(event);
+                },
+                eventDrop : function( event, delta, revertFunc, jsEvent, ui, view ) {
+                    console.log(event);
+                    console.log(delta.days());
+                    var date = new Date(event.start);
+
+                    var newdate = new Date(date);
+                    newdate.setDate(newdate.getDate() + delta.days());
+
+                    var deltaseconds = (delta.years()*31557600) + (delta.months()*2629800) + (delta.weeks() * 604800) + (delta.days() * 86400);
+                    deltaseconds = deltaseconds + (delta.hours()*3600);
+                    deltaseconds = deltaseconds + (delta.minutes()*60);
+                    deltaseconds = deltaseconds + delta.seconds();
+
+                    $.ajax({
+                        type: 'POST',
+                        data: {
+                            'UserId' : event.extraData.UserID,
+                            'hostid' : event.extraData.host_id,
+                            'RoomId': event.extraData.room_id,
+                            'uuid': event.extraData.uuid,
+                            'meetingid': event.extraData.meeting_id,
+                            'ShiftDate': event.start,
+                            'TimeSectionId': event.extraData.TimeSectionId,
+                            'NewUserId':event.extraData.UserID,
+                            'delta': deltaseconds,  //傳回偏移秒數
+                            'ReturnUrl': '@Request.Path' },
+                        headers: {
+                            'RequestVerificationToken': '@RazorHelperFunctions.GetAntiForgeryToken()'
+                        },
+                        url: '@Url.Action("ModifyMeetingEvent", "VideoSchedule")',
+                        cache: false,
+                        async: false,
+                        success: function (data) {
+                            window.location = '@Request.Path';
+                        },
+                        error: function (data) {
+                            window.location = '@Request.Path';
+                        },
+                        failure: function (response) {
+                            //callback function result(on failure)
+                            toastrerror(response.d);
+                        }
+                    });
+                },
+                selectable: true,
+                selectHelper: true,
+                dayRender : function(date,cell){
+                    var d = new Date(date);
+                    var autoid = 'day_'+d.getFullYear()+(d.getMonth() + 1)+d.getDate();
+
+                    $(cell).attr('id',autoid);
+                    var daymenu = new BootstrapMenu('#'+autoid, {
+                        actions: [{
+                            name: '建立視訊會議',
+                            onClick: function () {
+                                btnAddWorkShift_Click(true);
+                            }
+                        }]
+                    });
+                },
+                select: function (start, end) {
+                    var d = new Date(start);
+                    selecteddate = d;
+                },
+                timezone: 'Asia/Taipei',
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: eventsource,
+                eventClick:function( event, jsEvent, view ) {
+                    console.log(event);
+                    selecteddate = new Date(event.start);
+                    selectevent = event;
+                },
+                eventLimitClick: function( cellInfo, jsEvent ){
+                    console.log(cellInfo);
+                    cellInfo.segs.forEach(function(currentValue,index,arr){
+                        var eventid = currentValue.event.id;
+                        var eventmenu = new BootstrapMenu('#'+ eventid , {
+                            actions: [{
+                                name: '修改時段',
+                                onClick: function () {
+                                    btnEditWorkShift_Click();
+                                },
+                                isshown : false
+                            }, {
+                                name: '刪除',
+                                onClick: function () {
+
+                                }
+                            }, {
+                                name: '代班',
+                                onClick: function () {
+                                    $('#modal-dialog').load('@Url.Action("AddAgentEvent")?ReturnUrl=@Request.Path');
+                                    $('#modal-dialog').modal('show');
+                                    $('#selectdate').html(date);
+                                    $('#selecteddate').val(date);
+                                }
+                            }]
+                        });
+                    });
+                    return "day";
+                },
+                dayClick:function(date, jsEvent, view){
+                    selecteddate = new Date(date);
+                },
+                eventAfterRender: function( event, element, view ) {
+                    $(element).attr('id',event.id);
+                    var date = new Date(event.start);
+                    selecteddate = date;
+                    selectevent = event;
+
+                    var eventmenu = new BootstrapMenu('#'+ event.id , {
+                        actions: [{
+                            name: '修改時段',
+                            onClick: function () {
+                                btnEditWorkShift_Click();
+                            },
+                            isshown : false
+                        }, {
+                            name: '刪除',
+                            onClick: function () {
+
+                            }
+                        }, {
+                            name: '代班',
+                            onClick: function () {
+                                $('#modal-dialog').load('@Url.Action("AddAgentEvent")?ReturnUrl=@Request.Path');
+                                $('#modal-dialog').modal('show');
+                                $('#selectdate').html(date);
+                                $('#selecteddate').val(date);
+                            }
+                        }]
+                    });
+                },
+                lang: 'zh-cn'
+            });
+
+        };
+
+        var Calendar = function () {
+            "use strict";
+            return {
+                //main function
+                init: function () {
+                    handleCalendarDemo();
+                }
+            };
+        }();
+
+        function btnAddWorkShift_Click(isstatic){
+            var d = selecteddate;
+            var strd = d.toISOString();
+
+            $('#modal-dialog').load('@Url.Action("GetDayofWeekRemains")?date='+encodeURI(strd)+'&isStaticLabel='+isstatic,function( response, status, xhr ){ 
+                partial_init();
+            });
+            $('#modal-dialog').modal('show');
+            $('#selectdate').html(strd);
+            $('#selecteddate').val(strd);
+        }
+
+        function btnEditWorkShift_Click(){
+
+            if(selectevent==null){
+                alert('請先選擇要修改的事件!');
+                return false;
+            }
+            var date = selecteddate;
+            var strd = date.toISOString();
+            var event = selectevent;
+
+            if(event.extraData.UserID==null){
+                event.extraData.UserID='';
+            }
+
+            $('#modal-dialog').load('@Url.Action("ModifyMeetingEventDialog")?eventid='+encodeURI(event.id)+'&UserKey='+event.extraData.UserID,function( response, status, xhr ){ 
+                partial_init();
+            });
+            $('#modal-dialog').modal('show');
+            $('#selectdate').html(date);
+            $('#selecteddate').val(date);
+
+            return true;
+        }
+
+        function btnDeleteWorkShift_Click(){
+            if(selectevent==null){
+                alert('請先選擇要刪除的事件!');
+                return false;
+            }
+            var event = selectevent;
+            
+            if(confirm('確定刪除「'+ event.name + '」?')==false){
+                return false;
+            }
+
+            if(event.extraData.UserID==null){
+                event.extraData.UserID='';
+            }
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    'ShiftDate': event.extraData.ShiftDate,
+                    'TimeSectionId': event.extraData.TimeSectionId,
+                    'UserId':event.extraData.UserID,
+                    'RoomId': event.extraData.room_id,
+                    'ReturnUrl': '@Request.Path'
+                },
+                headers: {
+                    'RequestVerificationToken': '@RazorHelperFunctions.GetAntiForgeryToken()'
+                },
+                url: '@Url.Action("DeleteMeetingEvent", "VideoSchedule")',
+                cache: false,
+                async: false,
+                success: function (data) {
+                    window.location = '@Request.Path';
+                    selectevent=null;
+                },
+                error: function (data) {
+                    window.location = '@Request.Path';
+                },
+                failure: function (response) {
+                    //callback function result(on failure)
+                    alert(response.d);
+                }
+
+            });
+        }
+
+        function btnManageRooms_Click(){
+            window.location='@Url.Action("ManageMeetingRoom")';
+        }
+
+        function btnTimeAssign_Click(){
+            window.location='@Url.Action("ManageServiceTimes", new { Return= Request.Path })';
+        }
+
+        function page_init() {
+            Calendar.init();
+            handleCountdownTimer();
+            $('.page-header').hide();
+            
+            @*$('#timeseq').change(function () {
+                var start = selecteddate;
+                var dt = new Date(start);
+                var strd = dt.getFullYear() + "/" + (dt.getMonth() + 1) + "/" + dt.getDate();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetRemainingMeetingRoomsAmount", "VideoSchedule")?selectdate=' + strd + '&timeseq=' + this.value,
+                    cache: false,
+                    success: function (data) {
+                        $('#remainingmeetingroom').text(data);
+                    },
+                    error: function (data) {
+                        $('#remainingmeetingroom').text('Error');
+                    }
+                });
+            });*@
+
+            $('#timeseq').val('0');
+            //$('#timeseq').change();
+
+            //$('#modal-dialog').modal('hide');
+        }
+    </script>
+}
+

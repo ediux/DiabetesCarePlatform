@@ -1,0 +1,82 @@
+﻿@model IEnumerable<DiabetesCarePlatform.Models.ZoomNetMeeting.ServiceTimeWithRemainRoomAmountViewModel>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">新增視訊會議内容</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("Index", "VideoSchedule", FormMethod.Post, new { @class = "form-horizontal", @id = "bookingform" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("dayofweek", (int)ViewBag.DayOfWeek)
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">日期</label>
+                    <div class="col-md-7">
+                        @if (((bool)ViewBag.Static))
+                        {
+                            <label class="form-control-static">@(((DateTime)ViewBag.ShiftDate).ToString("yyyy-MM-dd"))</label>
+                            @Html.Hidden("selecteddate", (((DateTime)ViewBag.ShiftDate).ToString("yyyy-MM-dd")))
+                        }
+                        else
+                        {
+                            <div class="input-group date" data-date-format="yyyy-mm-dd" data-date="" data-date-startdate="@(((DateTime)ViewBag.ShiftDate).ToString("yyyy-MM-dd"))">
+                                <input type="text" class="form-control" value="@(((DateTime)ViewBag.ShiftDate).ToString("yyyy-MM-dd"))" placeholder="Select Date" id="selecteddate" name="selecteddate">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        }                
+                  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">服務時間</label>
+                </div>
+               <fieldset id="dynamicservicetime" style="max-height:300px;overflow:scroll;">
+                   @Html.Action("DynamicFetchServiceTimes", new { shiftdate = @DateTime.Now.ToString("yyyy-MM-dd") })
+               </fieldset>
+
+
+                @*<div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-7">
+                            <label class="control-label" id="remainingmeetingroom">4</label>
+                            <input type="hidden" id="remainingroom" name="remainingroom" value="0" />
+                        </div>
+                    </div>*@
+            }
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">關閉</a>
+            <a href="javascript:$('#bookingform').submit();" class="btn btn-sm btn-success">送出</a>
+        </div>
+    </div>
+</div>
+<script>
+    function partial_init() {
+        $(".date").css('z-index', '1151');
+        $('#selecteddate').datepicker({
+            todayHighlight: !0,
+            startDate: '+0d',
+            language: "zh-CN",
+            autoclose: true
+        }).on('changeDate', function (e) {
+            // `e` here contains the extra attributes
+            console.log(e);
+
+           
+            var strd = $('#selecteddate').val();
+            if (strd.length > 0) {
+                $('#dynamicservicetime').load('@Url.Action("DynamicFetchServiceTimes")?shiftdate=' + encodeURI(strd), function (response, status, xhr) {
+                    $(this).empty();
+                    $(this).append(response);
+                });
+            } else {
+                $('#dynamicservicetime').empty();
+            }
+           
+
+        });
+    }
+
+</script>

@@ -1,0 +1,1244 @@
+﻿@using DiabetesCarePlatform
+@using DiabetesCarePlatform.Models
+@model SetUpCreateAcountModel
+
+@{
+    ViewBag.Title = @Reslang.Resource.DM + @Reslang.Resource.SetUp1;
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/jvectormap")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bs3wizard")" rel="stylesheet" />
+<link href="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+<link href="~/Content/ColorAdmin/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+}
+
+<!-- Page-Title -->
+<!-- begin breadcrumb -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+
+            <ol class="breadcrumb pull-right">
+                <li><a href="#">4G糖特</a></li>
+                <li class="active">@(Reslang.Resource.DM+Reslang.Resource.SetUp1)</li>
+            </ol>
+
+        </div>
+    </div>
+</div>
+
+<!-- end breadcrumb -->
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-body">
+           
+
+@using (Html.BeginForm("AddDM1", "DCSetUp", FormMethod.Post ,new { name="form-wizard"}))
+{
+                    <div id="wizard">
+                        <ol data-toggle="bootstrap-wizard-step" data-next="#next" data-previous="#previous" data-tab="#wizard-tab" data-content="#wizard-content" data-start="2">
+                            
+                            <li>
+
+                                @Reslang.Resource.SetUp1@Reslang.Resource.BasicInformation
+                                @*<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small>*@
+                            </li>
+                            <li>
+                                @Reslang.Resource.SetUp1@Reslang.Resource.Pathologicaldata
+                                @*<small>Aliquam bibendum felis id purus ullamcorper, quis luctus leo sollicitudin.</small>*@
+
+                            </li>
+                            <li>
+                                @Reslang.Resource.SetUp1@Reslang.Resource.ProfileFamilies
+                                @*<small>Phasellus lacinia placerat neque pretium condimentum.</small>*@
+                            </li>
+                            <li>
+                                @Reslang.Resource.Preview
+                                @*<small>Sed nunc neque, dapibus non leo sed, rhoncus dignissim elit.</small>*@
+                            </li>
+                            @*<li>
+                               @Reslang.Resource.Binding
+                            
+                            </li>*@
+                        </ol>
+
+                       
+                        <!-- begin wizard step-1 -->
+                        <div class="wizard-step-1">
+                            <fieldset>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">姓名</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="PatientName" name="PatientName" data-parsley-group="wizard-step-1" type="text">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">病歷號碼</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="MedicalRecordNumber" name="MedicalRecordNumber" data-parsley-group="wizard-step-1" maxlength="20"  type="text">
+                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                      
+                                        <label class="control-label " id="lMRN"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label ">@Reslang.Resource.Sex</label>
+                                    <div class="col-sm-1">
+                                        <label>
+                                            <input type="radio" name="sex" value="1" id="sex_male" data-parsley-group="wizard-step-1" />
+                                            @Reslang.Resource.Male
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label>
+                                            <input type="radio" name="sex" value="2" id="sex_female" data-parsley-group="wizard-step-1" />
+                                            @Reslang.Resource.Female
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label ">@Reslang.Resource.IDNo</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="IdentityNumber" name="IdentityNumber" data-parsley-group="wizard-step-1" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">@Reslang.Resource.DateofBirth</label>
+                                    <div class="col-md-3">
+
+                                        <div class="input-group date" id="Birthday">
+                                            <input type="text" class="form-control" name="Birthday" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <!-- input-group -->
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">@Reslang.Resource.Bloodtype</label>
+                                    <div class="col-md-3">
+                                        @Html.DropDownList("BloodTypeList", null, @Reslang.Resource.PleaseChoose, new { @id = "BooldTypelist", @class = "form-control", required = "required" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">@Reslang.Resource.Nation</label>
+                                    <div class="col-md-3">
+                                        @Html.DropDownList("RaceTypeList", null, @Reslang.Resource.PleaseChoose, new { @id = "RaceTypeList", @class = "form-control", required = "required" })
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="cellphone">E-Mail</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="Email" name="Email" type="email" data-parsley-group="wizard-step-1">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="cellphone">@Reslang.Resource.Mobilephone</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="cellphone"  name="cellphone" type="text" data-parsley-group="wizard-step-1">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="telphone">@Reslang.Resource.PhoneNumber</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="telphone" name="telphone" type="text" data-parsley-group="wizard-step-1">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Domicileaddress</label>
+                                    <div class="col-md-9">
+                                        <div class="col-md-2">
+
+                                            @Html.DropDownList("dropdownState", new SelectList(string.Empty, "Value", "Text"), "省", new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                            @Html.DropDownList("dropdownCity", new SelectList(string.Empty, "Value", "Text"), "縣市", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-2">
+
+                                            @Html.DropDownList("dropdownDistrict", new SelectList(string.Empty, "Value", "Text"), "區", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <input class="form-control required" id="Domicileaddress" name="Domicileaddress" type="text" data-parsley-group="wizard-step-1">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="NowHomeAddress">@Reslang.Resource.Living</label>
+                                    <div class="col-md-9">
+                                        <div class="col-md-2">
+                                            <button class="btn btn-default" type="button" onclick="copyRadrr()">同@(Reslang.Resource.Domicileaddress)</button>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            @Html.DropDownList("dropdownLivingState", new SelectList(string.Empty, "Value", "Text"), "省", new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                            @Html.DropDownList("dropdownLivingCity", new SelectList(string.Empty, "Value", "Text"), "縣市", new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-2">
+
+                                            @Html.DropDownList("dropdownLivingDistrict", new SelectList(string.Empty, "Value", "Text"), "區", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <input class="form-control required" id="NowHomeAddress" name="NowHomeAddress" type="text" data-parsley-group="wizard-step-1">
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Live</label>
+                                    <div class="col-md-3">
+                                        @Html.DropDownList("LivingStatusList", null, @Reslang.Resource.PleaseChoose, new { @id = "LivingStatusList", @class = "form-control", required = "required" })
+                                        <!-- input-group -->
+                                    </div>
+
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label">身心障碍手册</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control " id="DisableNumber" name="DisableNumber" type="text">
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </fieldset>
+                        </div>
+                        <!-- end wizard step-1 -->
+                        <!-- begin wizard step-2 -->
+                        <div class="wizard-step-2">
+                            <fieldset>
+                                <legend class="pull-left width-full">@Reslang.Resource.BasicInformation</legend>
+                                <!-- begin row -->
+                                <div class="form-group clearfix">
+
+                                    <div class="col-md-1 col-sm-3">
+                                        @*<label class="col-md-1 control-label">姓</label>*@
+                                        姓名
+                                        <input class="form-control" id="CopyPatientName" type="text" readonly>
+
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        性別
+                                        <input class="form-control" id="CopySex" type="text" readonly>
+                                    </div>
+                                    <div class="col-md-2">
+                                        病歷號碼
+                                        <input class="form-control" id="CopyMedicalRecordNumber" type="text" readonly>
+                                      
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="col-md-6 control-label ">@Reslang.Resource.IDNo</label>
+
+                                        <input class="form-control" id="CopyIdentityNumber" type="text" readonly>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        @*<label class="control-label">@(Reslang.Resource.DateofBirth):</label>*@
+                                        @(Reslang.Resource.DateofBirth)
+                                        <input class="form-control" id="CopyBirthday" type="text" readonly>
+                                    </div>
+                                </div>
+
+                                <legend class="pull-left width-full">@(Reslang.Resource.SetUp1 + Reslang.Resource.PersonalHistory)</legend>
+                                <!-- begin row -->
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber">@Reslang.Resource.Bodyweight (kg)</label>
+                                    <div class="col-md-3">
+                                        <input step="1" min="1" type="number" class="form-control" id="tbWeight" name="Bodyweight" required data-parsley-group=" wizard-step-2">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber1">@Reslang.Resource.Height (cm)</label>
+                                    <div class="col-md-3">
+                                        <input step="1" type="number" class="form-control" id="tbHeight" name="Height" data-parsley-type="number" data-parsley-group="wizard-step-2" required>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Diabetesmellitus</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            @Html.DropDownList("ChronicSubTypeList", null, @Reslang.Resource.PleaseChoose, new { @id = "ChronicSubTypeList", @class = "form-control", required = "required" })
+
+                                        </div>
+                                        <!-- input-group -->
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.PersonalHistory</label>
+                                    <div id="divCk" class="col-md-9">
+                                        @for (var i = 0; i < Model.PMRTagNameCBList.Count(); i++)
+                                        {
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        @Html.HiddenFor(m => m.PMRTagNameCBList[i].Description, new { id = "hDesc_" + i })
+                                                        @Html.CheckBoxFor(m => m.PMRTagNameCBList[i].Checked, new { id = "addckb_" + i, Style = "vertical-align:3px}", @onclick = "check(this.id, hDesc_" + @i + ")" })
+
+                                                    </td>
+                                                    <td>
+
+                                                        @Html.HiddenFor(m => m.PMRTagNameCBList[i].PathologyID)
+                                                        @Html.DisplayFor(m => m.PMRTagNameCBList[i].Description)
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="nmnoteh1">@Reslang.Resource.Allergyhistory</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="Allergyhistory" name="Allergyhistory" type="text">
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </fieldset>
+                        </div>
+                        <!-- end wizard step-2 -->
+                        <!-- begin wizard step-3 -->
+                        <div class="wizard-step-3">
+                            <fieldset>
+                                <legend class="pull-left width-full">@(Reslang.Resource.SetUp1 + Reslang.Resource.ProfileFamilies)</legend>
+                                <!-- begin row -->
+                                <div>
+                                    <div class="form-group clearfix">
+
+                                        <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                        <div class="col-md-3">
+                                            @Html.DropDownList("RelationshipList", null, @Reslang.Resource.PleaseChoose, new { @id = "RelationshipList1", Name = "RelationshipList1", @class = "form-control", required = "required" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name="ContactCount" id="hCCount" type="hidden" value="1" />
+                                            <input id="btnAdd" type="button" class="btn btn-primary" value="新增聯絡人" onclick="AddContactBox()" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)1</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control required" id="familyName1" name="familyName1" type="text" data-parsley-group="wizard-step-3">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control required" id="familycellphone1" name="familycellphone1" data-parsley-group="wizard-step-3" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control required" id="familytelphone1" name="familytelphone1" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control" id="familytelphonenight1" name="familytelphonenight1" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="hContact2" style="display:none">
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                        <div class="col-md-3">
+                                            @Html.DropDownList("RelationshipList", null, @Reslang.Resource.PleaseChoose, new { @id = "RelationshipList2", Name = "RelationshipList2", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)2</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familyName2" name="familyName2" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familycellphone2" name="familycellphone2" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familytelphone2" name="familytelphone2" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control" id="familytelphonenight2" name="familytelphonenight2" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="hContact3" style="display:none">
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                        <div class="col-md-3">
+                                            @Html.DropDownList("RelationshipList", null, @Reslang.Resource.PleaseChoose, new { @id = "RelationshipList3", Name = "RelationshipList3", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)3</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familyName3" name="familyName3" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familycellphone3" name="familycellphone3" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familytelphone3" name="familytelphone3" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control" id="familytelphonenight3" name="familytelphonenight3" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="hContact4" style="display:none">
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                        <div class="col-md-3">
+                                            @Html.DropDownList("RelationshipList", null, @Reslang.Resource.PleaseChoose, new { @id = "RelationshipList4", Name = "RelationshipList4", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)4</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familyName4" name="familyName4" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familycellphone4" name="familycellphone4" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control " id="familytelphone4" name="familytelphone4" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+                                        <div class="col-md-3">
+                                            <input class="form-control" id="familytelphonenight4" name="familytelphonenight4" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- end row -->
+                            </fieldset>
+                        </div>
+                        <!-- end wizard step-3 -->
+                        <!-- begin wizard step-4 -->
+                        <div class="wizard-step-4">
+
+                            <fieldset>
+                                <legend class="pull-left width-full">@Reslang.Resource.Preview</legend>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="Fullname">姓名</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="prePatientName"></label>
+                                    </div>
+                                    @*<label class="col-md-1 control-label " for="Fullname">名</label>
+                    <div class="col-md-3">
+                        <label class="form-control required" id="preFirstName"></label>
+                        <input class="form-control required" id="preFirsttName" name="FirtstName" type="text" readonly>
+                    </div>*@
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber">病歷號碼</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preMedicalRecordNumber"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">@Reslang.Resource.Sex</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preSex"></label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber">@Reslang.Resource.IDNo</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preIdentityNumber"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">@Reslang.Resource.DateofBirth</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preBirthday"></label>
+
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">@Reslang.Resource.Bloodtype</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preBloodTypeList"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">@Reslang.Resource.Nation</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preRaceTypeList"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">E-Mail</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preEmail"></label>
+
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="cellphone">@Reslang.Resource.Mobilephone</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="precellphone"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="telphone">@Reslang.Resource.PhoneNumber</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="pretelphone"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Domicileaddress</label>
+
+                                    <div class="col-md-7">
+                                        <label class="form-control required" id="preDomicileaddress"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="NowHomeAddress">@Reslang.Resource.Living</label>
+                                    <div class="col-md-7">
+                                        <label class="form-control required" id="preLivingddress"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Live</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preLivingStatusList"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@(Reslang.Resource.Disabilitymanual)</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preDisableNumber"></label>
+
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber">@Reslang.Resource.Bodyweight (kg)</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="pretbWeight"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber1">@Reslang.Resource.Height (cm)</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="pretbHeight"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@(Reslang.Resource.Diabetesmellitus)類型</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preChronicSubTypeList"></label>
+
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.PersonalHistory</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="prePersonalHistory"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="nmnoteh1">@Reslang.Resource.Allergyhistory</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preAllergyhistory"></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="preRelationshipList1"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)1</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="prefamilyName1"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="prefamilycellphone1"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="prefamilytelphone1"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+
+                                    <div class="col-md-3">
+                                        <label class="form-control required" id="prefamilytelphonenight1"></label>
+                                    </div>
+                                </div>
+
+                                <div id="prehContact2" style="display:none">
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="preRelationshipList2"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)2</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilyName2"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilycellphone2"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilytelphone2"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilytelphonenight2"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="prehContact3" style="display:none">
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="preRelationshipList3"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)3</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilyName3"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilycellphone3"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilytelphone3"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilytelphonenight3"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="prehContact4" style="display:none">
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="confirm1">@Reslang.Resource.Therelationshipwiththepatient</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="preRelationshipList4"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="EmergencyContact">@(Reslang.Resource.EmergencyContact)4</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilyName4"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familycellphone">@Reslang.Resource.Mobilephone</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilycellphone4"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphone">@Reslang.Resource.PhoneNumber (日)</label>
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilytelphone4"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-md-3 control-label " for="familytelphonenight">@Reslang.Resource.PhoneNumber (夜)</label>
+
+                                        <div class="col-md-3">
+                                            <label class="form-control required" id="prefamilytelphonenight4"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="col-md-2 pull-right">
+                                        <button type="submit" class="btn btn-success">
+                                            @Reslang.Resource.OK
+                                        </button>
+                                        @*<a class="btn btn-success" onclick="">@Reslang.Resource.OK</a>*@
+                                    </div>
+
+                                </div>
+
+                            </fieldset>
+
+                        </div>
+    
+
+                        <!-- end wizard step-4 -->
+
+                        <!-- begin wizard step-5 -->
+                        @*<div id="wizard-step-5">
+                            <fieldset>
+                                <legend class="pull-left width-full">@Reslang.Resource.Binding</legend>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="EmergencyContact">開啟App@(Reslang.Resource.Account)功能</label>
+                                    <div class="col-md-9">
+                                        <input type="checkbox" data-plugin="switchery" data-color="#3DDCF7" name="EmergencyContact" data-size="small" />
+                                    </div>
+                                </div><div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginusername">APP@(Reslang.Resource.Account)</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control " id="familyloginusername" name="familyloginusername" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginpwd">APP@(Reslang.Resource.Password)</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control " id="familyloginpwd" name="familyloginpwd" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="col-md-2 pull-right">
+                                        <button type="submit" class="btn btn-primary">@Reslang.Resource.OK</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>*@
+                        <!-- end wizard step-5 -->
+
+
+                    </div>
+}
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/plugins/bs3wizard")"></script>
+    <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/timepicker")"></script>
+@*<script src="@Scripts.Url("~/assets/plugins/parsley/dist/parsley.js")"></script>
+<script src="@Scripts.Url("~/assets/plugins/bootstrap-wizard/js/bwizard.js")"></script>*@
+<script src="~/Content/ColorAdmin/assets/plugins/parsley/dist/parsley.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+}
+@section scripts{
+<script>
+    var pMRTagNameCBlist=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.PMRTagNameCBList));
+    var handleBootstrapWizards = function () {
+        "use strict";
+
+        $('#Birthday').datepicker({
+            todayHighlight: true
+            , format: 'yyyy-mm-dd'
+        });
+       
+        $('#datepicker-autoclose5').datepicker({ todayHighlight: true });
+        $('#datepicker-autoclose6').datepicker({ todayHighlight: true });
+
+        $("#wizard").bwizard(
+
+            {activeIndexChanged:  function(e, ui)
+            {
+                var i= ui.index;
+                if(i==3)
+                {
+                    //step1
+                    sync('PatientName');
+                    sync('MedicalRecordNumber');
+                    sync('IdentityNumber');
+                    var sSex=document.getElementById('sex');
+                    syncSex(sSex);
+                    //Birthday
+                    var ddate =$("#Birthday").find("input").val();
+                    var n5 = document.getElementById('CopyBirthday');
+                    var n6= document.getElementById('preBirthday');
+                    n5.value = ddate;
+                    n6.innerHTML = ddate;
+                    sync('PatientName');
+                    syncPreview('Email');
+                    syncPreview('cellphone');
+                    syncPreview('telphone');
+                    copyToReviewAdrr('Domicileaddress');
+                    copyToReviewAdrr('NowHomeAddress');
+                    syncPreview('DisableNumber');
+                    //step2
+                    syncPreview('tbWeight');
+                    syncPreview('tbHeight');
+                    syncPreview('Allergyhistory');
+                    //step3
+                    syncPreview('familyName1');
+                    syncPreview('familycellphone1');
+                    syncPreview('familytelphone1');
+                    syncPreview('familytelphonenight1');
+
+                    syncPreview('familyName2');
+                    syncPreview('familycellphone2');
+                    syncPreview('familytelphone2');
+                    syncPreview('familytelphonenight2');
+
+                    syncPreview('familyName3');
+                    syncPreview('familycellphone3');
+                    syncPreview('familytelphone3');
+                    syncPreview('familytelphonenight3');
+
+                    syncPreview('familyName4');
+                    syncPreview('familycellphone4');
+                    syncPreview('familytelphone4');
+                    syncPreview('familytelphonenight4');
+
+                }
+                else if(i==1)
+                {
+                    sync('PatientName');
+                    sync('MedicalRecordNumber');
+                    sync('IdentityNumber');
+                    var sSex=document.getElementById('sex');
+                    syncSex(sSex);
+                    //Birthday
+                    var ddate =$("#Birthday").find("input").val();
+                    var n5 = document.getElementById('CopyBirthday');
+                    var n6= document.getElementById('preBirthday');
+                    n5.value = ddate;
+                    n6.innerHTML = ddate;
+                    sync('PatientName');
+                }
+
+            }},
+            { backBtnText: "上一步",nextBtnText: "下一步"},
+            {validating:function(e,t){if(t.index==0){if(false===$('form[name="form-wizard"]').parsley().validate("wizard-step-1")){return false}}else if(t.index==1){if(false===$('form[name="form-wizard"]').parsley().validate("wizard-step-2")){return false}}else if(t.index==2){if(false===$('form[name="form-wizard"]').parsley().validate("wizard-step-3")){return false}}
+            else if(t.index==3){if(false===$('form[name="form-wizard"]').parsley().validate("wizard-step-4")){return false}}
+            }})};
+    $('#wizard .next').click(function (tab, navigation, index)
+    {
+        alert('Finished!, Starting over!');
+        $('#wizard').find("a[href*='tab1']").trigger('click');
+    });
+    var FormWizardValidation=function(){"use strict";return{init:function(){handleBootstrapWizardsValidation()}}
+        //$('#wizard .finish').click(function () {
+        //    alert('Finished!, Starting over!');
+        //    $('#wizard').find("a[href*='tab1']").trigger('click');
+        //});
+    };
+
+    var FormWizard = function () {
+        "use strict";
+        return {
+            //main function
+            init: function () {
+                handleBootstrapWizards();
+            }
+        };
+    }();
+
+    function page_init() {
+        FormWizard.init();
+
+    }
+
+    function sync(Input_id) {
+        var n1 = document.getElementById(Input_id);
+        var n2 = document.getElementById('Copy' + Input_id);
+        var n3= document.getElementById('pre' + Input_id);
+        n2.value = n1.value;
+        n3.innerHTML =  n1.value;
+
+    }
+    function syncPreview(Input_id) {
+        var n1 = document.getElementById(Input_id);
+        var n2 = document.getElementById('pre' + Input_id);
+        n2.innerHTML  = n1.value;
+
+    }
+    function syncSex(Input_id) {
+        if (document.getElementById('sex_male').checked) {
+            document.getElementById('CopySex').value = '男';
+            document.getElementById('preSex').innerHTML = '男';
+        } else if (document.getElementById('sex_female').checked) {
+            document.getElementById('CopySex').value = '女';
+            document.getElementById('preSex').innerHTML = '女';
+        }
+    }
+
+    function copyRadrr() {
+        $('#dropdownLivingDistrict').empty();
+        $("#dropdownLivingCity").empty();
+        var eState = $("#dropdownState").val();
+        $("#dropdownLivingState").val(eState);
+        $('#dropdownCity option').clone().appendTo('#dropdownLivingCity');
+        var eCity = $("#dropdownCity").val();
+        $("#dropdownLivingCity").val(eCity);
+        $('#dropdownDistrict option').clone().appendTo('#dropdownLivingDistrict');
+        var eDistrict = $("#dropdownDistrict").val();
+        $("#dropdownLivingDistrict").val(eDistrict);
+        var domicileaddress = $("#Domicileaddress").val();
+        $("#NowHomeAddress").val(domicileaddress);
+        copyToReviewAdrr('NowHomeAddress');
+
+    }
+
+    function copyToReviewAdrr(Input_id) {
+        if (Input_id == 'Domicileaddress')
+        {
+            var addr;
+            var state = $("#dropdownState option:selected").text().trim();
+            var city;
+            if ($("#dropdownCity option:selected").val() != "")
+            {
+                city = $("#dropdownCity option:selected").text().trim();
+            }
+            var district;
+            if ($("#dropdownDistrict option:selected").val() != "") {
+                var district = $("#dropdownDistrict option:selected").text().trim();
+            }
+
+            $('#preDomicileaddress').empty();
+            if (state != null)
+            {
+                addr = state;
+            }
+            if (city != null)
+            {
+                addr = addr + city;
+            }
+            if (district != null) {
+                addr = addr + district;
+            }
+
+            document.getElementById('preDomicileaddress').innerHTML = addr + $("#Domicileaddress").val();// + $("#dropdownDistrict option:selected").text() + $("#domicileaddress").val();
+        }
+        if (Input_id == 'NowHomeAddress')
+        {
+            var addr;
+            var state = $("#dropdownLivingState option:selected").text().trim();
+            var city;
+            if ($("#dropdownLivingCity option:selected").val() != "")
+            {
+                city = $("#dropdownLivingCity option:selected").text().trim();
+            }
+            var district;
+            if ($("#dropdownLivingDistrict option:selected").val() != "") {
+                var district = $("#dropdownLivingDistrict option:selected").text().trim();
+            }
+
+            $('#preLivingddress').empty();
+            if (state != null)
+            {
+                addr = state;
+            }
+            if (city != null)
+            {
+                addr = addr + city;
+            }
+            if (district != null) {
+                addr = addr + district;
+            }
+
+            document.getElementById('preLivingddress').innerHTML = addr + $("#NowHomeAddress").val();
+        }
+
+
+
+    }
+
+    //droupdownPreview
+    $(function () {
+        $("#BooldTypelist").change(function () {
+            document.getElementById('preBloodTypeList').innerHTML = $('option:selected', this).text();
+        });
+        $("#RaceTypeList").change(function () {
+            document.getElementById('preRaceTypeList').innerHTML = $('option:selected', this).text();
+        });
+        $("#LivingStatusList").change(function () {
+            document.getElementById('preLivingStatusList').innerHTML = $('option:selected', this).text();
+        });
+        $("#ChronicSubTypeList").change(function () {
+            document.getElementById('preChronicSubTypeList').innerHTML = $('option:selected', this).text();
+        });
+        $("#RelationshipList1").change(function () {
+            document.getElementById('preRelationshipList1').innerHTML = $('option:selected', this).text();
+        });
+        $("#RelationshipList2").change(function () {
+            document.getElementById('preRelationshipList2').innerHTML = $('option:selected', this).text();
+        });
+        $("#RelationshipList3").change(function () {
+            document.getElementById('preRelationshipList3').innerHTML = $('option:selected', this).text();
+        });
+        $("#RelationshipList4").change(function () {
+            document.getElementById('preRelationshipList4').innerHTML = $('option:selected', this).text();
+        });
+
+    });
+
+    //CheckBoxReview
+    function check(id,desc){
+        //if(document.getElementById('addckb_'+i).checked;
+        //    )
+        //  document.getElementById('prePersonalHistory').innerHTML= $(desc).val();
+        var ch='';
+        for (var i = 0; i < pMRTagNameCBlist.length; i++)
+        {
+            var isChecked = document.getElementById('addckb_'+i).checked;
+            if(isChecked==true)
+            {
+                //$('hDesc_' + i).val();
+                ch=ch +' '+ $('#hDesc_'+ i).val();
+            }
+        }
+        document.getElementById('prePersonalHistory').innerHTML= ch;
+    }
+
+    //Contact
+    function AddContactBox()
+    {
+        if ($('#hContact2').css('display') == 'none') {
+            $("#hContact2").show();
+            $("#prehContact2").show();
+            $("#hCCount").val("2");
+        }else
+            if ($('#hContact3').css('display') == 'none') {
+                $("#hContact3").show();
+                $("#prehContact3").show();
+                $("#hCCount").val("3");
+            } else
+                if ($('#hContact4').css('display') == 'none') {
+                    $("#hContact4").show();
+                    $("#prehContact4").show();
+                    $("#hCCount").val("4");
+                }
+    }
+
+</script>
+
+    <script>
+        //ADDRESS ajax
+        $("#dropdownState").val($("#target option:first").val());
+        $("#dropdownCity").val($("#target option:first").val());
+        $("#dropdownDistrict").val($("#target option:first").val());
+        $("#dropdownLivingState").val($("#target option:first").val());
+        $("#dropdownLivingCity").val($("#target option:first").val());
+        $("#dropdownLivingDistrict").val($("#target option:first").val());
+
+
+        $(function () {
+
+
+
+            $.ajax({
+                type: "GET",
+                url: "/DCSetUp/GetState",
+                datatype: "Json",
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $('#dropdownState').append('<option value="' + value.StateID + '">' + value.StateName + '</option>');
+                        $('#dropdownLivingState').append('<option value="' + value.StateID + '">' + value.StateName + '</option>');
+                    });
+
+                }
+            });
+            $('#dropdownState').change(function () {
+                ResetSelect('#dropdownCity', '縣市');
+                ResetSelect('#dropdownDistrict', '區');
+              
+                $.ajax({
+                    type: "POST",
+                    url: "/DCSetUp/GetCityByStateId",
+                    datatype: "Json",
+                    data: { stateId: $('#dropdownState').val() },
+                    success: function (data) {
+                        var total = data.length;
+                        $.each(data, function (index, value) {
+                            $('#dropdownCity').append('<option value="' + value.CityID + '">' + value.CityName + '</option>');
+                        });
+
+                 
+                    }
+
+                });
+
+            });
+
+            $('#dropdownCity').change(function () {
+           
+                ResetSelect('#dropdownDistrict', '區');
+                //$('#dropdownDistrict').empty();
+                $.ajax({
+                    type: "POST",
+                    url: "/DCSetUp/GetDistrictByCityId",
+                    datatype: "Json",
+                    data: { cityId: $('#dropdownCity').val() },
+                    success: function (data) {
+                        $.each(data, function (index, value) {
+                            $('#dropdownDistrict').append('<option value="' + value.DistrictID + '">' + value.DistrictName + '</option>');
+                        });
+                
+                    }
+                });
+
+            });
+
+            $('#dropdownLivingState').change(function () {
+                ResetSelect('#dropdownLivingCity', '縣市');
+                ResetSelect('#dropdownLivingDistrict', '區');
+          
+                $.ajax({
+                    type: "POST",
+                    url: "/DCSetUp/GetCityByStateId",
+                    datatype: "Json",
+                    data: { stateId: $('#dropdownLivingState').val() },
+                    success: function (data) {
+                        var total = data.length;
+                        $.each(data, function (index, value) {
+                            $('#dropdownLivingCity').append('<option value="' + value.CityID + '">' + value.CityName + '</option>');
+                        });
+                     
+                    }
+                });
+
+            });
+
+            $('#dropdownLivingCity').change(function () {
+                ResetSelect('#dropdownLivingDistrict', '區');
+                $.ajax({
+                    type: "POST",
+                    url: "/DCSetUp/GetDistrictByCityId",
+                    datatype: "Json",
+                    data: { cityId: $('#dropdownLivingCity').val() },
+                    success: function (data) {
+
+                        $.each(data, function (index, value) {
+                            $('#dropdownLivingDistrict').append('<option value="' + value.DistrictID + '">' + value.DistrictName + '</option>');
+                        });
+                    }
+                });
+
+
+            });
+
+            function ResetSelect(id, showtext) {
+                $(id).empty();
+                $(id).append(' <option value="" disabled selected>' + showtext + '</option>');
+            }
+        });
+        
+    </script>
+
+
+    <script>
+        //check MedicalRecordNumber
+        $(function () {         
+
+            $("#MedicalRecordNumber").bind('input', function()  {
+            var that = this,
+            value = $(this).val().trim();
+
+            if (value.length >= 1 ) {
+                $.ajax({
+                    type: "GET",
+                    url: "/DCSetUp/CheckMedicalRecordNumber",
+                    data: {
+                        medicalNumber : value
+                    },
+                    dataType: "text",
+                    success: function (data) {
+                        $("#lMRN").empty();
+                        if(data=='True')
+                        {
+                              
+                            document.getElementById('lMRN').innerHTML  ='<span  style="color:red"><i class="fa fa-2x fa-times"></i>'+"病歷號碼已存在!</span>";
+                            $("#MedicalRecordNumber").empty();
+                              
+                        }else
+                        {
+                              
+                            document.getElementById('lMRN').innerHTML  = '<i class="fa fa-2x fa-check-circle"   style="color:green"  ></i>';
+                             
+                        }
+                    }
+                });
+            }else
+            {
+                $("#lMRN").empty();
+            }
+        });
+        });
+    </script>
+ 
+}

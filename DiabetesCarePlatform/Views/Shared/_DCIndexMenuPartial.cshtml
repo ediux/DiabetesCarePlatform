@@ -1,0 +1,48 @@
+﻿@using DiabetesCarePlatform.Models;
+@model DCCareIndexUserViewModel
+@{
+    ViewBag.Title = "_DCIndexMenuPartial";
+}
+
+<div class="row">
+    <div class="panel-body well">
+        <div class="col-md-4">
+            <ul class="registered-users-list clearfix">
+                <li>
+                    <a href="javascript:;"><img src="../Content/ColorAdmin/assets/img/user-13.jpg" @*style=" border-radius:50%;height:100px"*@ alt=""></a>
+                </li>
+                <li>
+                    <ul class="list-unstyled">
+                        <li><b>病歷號：</b></li>
+                        <li>@Model.UserDataModel.MedicalRecordNumber</li>
+                        <li>@Model.UserDataModel.ChronicSubName</li>
+                        <li><b>姓名：</b>@Model.UserDataModel.PatientName</li>
+                        <li><b>性別：</b>@Model.UserDataModel.SexName</li>
+                        <li><b>年齡：</b>@Model.UserDataModel.Age <a class="btn btn-white btn-xs" href="@Url.Action("BasicInformation", "DCCare", new { PatientID = Model.UserDataModel.PatientID })" data-toggle="modal" onclick="">詳細</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <p class="text-info">項目維護</p>
+        </div>
+        <div class="col-md-8">
+            <a class="btn btn-info m-r-5 m-b-5" href="@Url.Action("DMIndex", "DCCare", new { PatientID = Model.UserDataModel.PatientID })" data-toggle="modal" onclick="">總　覽</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="@Url.Action("DCItemView", "DCCare", new { PatientID = Model.UserDataModel.PatientID })" data-toggle="modal" onclick="">檢　視</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="@Url.Action("Setting", "DCCare", new { PatientID = Model.UserDataModel.PatientID })" data-toggle="modal" onclick="">設　定</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="#editUser" data-toggle="modal" onclick="">結　案</a>
+        </div>
+        <div class="col-md-8">
+            <p class="text-info">個人紀錄</p>
+        </div>
+        <div class="col-md-8">
+            <a class="btn btn-info m-r-5 m-b-5" href="@Url.Action("PatientBloodSugar", "DCCare", new { PatientID = Model.UserDataModel.PatientID })"  onclick="">血　糖</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="@Url.Action("PatientBloodPressure", "DCCare", new { PatientID = Model.UserDataModel.PatientID })" data-toggle="modal" onclick="">血　壓</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="" data-toggle="modal" onclick="">護　理</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="@Url.Action("ServiceRecord", "DCCare", new { PatientID = Model.UserDataModel.PatientID })">服　務</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="" data-toggle="modal" onclick="">門　診</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="@Url.Action("PatientMedicalRecord", "DCCare", new { PatientID = Model.UserDataModel.PatientID })" data-toggle="modal" onclick="">用　藥</a>
+            <a class="btn btn-info m-r-5 m-b-5" href="" data-toggle="modal" onclick="">檢　驗</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title> @Html.Geti18nText(Html.GetConfigValue("WebSite:Name").ToHtmlString())  | @ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta content="@Html.GetConfigValue("webpages:Description")" name="description" />
+    <meta content="@Html.GetConfigValue("webpages:Author")" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="@Styles.Url("~/assets/css/plugins/jquery-ui")" rel="stylesheet" />
+    <link href="@Styles.Url("~/Content/ColorAdmin/assets/plugins/bootstrap/css/currentVersion")" rel="stylesheet" />
+    <link href="@Styles.Url("~/Content/ColorAdmin/assets/plugins/font-awesome/css/currentVersion")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/animate")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/style")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/theme/default")" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    @RenderSection("pagelevelcss", false)
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    @*<script src="@Scripts.Url("~/assets/js/pace")"></script>*@
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body>
+    <!-- begin #page-loader -->
+    <div id="page-loader">
+        <div class="material-loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+            <div class="message">@Html.Geti18nText("Loading")</div>
+        </div>
+    </div>
+    <!-- end #page-loader -->
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade page-sidebar-fixed page-header-fixed page-with-wide-sidebar">
+        <!-- begin #header -->
+        <div id="header" class="header navbar navbar-default navbar-fixed-top">
+            <!-- begin container-fluid -->
+            <div class="container-fluid">
+                <!-- begin mobile sidebar expand / collapse button -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle-left" data-click="sidebar-minify">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index","DCP",new { area="" })" class="navbar-brand">
+                        @Html.Geti18nText(Html.GetConfigValue("WebSite:Name").ToHtmlString())
+                    </a>
+                </div>
+                <!-- end mobile sidebar expand / collapse button -->
+                <!-- begin header navigation right -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- 搜尋框 -->
+                    <li>
+                        <a href="#" class="icon notification waves-effect waves-light" data-toggle="navbar-search"><i class="material-icons">@Html.Geti18nText("Search")</i></a>
+                    </li>
+                    <!-- 通知圖示 -->
+                    <li class="dropdown">
+                        <a href="#" class="icon notification waves-effect waves-light" data-toggle="dropdown">
+                            <i class="material-icons">inbox</i> @if (Html.GetNotiftionCount() > 0)
+                            { <span class="label label-notification">@Html.GetNotiftionCountDisplay() </span>}
+                        </a>
+                        <ul class="dropdown-menu media-list pull-right animated fadeInDown">
+                            <li class="dropdown-header bg-indigo text-white">@Html.Geti18nText("Notification") (@Html.GetNotiftionCountDisplay())</li>
+                            <li class="media">
+                                <a href="javascript:;">
+                                    <div class="media-left"><img src="@Url.Content("~/Content/ColorAdmin/assets/img/user-1.jpg")" class="media-object" alt="" /></div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading">John Smith</h6>
+                                        <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+                                        <div class="text-muted f-s-11">25 minutes ago</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="media">
+                                <a href="javascript:;">
+                                    <div class="media-left"><img src="@Url.Content("~/Content/ColorAdmin/assets/img/user-2.jpg")" class="media-object" alt="" /></div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading">Olivia</h6>
+                                        <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+                                        <div class="text-muted f-s-11">35 minutes ago</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="media">
+                                <a href="javascript:;">
+                                    <div class="media-left"><i class="material-icons media-object bg-deep-purple">people</i></div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading"> New User Registered</h6>
+                                        <div class="text-muted f-s-11">1 hour ago</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="media">
+                                <a href="javascript:;">
+                                    <div class="media-left"><i class="material-icons media-object bg-blue">email</i></div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading"> New Email From John</h6>
+                                        <div class="text-muted f-s-11">2 hours ago</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="media">
+                                <a href="javascript:;">
+                                    <div class="media-left"><i class="material-icons media-object bg-teal">shopping_basket</i></div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading">You sold an item!</h6>
+                                        <div class="text-muted f-s-11">3 hours ago</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="dropdown-footer text-center">
+                                <a href="javascript:;">View more</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown navbar-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="@Url.Content("~/Content/ColorAdmin/assets/img/user.jpg")" alt="" />
+                            <span class="hidden-xs">Hi, @Common.UserInfoObj.Name</span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInLeft">
+
+
+                            <li class="arrow"></li>
+                            <li><a href="javascript:;">Edit Profile</a></li>
+                            <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
+                            <li><a href="javascript:;">Calendar</a></li>
+                            <li><a href="javascript:;">@Html.Geti18nText("mbString_Settings")</a></li>
+                            <li class="divider"></li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <li><a href="javascript:document.getElementById('logoutForm').submit();" style="color:#333;padding:5px 15px">登出</a></li>
+                            }
+                        </ul>
+
+                    </li>
+                </ul>
+                <!-- end header navigation right -->
+
+                <div class="search-form">
+                    <button class="search-btn" type="submit"><i class="material-icons">search</i></button>
+                    <input type="text" class="form-control" placeholder="Search Something...">
+                    <a href="#" class="close" data-dismiss="navbar-search"><i class="material-icons">close</i></a>
+                </div>
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- end #header -->
+        <!-- begin #sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- begin sidebar scrollbar -->
+            <div data-scrollbar="true" data-height="100%">
+                <!-- begin sidebar user -->
+                <ul class="nav">
+                    <li class="nav-profile">
+                        <a href="#" data-toggle="nav-profile">
+                            <div class="image">
+                                <img src="@Url.Content("~/Content/ColorAdmin/assets/img/user.jpg")" alt="" />
+                            </div>
+                            <div class="info">
+                                <b class="caret pull-right"></b>
+                                @Common.UserInfoObj.Name
+                                <small>Front end developer</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <ul class="nav nav-profile">
+                            <li><a href="#"><i class="material-icons">settings</i> @Html.Geti18nText("Profile") </a></li>
+
+                            <li><a href="#"><i class="material-icons">help</i> @Html.Geti18nText("Helps") </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- end sidebar user -->
+                <!-- begin sidebar nav -->
+                @Html.Navigation()
+                <!-- end sidebar nav -->
+            </div>
+            <!-- end sidebar scrollbar -->
+        </div>
+        <div class="sidebar-bg"></div>
+        <!-- end #sidebar -->
+        <!-- begin #content -->
+        <div id="content" class="content">
+            <h1 class="page-header">@ViewBag.Title </h1>
+            @RenderBody()
+            <!-- end row -->
+        </div>
+        <!-- end #content -->
+        <!-- begin scroll to top btn -->
+        <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+        <!-- end scroll to top btn -->
+    </div>
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    @RenderSection("libjs", required: false)
+    <script src="@Scripts.Url("~/assets/js/plugins/jquery")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/jquery-migrate")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/jquery-ui")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bootstrap")"></script>
+    <!--[if lt IE 9]>
+        <script src="@Scripts.Url("~/assets/js/html5shiv")"></script>
+        <script src="@Scripts.Url("~/assets/js/respond")"></script>
+        <script src="@Scripts.Url("~/assets/js/excanvas")"></script>
+    <![endif]-->
+    <script src="@Scripts.Url("~/assets/js/plugins/slimscroll")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/jquery-cookie")"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="@Scripts.Url("~/assets/js/plugins/gritter")"></script>
+    @RenderSection("pageleveljs", required: false)
+    <script src="@Scripts.Url("~/assets/js/app")"></script>
+    <!-- Add reference to the minified version of the SignarR client library -->
+    <script src="@Scripts.Url("~/assets/js/signalR")"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    @RenderSection("scripts", required: false)
+    <script src="signalr/hubs"></script>  
+    <script>
+        $(document).ready(function () {
+            //主要版型需要的JS檔案
+            App.init();
+           
+            //請在此註解下方填上要額外呼叫的初始化方法
+            //To 博文: 請在下方加入你需要的SingalR的方法呼叫，
+            //別直接在這邊寫一大段的程式碼。請保持這個事件委派的CleanCode原則!!
+
+            //當有訊息要顯示的時候執行
+            if( typeof(message) !=='undefined' ){
+                toastrerror(message);
+                message = undefined;
+            }
+
+            //尋找各頁面自行定義的初始化委派方法當作啟動時候的進入點
+            //請勿自行在各自頁面自行定義$(document).ready() 方法
+            //造成非預期的行為
+            if (typeof (page_init) === 'function') {
+                page_init();
+            }
+        });
+    </script>
+
+    <script>
+        //toastr.options.positionClass = "toast-bottom-right";
+        function toastrsuccess(msg){
+            setTimeout(function() {
+                $.gritter.add({
+                    title: 'Success',
+                    text: msg,
+                    image: 'assets/img/user-2.jpg',
+                    sticky: true,
+                    time: '',
+                    class_name: 'my-sticky-class'
+                });
+            }, 1000);
+            // toastr.success(msg);
+        }
+        function toastrinfo(msg){
+            setTimeout(function() {
+                $.gritter.add({
+                    title: 'Information',
+                    text: msg,
+                    image: 'assets/img/user-2.jpg',
+                    sticky: true,
+                    time: '',
+                    class_name: 'my-sticky-class'
+                });
+            }, 1000);
+            //alert(msg);
+            // toastr.info(msg);
+        }
+        function toastrerror(msg){
+            setTimeout(function() {
+                $.gritter.add({
+                    title: 'Error',
+                    text: msg,
+                    image: 'assets/img/user-2.jpg',
+                    sticky: true,
+                    time: '',
+                    class_name: 'my-sticky-class'
+                });
+            }, 1000);
+            //alert(msg);
+            // toastr.error(msg);
+        }
+        function toastrwarning(msg){
+            setTimeout(function() {
+                $.gritter.add({
+                    title: 'Warning',
+                    text: msg,
+                    image: 'assets/img/user-2.jpg',
+                    sticky: true,
+                    time: '',
+                    class_name: 'my-sticky-class'
+                });
+            }, 1000);
+            //alert(msg);
+            // toastr.warning(msg);
+        }
+    </script>
+    @if (TempData["TmpErrMsg"] != null)
+    {
+        <script type="text/javascript">
+            var message = @Html.Raw(Json.Encode(TempData["TmpErrMsg"]));
+            //toastrerror(message);
+        </script>
+    }
+    @if (TempData["TmpInfoMsg"] != null)
+    {
+        <script type="text/javascript">
+            var message = @Html.Raw(Json.Encode(TempData["TmpInfoMsg"]));
+            // toastrinfo(message);
+        </script>
+    }
+    @if (TempData["TmpSuccessMsg"] != null)
+    {
+        <script type="text/javascript">
+            var message = @Html.Raw(Json.Encode(TempData["TmpSuccessMsg"]));
+            //toastrsuccess(message);
+        </script>
+    }
+    @if (TempData["TmpWarningMsg"] != null)
+    {
+        <script type="text/javascript">
+            var message = @Html.Raw(Json.Encode(TempData["TmpWarningMsg"]));
+            //  toastrwarning(message);
+        </script>
+    }
+
+
+
+</body>
+</html>

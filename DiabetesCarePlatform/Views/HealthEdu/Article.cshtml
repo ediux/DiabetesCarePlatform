@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "文章編輯";
+}
+<head>
+    <title>文章編輯</title>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+    </style>
+    <link type="text/javascript" href="../Content/ColorAdmin/assets/plugins/ckeditor/contents.css" rel="stylesheet" />
+    <link type="text/javascript" href="../Content/ColorAdmin/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+</head>
+
+
+@*<textarea id="editor1" name="editor1"></textarea>*@
+@{
+    string StartDate = DateTime.Now.ToString("yyyy/MM/dd");
+    string EndDate = DateTime.Now.AddDays(7).ToString("yyyy/MM/dd");
+    string Status = "未發布";
+    if (Model.NewsID > 0)
+    {
+        StartDate = Model.PublishDate.ToString("yyyy/MM/dd");
+        EndDate = Model.EndDate.ToString("yyyy/MM/dd");
+        if (DateTime.Now > Model.PublishDate)
+        {
+            Status = "已發布";
+        }
+    }
+    
+   
+}
+<form id="form1" action="" method="post" target="_self">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-1 control-label">
+                狀態
+            </label>
+            <input id="NewsID" name="NewsID" type="hidden" value="@Model.NewsID">
+            <input id="Enable" name="Enable" type="hidden" value="1">
+            <div class="col-sm-2">
+                <input id="Status" name="Status" disabled value="@Status" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-lg-12">
+            <div>
+                <label class="col-sm-1 control-label">
+                    標題
+                </label>
+                <div class="col-sm-8">
+                    <input class="form-control required" id="Title" name="Title" type="text" value="@Model.Title" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-lg-12">
+            <div>
+                <label class="col-sm-1 control-label">
+                    開始日期
+                </label>
+                <div class="col-sm-3 ">
+                    <input id="PublishDate" name="PublishDate" class="form-control" size="16" type="text" value="@StartDate" disabled>
+                </div>
+                <div class="col-sm-1"></div>
+                <label class="col-sm-1 control-label">
+                    結束日期
+                </label>
+                <div class="col-sm-3 ">
+                    <input id="EndDate" name="EndDate" class=" form-control " size=" 16" type="text" value="@EndDate" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-lg-12 " style="margin-top:10px;">
+        <div class="col-lg-12">
+            @*textarea加上class="ckeditor"*@
+            @*Html.TextArea("myText", new { @class = "ckeditor" })*@
+            <textarea cols="80" id="myText" name="myText" rows="10" class="ckeditor" disabled>
+                @Model.HtmlBody
+            </textarea>
+        </div>
+    </div>
+    <div class="row col-lg-12" style="margin-top:10px;">
+        <div class="col-lg-12 ">
+            <a class="btn btn-danger pull-right" onclick="del()" style="margin-left:5px;">刪除</a>
+            <a class="btn btn-success pull-right" onclick="ok();" style="margin-left:5px;">修改完成</a>
+            <a id="modify" class="btn btn-info pull-right" onclick="modify();" style="margin-left:5px;">修改</a>
+        </div>
+    </div>
+</form>
+
+@section scripts{
+    <script src="../Content/ColorAdmin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="../Content/ColorAdmin/assets/plugins/ckeditor/ckeditor.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#PublishDate").datepicker({
+                format: "yyyy/mm/dd"
+            });
+
+            $("#EndDate").datepicker({
+                format: "yyyy/mm/dd"
+            });
+            //CKEDITOR.instances['myText'].setReadOnly(true);
+
+            if ($("#NewsID").val() == 0) {
+                $("#modify").hide();
+                modify();
+            }
+
+
+        });
+
+
+        CKEDITOR.replace('myText',
+         {
+             filebrowserImageUploadUrl: '/HealthEdu/UploadPicture',
+             //filebrowserUploadUrl: '/HealthEdu/UploadPicture',
+             removeDialogTabs: 'image:advanced'
+         }
+
+
+
+       );
+        function modify() {
+            $("#Title").prop('disabled', false);
+            $("#PublishDate").prop('disabled', false);
+            $("#EndDate").prop('disabled', false);
+            $("#myText").prop('disabled', false);
+            //CKEDITOR.instances['myText'].setReadOnly(false);
+        }
+
+        function ok() {
+            
+            if ($("#Title").attr("disabled")) {
+                window.location.replace("@Url.Action("Index", "HealthEdu")");
+            }
+            else {
+                var bValid = true;
+                if ($("#Title").val() == "") {
+                    //debugger;
+                    alert("標題不可為空白!");
+                    bValid = false;
+                    return false;
+                }
+                //if ($("#myText").val() == "") {
+                //    //debugger;
+                //    alert("內容不可為空白!");
+                //    bValid = false;
+                //    return false;
+                //}
+
+                if (bValid) {
+                    $("#form1").submit();
+                }
+            }
+        }
+        function del() {
+            if (confirm("確定刪除嗎?")) {
+                if ($("#NewsID").val() == 0) {
+                    window.location.replace("@Url.Action("Index", "HealthEdu")");
+                }
+                else {
+
+                    $("#Enable").val("0");
+                    $("#form1").submit();
+                }
+            }
+        }
+
+</script>
+
+}

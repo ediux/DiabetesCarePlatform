@@ -1,0 +1,206 @@
+﻿@using DiabetesCarePlatform.Models;
+@model DCCare_SettingPage
+@{
+    ViewBag.Title = "個人設定";
+}
+@Html.Action("DCIndexMenu")
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <div class="panel-heading-btn">
+            <a href="#EditConfig" class="btn btn-xs btn-icon btn-circle btn-success" data-toggle="modal"><i class=" fa fa-pencil"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+        </div>
+        個人血糖範圍值
+    </div>
+    <div class="panel-body">
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th width="30%">時間</th>
+                        <th width="35%">最低</th>
+                        <th width="35%">最高</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="active">
+                        <td>飯前</td>
+                        <td>@Model.CGUnitSettings.Config.BeforeMealLow</td>
+                        <td>@Model.CGUnitSettings.Config.BeforeMealHigh</td>
+                    </tr>
+                    <tr class="active">
+                        <td>飯後</td>
+                        <td>@Model.CGUnitSettings.Config.AfterMealLow</td>
+                        <td>@Model.CGUnitSettings.Config.AfterMealHigh</td>
+                    </tr>
+                    <tr class="active">
+                        <td>其他</td>
+                        <td>@Model.CGUnitSettings.Config.OthersLow</td>
+                        <td>@Model.CGUnitSettings.Config.OthersHigh</td>
+                    </tr>
+                    <tr>
+                        <td>连续忽略测量计画次数</td>
+                        <td colspan="2">@Model.CGUnitSettings.Config.MissingCount</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <div class="panel-heading-btn">
+            <a href="#EditPlan" class="btn btn-xs btn-icon btn-circle btn-success" data-toggle="modal"><i class=" fa fa-pencil"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
+        </div>
+        量測計畫
+    </div>
+    <div class="panel-body">
+        <div class="col-lg-6">
+            <table class="table table-bordered table-striped ">
+                <thead>
+                    <tr>
+                        <th width="50%">時段</th>
+                        <th width="50%">是否量測</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CGUnitSettings.PlanList)
+                    {
+                        string checkedstr = "";
+                        if (item.Checked) { checkedstr = "V"; }
+                        <tr>
+                            <td>@item.MealTypeName@item.TimingTypeName</td>
+                            <td>@checkedstr</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--編輯血糖範圍值-->
+<div class="modal fade" id="EditConfig" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        <div class="modal-content">
+            @using (Html.BeginForm("UpdateCMRDiabetesAlertConfig", "DCCare", FormMethod.Post, new { name = "form-wizard" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel1">
+                        編輯血糖範圍值
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="PatientID" value="@Model.PatientID" />
+                    <input type="hidden" name="CGUnitID" value="@Model.CGUnitSettings.CGUnitID" />
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">飯前最低：</label>
+                        <div class="col-md-4">
+                            <input class="form-control" name="BeforeMealLow" id="BeforeMealLow" type="number" min="0" value="@Model.CGUnitSettings.Config.BeforeMealLow" />
+                        </div>
+                        <label class="control-label col-md-2" style="text-align: right">飯前最高：</label>
+                        <div class="col-md-4">
+                            <input class="form-control" name="BeforeMealHigh" id="BeforeMealHigh" type="number" min="0" value="@Model.CGUnitSettings.Config.BeforeMealHigh" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">飯後最低：</label>
+                        <div class="col-md-4">
+                            <input class="form-control" name="AfterMealLow" id="AfterMealLow" type="number" min="0" value="@Model.CGUnitSettings.Config.AfterMealLow" />
+                        </div>
+                        <label class="control-label col-md-2" style="text-align: right">飯後最高：</label>
+                        <div class="col-md-4">
+                            <input class="form-control" name="AfterMealHigh" id="AfterMealHigh" type="number" min="0" value="@Model.CGUnitSettings.Config.AfterMealHigh" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">其他最低：</label>
+                        <div class="col-md-4">
+                            <input class="form-control" name="OthersLow" id="OthersLow" type="number" min="0" value="@Model.CGUnitSettings.Config.OthersLow" />
+                        </div>
+                        <label class="control-label col-md-2" style="text-align: right">其他最高：</label>
+                        <div class="col-md-4">
+                            <input class="form-control" name="OthersHigh" id="OthersHigh" type="number" min="0" value="@Model.CGUnitSettings.Config.OthersHigh" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">连续忽略测量计画次数：</label>
+                        <div class="col-md-4">
+                            <input class="form-control" name="MissingCount" id="MissingCount" type="number" step="1" min="0" value="@Model.CGUnitSettings.Config.MissingCount" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="submit" onclick="return confirmConfig()">
+                        確認
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!--編輯量測計畫-->
+<div class="modal fade" id="EditPlan" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        <div class="modal-content">
+            @using (Html.BeginForm("UpdateCMRDiabetesPlan", "DCCare", FormMethod.Post, new { name = "form-wizard" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel1">
+                        編輯量測計畫
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group clearfix ">
+                        <div class="col-lg-12 col-lg-offset-1">
+                            <input type="hidden" name="PatientID" value="@Model.PatientID" />
+                            <input type="hidden" name="CGUnitID" value="@Model.CGUnitSettings.CGUnitID" />
+                            @foreach (var item in Model.CGUnitSettings.PlanList)
+                            {
+                                string checkedstr = "";
+                                if (item.Checked) { checkedstr = "checked"; }
+                                <label class="checkbox">
+                                    <input type="checkbox" name="Plan" value="@item.MealTypeID-@item.TimingTypeID" @checkedstr /> @item.MealTypeName@item.TimingTypeName
+                                </label>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="submit">
+                        確認
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function confirmConfig() {
+            if ($('#BeforeMealLow').val() > $('#BeforeMealHigh').val()) {
+                alert("飯前最低值應大於飯前最高值");
+                return false;
+            }
+            if ($('#AfterMealLow').val() > $('#AfterMealHigh').val()) {
+                alert("飯後最低值應大於飯後最高值");
+                return false;
+            }
+            if ($('#OthersLow').val() > $('#OthersHigh').val()) {
+                alert("其他最低值應大於其他最高值");
+                return false;
+            }
+            if ($('#MissingCount').val() < 0) {
+                alert("连续忽略测量计画次数應大於0");
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

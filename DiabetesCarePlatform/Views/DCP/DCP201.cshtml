@@ -1,0 +1,638 @@
+﻿@model DiabetesCarePlatform.Models.SinglePageViewModel
+
+@{
+    ViewBag.Title = "個案建立";
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/jvectormap")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bs3wizard")" rel="stylesheet" />
+}
+
+<!-- Page-Title -->
+<!-- begin breadcrumb -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+
+            <ol class="breadcrumb pull-right">
+                <li><a href="#">4G糖特</a></li>
+                <li class="active">個案建立</li>
+            </ol>
+            <h4 class="page-title">歡迎 !</h4>
+        </div>
+    </div>
+</div>
+
+<!-- end breadcrumb -->
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-body">
+                <form action="/" method="POST" class="form-horizontal">
+                    <div id="wizard">
+                        <ol>
+                            <li>
+                                建立基本資料
+                                <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small>
+                            </li>
+                            <li>
+                                建立病史資料
+                                <small>Aliquam bibendum felis id purus ullamcorper, quis luctus leo sollicitudin.</small>
+                            </li>
+                            <li>
+                                建立家屬資料
+                                <small>Phasellus lacinia placerat neque pretium condimentum.</small>
+                            </li>
+                            <li>
+                                綁定
+                                <small>Sed nunc neque, dapibus non leo sed, rhoncus dignissim elit.</small>
+                            </li>
+                        </ol>
+                        <!-- begin wizard step-1 -->
+                        <div>
+                            <fieldset>
+                                <legend class="pull-left width-full">建立基本資料</legend>
+                                <!-- begin row -->
+
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="Fullname">姓名</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="Fullname" name="Fullname" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label ">性別</label>
+                                    <div class="radio radio-info radio-inline">
+                                        <input type="radio" id="sex_male" value="1" name="sex" checked>
+                                        <label for="sex_male"> 男 </label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input type="radio" id="sex_female" value="0" name="sex" checked>
+                                        <label for="sex_female"> 女 </label>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber">身份證字號</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="IDNumber" name="IDNumber" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">出生日期</label>
+                                    <div class="col-md-3">
+
+                                        <div class="input-group date" id="birthday">
+                                            <input type="text" class="form-control" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <!-- input-group -->
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-md-3">血型</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <select class="form-control">
+                                                <option>請選擇...</option>
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option>AB</option>
+                                                <option>O</option>
+                                                <option>其他</option>
+                                            </select>
+                                        </div>
+                                        <!-- input-group -->
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="cellphone">手機</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="cellphone" name="cellphone" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="telphone">聯絡電話</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="telphone" name="telphone" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">戶籍地址</label>
+                                    <div class="col-md-9">
+                                        <div class="col-md-2">
+                                            <select class="form-control">
+                                                <option value="">請選擇</option>
+                                                <option value="01">台北市</option>
+                                                <option value="07">高雄市</option>
+                                                <option value="31">新北市</option>
+                                                <option value="03">台中市</option>
+                                                <option value="05">台南市</option>
+                                                <option value="34">宜蘭縣</option>
+                                                <option value="32">桃園縣</option>
+                                                <option value="33">新竹縣</option>
+                                                <option value="35">苗栗縣</option>
+                                                <option value="37">彰化縣</option>
+                                                <option value="38">南投縣</option>
+                                                <option value="39">雲林縣</option>
+                                                <option value="40">嘉義縣</option>
+                                                <option value="43">屏東縣</option>
+                                                <option value="46">台東縣</option>
+                                                <option value="45">花蓮縣</option>
+                                                <option value="44">澎湖縣</option>
+                                                <option value="11">基隆市</option>
+                                                <option value="12">新竹市</option>
+                                                <option value="22">嘉義市</option>
+                                                <option value="91">連江縣</option>
+                                                <option value="90">金門縣</option>
+                                                <option value="99">測試縣</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control">
+                                                <option value="">請選擇</option>
+                                                <option value="0100">不詳</option>
+                                                <option value="0101">松山區</option>
+                                                <option value="0102">大安區</option>
+                                                <option value="0109">大同區</option>
+                                                <option value="0110">中山區</option>
+                                                <option value="0111">內湖區</option>
+                                                <option value="0112">南港區</option>
+                                                <option value="0115">士林區</option>
+                                                <option value="0116">北投區</option>
+                                                <option value="0117">信義區</option>
+                                                <option value="0118">中正區</option>
+                                                <option value="0119">萬華區</option>
+                                                <option value="0120">文山區</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control">
+                                                <option>請選擇</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1 text-left ">
+                                            <label class="control-label ">村里</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input class="form-control" id="street" name="street" type="text">
+                                        </div>
+                                        <div class="col-md-1 text-left ">
+                                            <label class="control-label " for="lin">鄰</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <input class="form-control" id="stre" name="street" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="NowHomeAddress">現居地址</label>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-default" type="button">同戶籍地址</button>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input class="form-control required" id="NowHomeAddress" name="NowHomeAddress" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">居住狀況</label>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-3 text-left">
+                                                <input type="radio" data-plugin="switchery" data-color="#3bafda" data-size="small" name="lway" />
+                                                <label>獨居</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control" id="livestate1" name="livestate1" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 text-left">
+                                                <input type="radio" data-plugin="switchery" data-color="#3bafda" data-size="small" name="lway" />
+                                                <label>與家人同住</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control" id="livestate2" name="livestate1" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 text-left">
+                                                <input type="radio" data-plugin="switchery" data-color="#3bafda" data-size="small" name="lway" />
+                                                <label>其他</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control" id="livestate3" name="livestate3" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </fieldset>
+                        </div>
+                        <!-- end wizard step-1 -->
+                        <!-- begin wizard step-2 -->
+                        <div>
+                            <fieldset>
+                                <legend class="pull-left width-full">建立病史資料</legend>
+                                <!-- begin row -->
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber">體重(kg)</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="IDNumber99" name="IDNumber" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="IDNumber1">身高(cm)</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="IDNumber1" name="IDNumber1" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">糖尿病類型</label>
+                                    <div class="col-md-9">
+
+                                        <div class="radio radio-primary">
+                                            <div class="col-md-2 ">
+                                                <label for="tt01"><input id="tt01" type="radio" name="dctype">第一期,發病於</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group date" id="datepicker-autoclose5">
+                                                    <input type="text" class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <!-- input-group -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <div class="radio radio-primary">
+                                            <div class="col-md-2 ">
+                                                <label for="tt02"><input id="tt02" type="radio" name="dctype">第二期,發病於</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group date" id="datepicker-autoclose6">
+                                                    <input type="text" class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <!-- input-group -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <div class="radio radio-primary">
+                                            <div class="col-md-2">
+                                                <label for="tt03"><input id="tt03" type="radio" name="dctype">其他</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" id="tb_tt03">
+                                                <!-- input-group -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">個人病史</label>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>肺結核</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>氣喘</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>肝炎</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>ＣＫＤ</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>腦中風</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>心臟病</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>高血壓</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>失智</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>ＨＣＶＤ</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>ＣＯＰＤ</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>帕金森氏症</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>痛風</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left">
+                                                <input type="checkbox" data-plugin="switchery" data-color="#3bafda" data-size="small" />
+                                                <label>癌症</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="nmnoteh1">過敏史</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="nmnoteh1" name="nmnoteh1" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="profile1">飯前血糖</label>
+                                    <div class="col-md-9" id="profile1">
+                                        <label class="col-md-2 control-label " for="profile1">異常值-下限</label>
+                                        <div class="col-md-1">
+                                            <input class="form-control" name="profile1" type="text">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="control-label " for="profile1">
+                                                上限
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="form-control" name="profile1" type="text">
+                                        </div>
+                                    </div>
+                                </div>                           
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="profile1">飯後血糖</label>
+                                    <div class="col-md-9" id="profile1">
+                                        <label class="col-md-2 control-label " for="profile1">異常值-下限</label>
+                                        <div class="col-md-1">
+                                            <input class="form-control" name="profile1" type="text">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="control-label " for="profile1">
+                                                上限
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <input class="form-control" name="profile1" type="text">
+                                        </div>
+                                    </div>
+                                </div>                             
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="profile1">其他</label>
+                                    <div class="col-md-9" id="profile1">
+                                        <label class="col-md-2 control-label " for="profile1">異常值-下限</label>
+                                        <div class="col-md-1">
+                                            <input class="form-control" name="profile1" type="text">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="control-label " for="profile1">
+                                                上限
+                                            </label>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <input class="form-control" name="profile1" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <!-- end row -->
+                            </fieldset>
+                        </div>
+                        <!-- end wizard step-2 -->
+                        <!-- begin wizard step-3 -->
+                        <div>
+                            <fieldset>
+                                <legend class="pull-left width-full">建立家屬資料</legend>
+                                <!-- begin row -->
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="confirm1">與個案關係</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control">
+                                            <option>父子</option>
+                                            <option>兄弟</option>
+                                            <option>夫妻</option>
+                                            <option>母女</option>
+                                            <option>父女</option>
+                                            <option>姐妹</option>
+                                            <option>姐弟</option>
+                                            <option>兄妹</option>
+                                            <option>母子</option>
+                                            <option>祖孫</option>
+                                            <option>同事</option>
+                                            <option>同學</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginusername">登入帳號</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familyloginusername" name="familyloginusername" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginpwd">登入密碼</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familyloginpwd" name="familyloginpwd" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="EmergencyContact">緊急聯絡人</label>
+                                    <div class="col-md-9">
+                                        <input type="checkbox" data-plugin="switchery" data-color="#3DDCF7" name="EmergencyContact" data-size="small" />
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familycellphone">手機</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familycellphone" name="familycellphone" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familytelphone">聯絡電話(日)</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familytelphone" name="familytelphone" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familytelphonenight">聯絡電話(夜)</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="familytelphonenight" name="familytelphonenight" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="EmergencyContact">開啟App帳戶功能</label>
+                                    <div class="col-md-9">
+                                        <input type="checkbox" data-plugin="switchery" data-color="#3DDCF7" name="EmergencyContact" data-size="small" />
+                                    </div>
+                                </div><div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginusername">APP帳號</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familyloginusername" name="familyloginusername" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginpwd">APP密碼</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familyloginpwd" name="familyloginpwd" type="password">
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </fieldset>
+                        </div>
+                        <!-- end wizard step-3 -->
+                        <!-- begin wizard step-4 -->
+                        <div>
+                            <fieldset>
+                                <legend class="pull-left width-full">綁定</legend>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="EmergencyContact">開啟App帳戶功能</label>
+                                    <div class="col-md-9">
+                                        <input type="checkbox" data-plugin="switchery" data-color="#3DDCF7" name="EmergencyContact" data-size="small" />
+                                    </div>
+                                </div><div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginusername">APP帳號</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familyloginusername" name="familyloginusername" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-md-3 control-label " for="familyloginpwd">APP密碼</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control required" id="familyloginpwd" name="familyloginpwd" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="col-md-2 pull-right">
+                                        <button type="submit" class="btn btn-primary">確認送出</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!-- end wizard step-4 -->
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/plugins/bs3wizard")"></script>
+    <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/timepicker")"></script>
+}
+@section scripts{
+    <script>
+        var handleBootstrapWizards = function () {
+            "use strict";
+            $("#wizard").bwizard({
+                backBtnText: "上一步",
+                nextBtnText: "下一步",
+                onTabShow: function (tab, navigation, index) {
+                    var $total = navigation.find('li').length;
+                    var $current = index + 1;
+                    var $percent = ($current / $total) * 100;
+                    $('#wizard').find('.bar').css({ width: $percent + '%' });
+
+                    // If it's the last tab then hide the last button and show the finish instead
+                    if ($current >= $total) {
+                        $('#wizard').find('.pager .next').hide();
+                        $('#wizard').find('.pager .finish').show();
+                        $('#wizard').find('.pager .finish').removeClass('disabled');
+                    } else {
+                        $('#wizard').find('.pager .next').show();
+                        $('#wizard').find('.pager .finish').hide();
+                    }
+
+                },
+                activeIndexChanged: function (e, ui) {
+
+                }
+            });
+
+            $('#wizard .finish').click(function () {
+                alert('Finished!, Starting over!');
+                $('#wizard').find("a[href*='tab1']").trigger('click');
+            });
+
+            $('#birthday').datepicker({
+                todayHighlight: true
+            });
+
+            $('#datepicker-autoclose5').datepicker({ todayHighlight: true });
+            $('#datepicker-autoclose6').datepicker({ todayHighlight: true });
+        };
+
+        var FormWizard = function () {
+            "use strict";
+            return {
+                //main function
+                init: function () {
+                    handleBootstrapWizards();
+                }
+            };
+        }();
+
+        function page_init() {
+            FormWizard.init();
+        }       
+    </script>
+}

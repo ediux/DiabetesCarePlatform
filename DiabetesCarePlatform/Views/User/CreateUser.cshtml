@@ -1,0 +1,348 @@
+﻿@using DiabetesCarePlatform.Models
+@model UserManagementPage
+@{
+    ViewBag.Title = Reslang.Resource.Medical + Reslang.Resource.Member + Reslang.Resource.SetUp1;
+}
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+}
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <div class="panel-heading heading-font-size row">
+            <div class="pull-left">
+                <a class="btn btn-success" href="@Url.Action("Index", "User")" type="button" role="button" data-toggle="modal">返回 @Reslang.Resource.Medical@Reslang.Resource.Member@Reslang.Resource.Maintain </a>
+            </div>
+        </div>
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-body">
+                @using (Html.BeginForm("AddUser", "User", FormMethod.Post, new { name = "form-wizard" }))
+                {
+                    <div id="wizard">
+                        <ol>
+                            <li>@Reslang.Resource.SetUp1@Reslang.Resource.BasicInformation</li>
+                            <li>指派群組</li>
+                        </ol>
+                        <div class="wizard-step-1">
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            @Reslang.Resource.Account
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="Account" class="form-control" name="Account" data-parsley-group="wizard-step-1" required />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            @Reslang.Resource.Password
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="Password" class="form-control" name="Password" data-parsley-group="wizard-step-1" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            @Reslang.Resource.Name
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="Name" name="Name" data-parsley-group="wizard-step-1" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            @Reslang.Resource.Sex
+                                        </label>
+                                        <div class="col-sm-10">
+
+                                            <label class="col-sm-3">
+                                                <input type="radio" name="SexID" value="@Model.SexTypeList[0].SexID" checked />
+                                                @Model.SexTypeList[0].SexName
+                                            </label>
+                                            <label class="col-sm-3">
+                                                <input type="radio" name="SexID" value="@Model.SexTypeList[1].SexID" />
+                                                @Model.SexTypeList[1].SexName
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            @Reslang.Resource.Occupation
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="JobTitle" class="form-control" name="JobTitle" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            @Reslang.Resource.IDNo
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="IdentityNumber" class="form-control" name="IdentityNumber" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            @Reslang.Resource.DateofBirth
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group date" id="Birthday">
+                                                <input type="text" class="form-control" name="Birthday" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">@Reslang.Resource.Nation</label>
+                                        <div class="col-sm-10">
+                                            <select name="RaceTypeID" class="form-control">
+                                                <option value="" disabled selected>@Reslang.Resource.PleaseChoose</option>
+                                                @foreach (var item in Model.RaceTypeList)
+                                                {
+                                                    <option value="@item.RaceTypeID">@item.RaceTypeName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">@Reslang.Resource.Commonlanguage</label>
+                                        <div class="col-sm-10">
+                                            <select name="LanguageTypeID" class="form-control">
+                                                <option value="" disabled selected>@Reslang.Resource.PleaseChoose</option>
+                                                @foreach (var item in Model.LanguageTypeList)
+                                                {
+                                                    <option value="@item.LanguageTypeID">@item.Description</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-sm-1 control-label">@Reslang.Resource.Living</label>
+                                        <div class="col-sm-10">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <select name="StateID" class="form-control form-group " id="State">
+                                                        <option value="" disabled selected>省</option>
+                                                        @foreach (var item in Model.StateList)
+                                                        {
+                                                            <option value="@item.StateID">@item.StateName</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select name="CityID" class="form-control form-group " id="City">
+                                                        <option value="" disabled selected>縣市</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select name="DistrictID" class="form-control form-group " id="District">
+                                                        <option value="" disabled selected>區</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" name="Address" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-12">
+                                        <label class="col-sm-1 control-label">@Reslang.Resource.PhoneNumber</label>
+                                        <div class="col-sm-10 row">
+                                            <div class="col-sm-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">H</span>
+                                                    <input type="text" class="form-control" name="HomeTelphone" placeholder="住家電話" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">O</span>
+                                                    <input type="text" class="form-control" name="OfficeTelphone" placeholder="辦公電話" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">M</span>
+                                                    <input type="text" class="form-control" name="CellPhone" placeholder="@Reslang.Resource.Mobilephone" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">
+                                            EMAIL
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="Email" class="form-control" name="eMail" data-parsley-group="wizard-step-1" data-parsley-type="email" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="wizard-step-2">
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label class="col-sm-2 control-label">群組</label>
+                                        <div id="jstree-checkable" class="col-sm-9"></div>
+                                        <input type="hidden" id="UnitTree" name="UnitTree" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 pull-right">
+                                        <button type="submit" class="btn btn-success" onclick="return GetTreeValue();">
+                                            @Reslang.Resource.OK
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/parsley/dist/parsley.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/jstree/dist/jstree.min.js"></script>
+}
+@section scripts{
+    <script>var UnitTree=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.UnitTree));</script>
+    <script>
+        var handleBootstrapWizardsValidation = function () {
+            "use strict";
+            $("#wizard").bwizard(
+                    { backBtnText: "上一步", nextBtnText: "下一步" },
+                    {
+                        validating: function (e, ui) {
+                            if (ui.index == 0) {
+                                if (false === $('form[name="form-wizard"]').parsley().validate('wizard-step-1')) { return false; }
+                            } else if (ui.index == 1) {
+                                if (false === $('form[name="form-wizard"]').parsley().validate('wizard-step-2')) { return false; }
+                            }
+                        }
+                    });
+        };
+        var FormWizardValidation = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleBootstrapWizardsValidation();
+                }
+            };
+        }();
+        var handleJstreeCheckable = function () {
+            $('#jstree-checkable').jstree({
+                'plugins': ["wholerow", "checkbox","types"],
+                'core': {
+                    "themes": {
+                        "responsive": false
+                    },
+                    'data': UnitTree
+                },
+                "types": {
+                    "default": {
+                        "icon": "fa fa-user text-primary fa-lg"
+                    }
+                }
+            });
+        };
+
+        var TreeView = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleJstreeCheckable();
+                }
+            };
+        }();
+        $(document).ready(function () {
+            App.init();
+            FormWizardValidation.init();
+            TreeView.init();
+            $('#Birthday').datepicker({
+                todayHighlight: true, format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+    <script>
+        $('#State').change(function () {
+            ResetSelect('#City', '縣市');
+            ResetSelect('#District', '區');
+            $.ajax({
+                type: "POST",
+                url: "/DCSetUp/GetCityByStateId",
+                datatype: "Json",
+                data: { stateId: $('#State').val() },
+                success: function (data) {
+                    var total = data.length;
+                    $.each(data, function (index, value) {
+                        $('#City').append('<option value="' + value.CityID + '">' + value.CityName + '</option>');
+                    });
+                }
+            });
+        });
+        $('#City').change(function () {
+            ResetSelect('#District', '區');
+            $.ajax({
+                type: "POST",
+                url: "/DCSetUp/GetDistrictByCityId",
+                datatype: "Json",
+                data: { cityId: $('#City').val() },
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $('#District').append('<option value="' + value.DistrictID + '">' + value.DistrictName + '</option>');
+                    });
+                }
+            });
+
+        });
+        function ResetSelect(id, showtext) {
+            $(id).empty();
+            $(id).append(' <option value="" disabled selected>' + showtext + '</option>');
+        }
+        function GetTreeValue(){
+            var checked_ids = $('#jstree-checkable').jstree('get_checked');
+            $("#UnitTree").val(checked_ids);
+        }
+    </script>
+}

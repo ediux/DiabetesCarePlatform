@@ -1,0 +1,364 @@
+﻿{
+    "nosubmenuwithicon": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "Action_URL" } ],
+                "innerHtml": [
+                    {
+                        "type": "tag",
+                        "name": "i",
+                        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "material-icons" } ],
+                        "innerHtml": [
+                            {
+
+                                "type": "innerhtml",
+                                "name": "iconname",
+                                "attrs": null,
+                                "innerHtml": null,
+                                "index": 0,
+                                "bindingname": null
+
+                            }
+
+                        ],
+                        "index": 0,
+                        "bindingname": null
+                    },
+                    {
+                        "type": "tag",
+                        "name": "span",
+                        "attrs": null,
+                        "innerHtml": [
+                            {
+                                "type": "innerhtml",
+                                "name": null,
+                                "attrs": null,
+                                "innerHtml": null,
+                                "index": 0,
+                                "bindingname": "menuname"
+                            }
+                        ],
+                        "index": 1,
+                        "bindingname": null
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    },
+    "nosubmenuwithicon.active": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "active" } ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "Action_URL" } ],
+                "innerHtml": [
+                    {
+                        "type": "tag",
+                        "name": "i",
+                        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "material-icons" } ],
+                        "innerHtml": [
+                            {
+
+                                "type": "innerhtml",
+                                "name": "iconname",
+                                "attrs": null,
+                                "innerHtml": null,
+                                "index": 0,
+                                "bindingname": null
+
+                            }
+
+                        ],
+                        "index": 0,
+                        "bindingname": null
+                    },
+                    {
+                        "type": "tag",
+                        "name": "span",
+                        "attrs": null,
+                        "innerHtml": [
+                            {
+                                "type": "innerhtml",
+                                "name": null,
+                                "attrs": null,
+                                "innerHtml": null,
+                                "index": 0,
+                                "bindingname": "menuname"
+                            }
+                        ],
+                        "index": 1,
+                        "bindingname": null
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    },
+    "submenuwithicon": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "has-sub" } ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "javascript:;" } ],
+                "innerHtml": [
+                    {
+                        "type": "tag",
+                        "name": "b",
+                        "attrs": [ { "name": "class", "index": 1, "type": "attribute", "bindingname": "caret pull-right" } ],
+                        "innerHtml": null,
+                        "index": 0,
+                        "bindingname": null
+                    },
+                    {
+                        "type": "tag",
+                        "name": "i",
+                        "attrs": [ { "name": "class", "index": 1, "type": "attribute", "bindingname": "material-icons" } ],
+                        "innerHtml": [
+                            {
+
+                                "type": "innerhtml",
+                                "name": "iconname",
+                                "attrs": null,
+                                "innerHtml": null,
+                                "index": 0,
+                                "bindingname": null
+                            }
+
+                        ],
+                        "index": 1,
+                        "bindingname": null
+                    },
+                    {
+                        "type": "tag",
+                        "name": "span",
+                        "attrs": null,
+                        "innerHtml": [
+                            {
+                                "type": "innerhtml",
+                                "name": null,
+                                "attrs": null,
+                                "innerHtml": null,
+                                "index": 0,
+                                "bindingname": "menuname"
+                            }
+                        ],
+                        "index": 2,
+                        "bindingname": null
+                    }
+                ],
+                "index": 0
+            },
+            {
+                "type": "tag",
+                "name": "ul",
+                "bindingname": null,
+                "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "sub-menu" } ],
+                "innerHtml": null,
+                "index": 1
+            }
+        ],
+        "index": 0
+    },
+    "submenuwithicon.active": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "has-sub active" } ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "Action_URL" } ],
+                "innerHtml": [
+                    {
+                        "type": "tag",
+                        "name": "i",
+                        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "material-icons" } ],
+                        "innerHtml": [
+                            {
+
+                                "type": "innerhtml",
+                                "name": "iconname",
+                                "attrs": null,
+                                "innerHtml": null,
+                                "index": 0,
+                                "bindingname": "home"
+
+                            }
+
+                        ],
+                        "index": 0,
+                        "bindingname": null
+                    },
+                    {
+                        "type": "tag",
+                        "name": "span",
+                        "attrs": null,
+                        "innerHtml": [
+
+                        ],
+                        "index": 1,
+                        "bindingname": null
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    },
+    "submenuitem": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "Action_URL" } ],
+                "innerHtml": [
+                    {
+                        "type": "innerhtml",
+                        "name": null,
+                        "attrs": null,
+                        "innerHtml": null,
+                        "index": 0,
+                        "bindingname": "menuname"
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    },
+    "submenuitem.active": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "active" } ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "Action_URL" } ],
+                "innerHtml": [
+                    {
+                        "type": "innerhtml",
+                        "name": null,
+                        "attrs": null,
+                        "innerHtml": null,
+                        "index": 0,
+                        "bindingname": "menuname"
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    },
+    "second_submenuitem": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "Action_URL" } ],
+                "innerHtml": [
+                    {
+                        "type": "innerhtml",
+                        "name": null,
+                        "attrs": null,
+                        "innerHtml": null,
+                        "index": 0,
+                        "bindingname": "menuname"
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    },
+    "second_submenuitem.active": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ { "name": "class", "index": 0, "type": "attribute", "bindingname": "active" } ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [ { "name": "href", "index": 0, "type": "attribute", "bindingname": "Action_URL" } ],
+                "innerHtml": [
+                    {
+                        "type": "innerhtml",
+                        "name": null,
+                        "attrs": null,
+                        "innerHtml": null,
+                        "index": 0,
+                        "bindingname": "menuname"
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    },
+    "sidebar-minify-btn": {
+        "type": "tag",
+        "name": "li",
+        "bindingname": null,
+        "attrs": [ ],
+        "innerHtml": [
+            {
+                "type": "tag",
+                "name": "a",
+                "bindingname": null,
+                "attrs": [
+                    { "name": "href", "index": 0, "type": "attribute", "bindingname": "javascript:;" },
+                    { "name": "class", "index": 1, "type": "attribute", "bindingname": "sidebar-minify-btn" },
+                    { "name": "data-click", "index": 2, "type": "attribute", "bindingname": "sidebar-minify" }
+                ],
+                "innerHtml": [
+                     {
+                        "type": "tag",
+                        "name": "i",
+                        "attrs": [ { "name": "class", "index": 1, "type": "attribute", "bindingname": "fa fa-angle-double-left" } ],
+                        "innerHtml": [],
+                        "index": 0,
+                        "bindingname": null
+                    }
+                ],
+                "index": 0
+            }
+        ],
+        "index": 0
+    }
+}

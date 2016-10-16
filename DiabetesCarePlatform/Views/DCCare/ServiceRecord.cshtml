@@ -1,0 +1,379 @@
+﻿@using DiabetesCarePlatform.Models
+@model DCCare_ServiceRecordPage
+
+@{
+    ViewBag.Title = "服務紀錄";
+}
+@section pagelevelcss{
+    <link href="~/Content/ColorAdmin/assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ColorAdmin/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+}
+@Html.Action("DCIndexMenu")
+<div class="panel-heading heading-font-size row">
+    <div class="pull-right ">
+        <a class="btn btn-info" href="#AddRecord" data-toggle="modal" onclick="ClearAddRecord()">@Reslang.Resource.Add 服務紀錄</a>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="panel-body">
+            <div class="row col-lg-12">
+                <table id="data-table" class="table table-striped table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>服務日期</th>
+                            <th>開始時間</th>
+                            <th>服務類型</th>
+                            <th>結果</th>
+                            <th>個案管理師</th>
+                            <th>資訊</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.RecordList)
+                        {
+                            var ServiceTypeName = item.ServiceTypeName;
+                            if (item.ServiceTypeID == 5) { ServiceTypeName = item.ServiceTypeNote; }
+                            var ServiceResultName = item.ServiceResultName;
+                            if (item.ServiceResultID == 7) { ServiceResultName = item.ServiceResultNote; }
+                            <tr>
+                                <td>@item.ServiceDate</td>
+                                <td>@item.StartTime</td>
+                                <td>@ServiceTypeName</td>
+                                <td>@ServiceResultName</td>
+                                <td>@item.UserName</td>
+                                <td><a class="btn btn-success btn-icon btn-circle btn-lg" href="#ApplyInfo" data-toggle="modal" onclick="ShowInfo('@item.ServiceDate','@item.StartTime')"><i class="fa fa-2x fa-info-circle"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--資訊-->
+<div class="modal fade" id="ApplyInfo" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    @Reslang.Resource.Information
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group clearfix">
+                    <label class="col-md-2 control-label " style="text-align: right">服務日期：</label>
+                    <div class="col-md-9" id="infoServiceDate"></div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-2 control-label " style="text-align: right">開始時間：</label>
+                    <div class="col-md-9" id="infoStartTime"></div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-2 control-label " style="text-align: right">結束時間：</label>
+                    <div class="col-md-9" id="infoEndTime"></div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-2" style="text-align: right">服務紀錄類別：</label>
+                    <div class="col-md-9" id="infoServiceRecordType"></div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-2 control-label " style="text-align: right">服務類型：</label>
+                    <div class="col-md-9" id="infoServiceType"></div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-2 control-label " style="text-align: right">服務結果：</label>
+                    <div class="col-md-9" id="infoServiceResult"></div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-2" style="text-align: right">備註：</label>
+                    <div class="col-md-9" id="infoNote"></div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-2" style="text-align: right">回應訊息：</label>
+                    <div class="col-md-9" id="infoResponseMessage"> </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="CloseInfo()">
+                    確認
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--新增服務紀錄-->
+<div class="modal fade" id="AddRecord" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        <div class="modal-content">
+            @using (Html.BeginForm("AddServiceRecord", "DCCare", FormMethod.Post, new { name = "form-wizard" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel1">
+                        新增服務紀錄
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="PatientID" value="@Model.PatientID" />
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">服務日期：</label>
+                        <div class="col-md-5">
+                            <div class="input-group date" id="ServiceDatePicker">
+                                <input type="text" class="form-control" name="ServiceDate" id="ServiceDate" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">開始時間：</label>
+                        <div class="col-md-5">
+                            <div class="input-group date" id="StartTimePicker">
+                                <input type="text" class="form-control" name="StartTime" id="StartTime" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">結束時間：</label>
+                        <div class="col-md-5">
+                            <div class="input-group date" id="EndTimePicker">
+                                <input type="text" class="form-control" name="EndTime" id="EndTime" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">服務紀錄類別：</label>
+                        <div class="col-md-5">
+                            <select name="ServiceRecordTypeID" class="form-control" id="ServiceRecordType">
+                                <option disabled selected>--請選擇--</option>
+                                @foreach (var item in Model.ServiceRecordType)
+                                {
+                                    <option value="@item.ServiceRecordTypeID">@item.Description</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">服務類型：</label>
+                        <div class="col-md-5">
+                            <select name="ServiceTypeID" class="form-control" id="ServiceType">
+                                <option disabled value="0" selected>--請選擇--</option>
+                                @foreach (var item in Model.ServiceType)
+                                {
+                                    <option value="@item.ServiceTypeID">@item.Description</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" name="ServiceTypeNote" type="text" id="ServiceTypeNote" placeholder="其他服務類型" style="display:none" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">服務結果：</label>
+                        <div class="col-md-5">
+                            <select name="ServiceResultID" class="form-control" id="ServiceResult">
+                                <option disabled value="0" selected>--請選擇--</option>
+                                @foreach (var item in Model.ServiceResult)
+                                {
+                                    <option value="@item.ServiceResultID">@item.Description</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" name="ServiceResultNote" id="ServiceResultNote" type="text" placeholder="其他服務結果" style="display:none" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">備註：</label>
+                        <div class="col-md-9">
+                            <input class="form-control" name="Note" type="text" id="Note" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2" style="text-align: right">回應訊息：</label>
+                        <div class="col-md-9">
+                            <input class="form-control" name="ResponseMessage" type="text" id="ResponseMessage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="submit" onclick="return confirmAddRecord()">
+                        確認
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="../Content/ColorAdmin/assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+    <script src="../Content/ColorAdmin/assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../Content/ColorAdmin/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+    <script src="../Content/ColorAdmin/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+    <script src="../Content/ColorAdmin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <style>
+        .datepicker {
+            z-index: 1600 !important; /* has to be larger than 1050 */
+        }
+    </style>
+    <script>var RecordList=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.RecordList));</script>
+    <script>
+        var handleDataTableDefault = function () {
+            "use strict";
+            if ($('#data-table').length !== 0) {
+                $('#data-table').DataTable({
+                    responsive: true,
+                    info: false,
+                    language: {
+                        "search": "搜尋：", "zeroRecords": "查無資料",
+                        "lengthMenu": "顯示 _MENU_ 筆資料",
+                        "paginate": {
+                            "next": "下一頁",
+                            "previous": "上一頁"
+                        },
+                    },
+                });
+            }
+        };
+        var TableManageDefault = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableDefault();
+                }
+            };
+        }();
+        $(document).ready(function () {
+            App.init();
+            TableManageDefault.init();
+           
+            $('#ServiceDatePicker').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+            $('#StartTimePicker').datetimepicker({
+                format: 'HH:mm'
+            });
+            $('#EndTimePicker').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+    </script>
+
+    <script>
+        function ClearAddRecord() {
+            $('#ServiceDatePicker').data("DateTimePicker").clear();
+            $('#StartTimePicker').data("DateTimePicker").clear();
+            $('#EndTimePicker').data("DateTimePicker").clear();
+            $("#ServiceRecordType option[value='0']").prop('selected', true);
+            $("#ServiceType option[value='0']").prop('selected', true);
+            $("#ServiceResult option[value='0']").prop('selected', true);
+            $('#ServiceTypeNote').val("");
+            $('#ServiceTypeNote').hide();
+            $('#ServiceResultNote').val("");
+            $('#ServiceResultNote').hide();
+            $('#Note').val("");
+            $('#ResponseMessage').val("");
+        }
+        $('#ServiceType').change(function () {
+            if ($('#ServiceType').val() == "5") {
+                $('#ServiceTypeNote').show();
+            }
+            else { $('#ServiceTypeNote').hide(); }
+        });
+        $('#ServiceResult').change(function () {
+            if ($('#ServiceResult').val() == "7") {
+                $('#ServiceResultNote').show();
+            }
+            else { $('#ServiceResultNote').hide(); }
+        });
+        function confirmAddRecord() {
+            var reesult=true;
+            if(!checkInput('#ServiceDate',"服務日期不可空白")){
+                return false;
+            }
+            if (!checkInput('#StartTime',"開始時間不可空白")) {
+                return false;
+            }
+            var one=getRecord($('#ServiceDate').val(),$('#StartTime').val());
+            if(one!=null){
+                alert("服務日期與開始時間不可重複");
+                return false;
+            }
+            if (!checkInput('#EndTime',"結束時間不可空白")) {
+                return false;
+            }
+            if($('#EndTime').val()<$('#StartTime').val()){
+                alert("結束時間不可小於開始時間");
+                return false;
+            }
+            if ($('#ServiceRecordType').val() == null) {
+                alert("請選擇服務紀錄類別");
+                return false;
+            }
+            if ($('#ServiceType').val() == null) {
+                alert("請選擇服務類型");
+                return false;
+            }
+            if ($('#ServiceResult').val() == null) {
+                alert("請選擇服務結果");
+                return false;
+            }
+            return false;
+        }
+        function checkInput(id,msg){
+            var result=false;
+            if($(id).val()!=null){
+                if ($(id).val().trim().length>0) {
+                    result =true;
+                }
+            }
+            if(result==false){ alert(msg);}
+            return result;
+        }
+        function ShowInfo(servicedate,starttime) {
+            var record=getRecord(servicedate,starttime);
+            $('#infoServiceDate').html(record.ServiceDate);
+            $('#infoStartTime').html(record.StartTime);
+            $('#infoEndTime').html(record.EndTime);
+            $('#infoServiceRecordType').html(record.ServiceRecordTypeName);
+            var servicetypenote=record.ServiceTypeName;
+            if(record.ServiceTypeID==5){
+                servicetypenote+='('+record.ServiceTypeNote+')';}
+            $('#infoServiceType').html(servicetypenote);
+            var serviceresultnote=record.ServiceResultName;
+            if(record.ServiceResultID==7){
+                serviceresultnote+='('+record.ServiceResultNote+')';}
+            $('#infoServiceResult').html(serviceresultnote);
+            $('#infoNote').html(record.Note);
+            $('#infoResponseMessage').html(record.ResponseMessage);
+        }
+        function CloseInfo() {
+            $('#ApplyInfo').modal('hide');
+        }
+        function getRecord(servicedate,starttime){
+            var index=-1;
+            for (var i = 0; i < RecordList.length; i++) {
+                if(RecordList[i]["ServiceDate"]==servicedate && RecordList[i]["StartTime"]==starttime){
+                    index=i;
+                    break;
+                }
+            }
+            if(index>-1)return RecordList[index];
+            else return null;
+        }
+    </script>
+}

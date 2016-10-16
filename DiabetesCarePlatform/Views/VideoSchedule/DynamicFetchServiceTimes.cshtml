@@ -1,0 +1,33 @@
+﻿@model IEnumerable< DiabetesCarePlatform.Models.ZoomNetMeeting.ServiceTimeWithRemainRoomAmountViewModel>
+@if (Model.Any())
+{
+    <div class="form-group">
+        @foreach (var timesection in Model)
+        {
+
+        <div class="col-md-4">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="@timesection.TimeSectionId" name="timeseq">
+                    <input type="hidden" value="@timesection.StartTime.ToString()" name="starttime" />
+                    <input type="hidden" value="@timesection.EndTime.ToString()" name="endtime" />
+                    @timesection.StartTime.ToString() ~ @timesection.EndTime.ToString() (剩余数量: @timesection.RemainAmount)
+                </label>
+            </div>
+        </div>
+
+        }
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="checkbox">
+                <label>
+                    該天沒有可用服務時段
+                </label>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,350 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTest.cshtml";
+    ViewBag.Title = "Color Admin For Asp.Net MVC 5 範例";
+}
+
+@section pagelevelcss{
+    <!-- Dashboard v1 -->
+
+
+}
+
+@section pageleveljs{
+    <script src="@Scripts.Url("~/assets/js/flot")"></script>
+    <script src="@Scripts.Url("~/assets/js/pie")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/flot/stack")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/flot/crosshair")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/flot/categories")"></script>
+
+    <script src="@Scripts.Url("~/assets/js/dashboard")"></script>
+
+    <script src="@Scripts.Url("~/assets/js/jq-dataTables")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/dataTables/media/bs")"></script>
+
+    <!-- KNOB JS -->
+    <!--[if IE]>
+    <script type="text/javascript" src="@Scripts.Url("~/assets/js/plugins/knob-execanvas")"></script>
+    <![endif]-->
+    <script src="@Scripts.Url("~/assets/js/plugins/knob")"></script>
+}
+<div class="row">
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-blue-grey">
+            <div class="stats-icon stats-icon-lg"><i class="material-icons">people</i></div>
+            <div class="stats-title">A項</div>
+            <div class="stats-number">5</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 5%;"></div>
+            </div>
+            <div class="stats-desc">比率 (5%)</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-blue">
+            <div class="stats-icon stats-icon-lg"><i class="material-icons">warning</i></div>
+            <div class="stats-title">B項</div>
+            <div class="stats-number">5</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 3%;"></div>
+            </div>
+            <div class="stats-desc">比率 (3%)</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-cyan">
+            <div class="stats-icon stats-icon-lg"><i class="material-icons">pie_chart</i></div>
+            <div class="stats-title">C項（%）</div>
+            <div class="stats-number">75</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 75%;"></div>
+            </div>
+            <div class="stats-desc">比率 (76.1%)</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-deep-purple">
+            <div class="stats-icon stats-icon-lg"><i class="material-icons">show_chart</i></div>
+            <div class="stats-title">D項（%）</div>
+            <div class="stats-number">76</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 76%;"></div>
+            </div>
+            <div class="stats-desc">比率 (76%)</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+</div>
+<!-- end row -->
+<div class="row">
+    <div class="col-md-9">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="data-table" class="table table-striped table-bordered" width="100%">
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>C</th>
+                                <th>D</th>
+                                <th>E</th>
+                                <th>F</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td><button type="button" class="btn btn-info">詳細</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- begin col-3 -->
+    <div class="col-md-3">
+        <div class="panel panel-inverse" data-sortable-id="flot-chart-2">
+            <div class="panel-heading">
+                <h4 class="panel-title">E項</h4>
+            </div>
+            <div class="panel-body">
+                <div id="interactive-chart" class="height-sm"></div>
+            </div>
+        </div>
+        <div class="panel panel-inverse" data-sortable-id="flot-chart-3">
+            <div class="panel-heading">
+                <h4 class="panel-title">F項</h4>
+            </div>
+            <div class="panel-body">
+                <div id="bar-chart" class="height-sm"></div>
+            </div>
+        </div>
+        <div class="panel panel-inverse" data-sortable-id="flot-chart-3">
+            <div class="panel-heading">
+                <h4 class="panel-title">G項</h4>
+            </div>
+            <div class="panel-body">
+                <div id="bar-chart2" class="height-sm"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end col-3 -->
+</div>
+@section scripts{
+    <script>
+        var blue = '#2196F3',
+    blueLight = '#64B5F6',
+    blueDark = '#1976D2',
+    aqua = '#03A9F4',
+    aquaLight = '#4FC3F7',
+    aquaDark = '#0288D1',
+    green = '#009688',
+    greenLight = '#4DB6AC',
+    greenDark = '#00796B',
+    orange = '#FF9800',
+    orangeLight = '#FFB74D',
+    orangeDark = '#F57C00',
+    dark = '#212121',
+    grey = '#9E9E9E',
+    purple = '#673AB7',
+    purpleLight = '#9575CD',
+    purpleDark = '#512DA8',
+    orange = '#FF9800',
+    pink = '#E91E63',
+    red = '#F44336';
+        $(function () {
+            $(".knob").knob();
+        });
+    </script>
+    <script>
+        function page_init() {
+            if ($('#data-table').length !== 0) {
+                $('#data-table').DataTable({
+                    responsive: true,
+                    paging: true,
+                    fixedColumns: true
+                });
+            }
+            if ($('#bar-chart').length !== 0) {
+                var data = [["8/18", 10], ["8/19", 8], ["8/20", 4], ["8/21", 13], ["8/22", 17], ["8/23", 9], ["8/24", 11], ["8/25", 6]];
+                $.plot("#bar-chart", [{ data: data, color: green }], {
+                    series: {
+                        bars: {
+                            show: true,
+                            barWidth: 0.4,
+                            align: 'center',
+                            fill: true,
+                            fillColor: green,
+                            zero: true
+                        }
+                    },
+                    xaxis: {
+                        mode: "categories",
+                        tickColor: '#E0E0E0',
+                        tickLength: 0
+                    },
+                    grid: {
+                        borderWidth: 0
+                    }
+                });
+            }
+            if ($('#bar-chart2').length !== 0) {
+                var data = [["8/18", 2], ["8/19", 3], ["8/20", 4], ["8/21", 7], ["8/22", 8], ["8/23", 9], ["8/24", 11], ["8/25", 6]];
+                $.plot("#bar-chart2", [{ data: data, color: purple }], {
+                    series: {
+                        bars: {
+                            show: true,
+                            barWidth: 0.4,
+                            align: 'center',
+                            fill: true,
+                            fillColor: green,
+                            zero: true
+                        }
+                    },
+                    xaxis: {
+                        mode: "categories",
+                        tickColor: '#E0E0E0',
+                        tickLength: 0
+                    },
+                    grid: {
+                        borderWidth: 0
+                    }
+                });
+            }
+            if ($('#interactive-chart').length !== 0) {
+                var d1 = [[1, 42], [2, 53], [3, 66], [4, 60], [5, 68], [6, 66], [7, 71], [8, 75], [9, 69], [10, 70], [11, 68], [12, 72], [13, 78], [14, 86], [15, 71], [16, 42], [17, 63], [18, 36], [19, 60], [20, 68], [21, 66], [22, 71], [23, 44], [24, 69], [25, 70], [26, 38], [27, 72], [28, 58], [29, 76], [30, 71]];
+
+
+                $.plot($("#interactive-chart"), [
+                        {
+                            data: d1,
+                            label: "label",
+                            color: green,
+                            lines: { show: true, fill: false, lineWidth: 2 },
+                            points: { show: false, radius: 5, fillColor: '#fff' },
+                            shadowSize: 0
+                        }
+                ],
+                    {
+                        xaxis: { tickColor: '#E0E0E0', tickSize: 2 },
+                        yaxis: { tickColor: '#E0E0E0', tickSize: 20 },
+                        grid: {
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#ccc",
+                            borderWidth: 0,
+                            borderColor: '#E0E0E0'
+                        },
+                        legend: {
+                            labelBoxBorderColor: '#E0E0E0',
+                            margin: 0,
+                            noColumns: 1,
+                            show: true
+                        }
+                    }
+                );
+                var previousPoint = null;
+                $("#interactive-chart").bind("plothover", function (event, pos, item) {
+                    $("#x").text(pos.x.toFixed(2));
+                    $("#y").text(pos.y.toFixed(2));
+                    if (item) {
+                        if (previousPoint !== item.dataIndex) {
+                            previousPoint = item.dataIndex;
+                            $("#tooltip").remove();
+                            var y = item.datapoint[1].toFixed(2);
+
+                            var content = item.series.label + " " + y;
+                            showTooltip(item.pageX, item.pageY, content);
+                        }
+                    } else {
+                        $("#tooltip").remove();
+                        previousPoint = null;
+                    }
+                    event.preventDefault();
+                });
+            }
+
+            //Dashboard.init();
+        }
+    </script>
+}

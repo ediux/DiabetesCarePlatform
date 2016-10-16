@@ -1,0 +1,1306 @@
+﻿@using DiabetesCarePlatform
+@using DiabetesCarePlatform.Models
+@model SetUpCreateAcountModel
+@using DiabetesCarePlatform.Helpers.QRCode
+
+@{
+    ViewBag.Title = "TEST";
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/jvectormap")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bs3wizard")" rel="stylesheet" />
+<link href="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+<link href="~/Content/ColorAdmin/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+@*<link href="@Styles.Url("~/assets/plugins/bootstrap-wizard/css/bwizard.min.css")" rel="stylesheet" /> 
+    <link href="@Styles.Url("~/assets/plugins/parsley/src/parsley.css")" rel="stylesheet" />*@
+    <style>
+        tfoot {
+    display: table-header-group;
+}
+    </style>
+}
+      
+<div class="panel-body">
+    <div id="interactive-chart" class="height-sm"></div>
+</div>
+<div style="width:100%;margin:0px auto;">
+    <div class="col-lg-12">
+
+        <div class="panel-heading heading-font-size row">
+            <div class="pull-left">
+                <a class="btn btn-success" href="@Url.Action("Member", "User")" type="button" role="button" data-toggle="modal">@Reslang.Resource.Convert@Reslang.Resource.VIPMember@Reslang.Resource.To@Reslang.Resource.Maintain </a>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div>
+                <div class="pull-right ">
+                    <a class="btn btn-info" href="#addUser" type="button" role="button" data-toggle="modal">@Reslang.Resource.Add@Reslang.Resource.Medical@Reslang.Resource.Member</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <table class="table table-striped table-bordered" id="tbUser">
+                        <thead>
+                            <tr>
+                                <th>@Reslang.Resource.Name</th>
+                                <th>@Reslang.Resource.Sex</th>
+                                <th>@Reslang.Resource.Occupation</th>
+                                <th></th>
+                                <th>@Reslang.Resource.Account</th>
+                                <th>所屬@(Reslang.Resource.Group)</th>
+                                <th width="20%">@Reslang.Resource.Description</th>
+                                <th width="7%">@Reslang.Resource.Status</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>@Reslang.Resource.Name</th>
+                                <th>@Reslang.Resource.Sex</th>
+                                <th>@Reslang.Resource.Occupation</th>
+                                <th></th>
+                                <th>@Reslang.Resource.Account</th>
+                                <th>所屬@(Reslang.Resource.Group)</th>
+                                <th width="20%">@Reslang.Resource.Description</th>
+                                <th width="7%">@Reslang.Resource.Status</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+
+
+                                <td>張OO</td>
+                                <td>男</td>
+                                <td>個案管理師</td>
+                                <td>aa@mail.com</td>
+                                <td>User1</td>
+                                <td>團隊A</td>
+                                <td>描述</td>
+                                <td>@Reslang.Resource.Acitve </td>
+                                <td>
+                                    <a class="btn btn-info" href="#editUser" data-toggle="modal" onclick="listEditClick()">@Reslang.Resource.Edit</a>
+                                    <input id="idDelete" class="btn btn-info" type="submit" onclick="return confirm('@Reslang.Resource.DeleteConfirm')" value="@Reslang.Resource.Delete" />
+                                </td>
+                            </tr>
+                            <tr>
+
+
+                                <td>李OO</td>
+                                <td>男</td>
+                                <td>管理者</td>
+                                <td>aa@mail.com</td>
+                                <td>User1</td>
+                                <td>團隊A</td>
+                                <td>描述</td>
+                                <td>@Reslang.Resource.Acitve </td>
+                                <td>
+                                    <a class="btn btn-info" href="#editUser" data-toggle="modal" onclick="listEditClick()">@Reslang.Resource.Edit</a>
+                                    <input id="idDelete" class="btn btn-info" type="submit" onclick="return confirm('@Reslang.Resource.DeleteConfirm')" value="@Reslang.Resource.Delete" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>王OO</td>
+                                <td>男</td>
+                                <td>個案管理師</td>
+                                <td>aa@mail.com</td>
+                                <td>User1</td>
+                                <td>團隊A</td>
+                                <td>描述</td>
+                                <td>@Reslang.Resource.Acitve </td>
+                                <td>
+                                    <a class="btn btn-info" href="#editUser" data-toggle="modal" onclick="listEditClick()">@Reslang.Resource.Edit</a>
+                                    <input id="idDelete" class="btn btn-info" type="submit" onclick="return confirm('@Reslang.Resource.DeleteConfirm')" value="@Reslang.Resource.Delete" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>王OO</td>
+                                <td>男</td>
+                                <td>個案管理師</td>
+                                <td>aa@mail.com</td>
+                                <td>User1</td>
+                                <td>團隊A</td>
+                                <td>描述</td>
+                                <td>@Reslang.Resource.Acitve </td>
+                                <td>
+                                    <a class="btn btn-info" href="#editUser" data-toggle="modal" onclick="listEditClick()">@Reslang.Resource.Edit</a>
+                                    <input id="idDelete" class="btn btn-info" type="submit" onclick="return confirm('@Reslang.Resource.DeleteConfirm')" value="@Reslang.Resource.Delete" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>王OO</td>
+                                <td>男</td>
+                                <td>個案管理師</td>
+                                <td>aa@mail.com</td>
+                                <td>User1</td>
+                                <td>團隊A</td>
+                                <td>描述</td>
+                                <td>@Reslang.Resource.Acitve </td>
+                                <td>
+                                    <a class="btn btn-info" href="#editUser" data-toggle="modal" onclick="listEditClick()">@Reslang.Resource.Edit</a>
+                                    <input id="idDelete" class="btn btn-info" type="submit" onclick="return confirm('@Reslang.Resource.DeleteConfirm')" value="@Reslang.Resource.Delete" />
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>王OO</td>
+                                <td>男</td>
+                                <td>個案管理師</td>
+                                <td>aa@mail.com</td>
+                                <td>User1</td>
+                                <td>團隊A</td>
+                                <td>描述</td>
+                                <td>@Reslang.Resource.Acitve </td>
+                                <td>
+                                    <a class="btn btn-info" href="#editUser" data-toggle="modal" onclick="listEditClick()">@Reslang.Resource.Edit</a>
+                                    <input id="idDelete" class="btn btn-info" type="submit" onclick="return confirm('@Reslang.Resource.DeleteConfirm')" value="@Reslang.Resource.Delete" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<table style="width: 67%; margin: 0 auto 2em auto;" border="0" cellpadding="3" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Target</th>
+            <th>Search text</th>
+            <th>Treat as regex</th>
+            <th>Use smart search</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="filter_global">
+            <td>Global search</td>
+            <td align="center"><input class="global_filter" id="global_filter" type="text"></td>
+            <td align="center"><input class="global_filter" id="global_regex" type="checkbox"></td>
+            <td align="center"><input class="global_filter" id="global_smart" checked="checked" type="checkbox"></td>
+        </tr>
+        <tr id="filter_col1" data-column="0">
+            <td>Column - Name</td>
+            <td align="center"><input class="column_filter" id="col0_filter" type="text"></td>
+          
+        </tr>
+        <tr id="filter_col2" data-column="1">
+            <td>Column - Position</td>
+            <td align="center"><input class="column_filter" id="col1_filter" type="text"></td>
+         
+        </tr>
+        <tr id="filter_col3" data-column="2">
+            <td>Column - Office</td>
+            <td align="center"><input class="column_filter" id="col2_filter" type="text"></td>
+      
+        </tr>
+        <tr id="filter_col4" data-column="3">
+            <td>Column - Age</td>
+            <td align="center"><input class="column_filter" id="col3_filter" type="text"></td>
+          
+        </tr>
+        <tr id="filter_col5" data-column="4">
+            <td>Column - Start date</td>
+            <td align="center"><input class="column_filter" id="col4_filter" type="text"></td>
+          
+        </tr>
+        <tr id="filter_col6" data-column="5">
+            <td>Column - Salary</td>
+            <td align="center"><input class="column_filter" id="col5_filter" type="text"></td>
+          
+        </tr>
+    </tbody>
+</table>
+  <table id="example1" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+        </tr>
+        <tr>
+            <td>Garrett Winters</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+        </tr>
+        <tr>
+            <td>Ashton Cox</td>
+            <td>Junior Technical Author</td>
+            <td>San Francisco</td>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+        </tr>
+        <tr>
+            <td>Cedric Kelly</td>
+            <td>Senior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+        </tr>
+        <tr>
+            <td>Airi Satou</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>33</td>
+            <td>2008/11/28</td>
+            <td>$162,700</td>
+        </tr>
+        <tr>
+            <td>Brielle Williamson</td>
+            <td>Integration Specialist</td>
+            <td>New York</td>
+            <td>61</td>
+            <td>2012/12/02</td>
+            <td>$372,000</td>
+        </tr>
+        <tr>
+            <td>Herrod Chandler</td>
+            <td>Sales Assistant</td>
+            <td>San Francisco</td>
+            <td>59</td>
+            <td>2012/08/06</td>
+            <td>$137,500</td>
+        </tr>
+        <tr>
+            <td>Rhona Davidson</td>
+            <td>Integration Specialist</td>
+            <td>Tokyo</td>
+            <td>55</td>
+            <td>2010/10/14</td>
+            <td>$327,900</td>
+        </tr>
+        <tr>
+            <td>Colleen Hurst</td>
+            <td>Javascript Developer</td>
+            <td>San Francisco</td>
+            <td>39</td>
+            <td>2009/09/15</td>
+            <td>$205,500</td>
+        </tr>
+        <tr>
+            <td>Sonya Frost</td>
+            <td>Software Engineer</td>
+            <td>Edinburgh</td>
+            <td>23</td>
+            <td>2008/12/13</td>
+            <td>$103,600</td>
+        </tr>
+        <tr>
+            <td>Jena Gaines</td>
+            <td>Office Manager</td>
+            <td>London</td>
+            <td>30</td>
+            <td>2008/12/19</td>
+            <td>$90,560</td>
+        </tr>
+        <tr>
+            <td>Quinn Flynn</td>
+            <td>Support Lead</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2013/03/03</td>
+            <td>$342,000</td>
+        </tr>
+        <tr>
+            <td>Charde Marshall</td>
+            <td>Regional Director</td>
+            <td>San Francisco</td>
+            <td>36</td>
+            <td>2008/10/16</td>
+            <td>$470,600</td>
+        </tr>
+        <tr>
+            <td>Haley Kennedy</td>
+            <td>Senior Marketing Designer</td>
+            <td>London</td>
+            <td>43</td>
+            <td>2012/12/18</td>
+            <td>$313,500</td>
+        </tr>
+        <tr>
+            <td>Tatyana Fitzpatrick</td>
+            <td>Regional Director</td>
+            <td>London</td>
+            <td>19</td>
+            <td>2010/03/17</td>
+            <td>$385,750</td>
+        </tr>
+        <tr>
+            <td>Michael Silva</td>
+            <td>Marketing Designer</td>
+            <td>London</td>
+            <td>66</td>
+            <td>2012/11/27</td>
+            <td>$198,500</td>
+        </tr>
+        <tr>
+            <td>Paul Byrd</td>
+            <td>Chief Financial Officer (CFO)</td>
+            <td>New York</td>
+            <td>64</td>
+            <td>2010/06/09</td>
+            <td>$725,000</td>
+        </tr>
+        <tr>
+            <td>Gloria Little</td>
+            <td>Systems Administrator</td>
+            <td>New York</td>
+            <td>59</td>
+            <td>2009/04/10</td>
+            <td>$237,500</td>
+        </tr>
+        <tr>
+            <td>Bradley Greer</td>
+            <td>Software Engineer</td>
+            <td>London</td>
+            <td>41</td>
+            <td>2012/10/13</td>
+            <td>$132,000</td>
+        </tr>
+        <tr>
+            <td>Dai Rios</td>
+            <td>Personnel Lead</td>
+            <td>Edinburgh</td>
+            <td>35</td>
+            <td>2012/09/26</td>
+            <td>$217,500</td>
+        </tr>
+        <tr>
+            <td>Jenette Caldwell</td>
+            <td>Development Lead</td>
+            <td>New York</td>
+            <td>30</td>
+            <td>2011/09/03</td>
+            <td>$345,000</td>
+        </tr>
+        <tr>
+            <td>Yuri Berry</td>
+            <td>Chief Marketing Officer (CMO)</td>
+            <td>New York</td>
+            <td>40</td>
+            <td>2009/06/25</td>
+            <td>$675,000</td>
+        </tr>
+        <tr>
+            <td>Caesar Vance</td>
+            <td>Pre-Sales Support</td>
+            <td>New York</td>
+            <td>21</td>
+            <td>2011/12/12</td>
+            <td>$106,450</td>
+        </tr>
+        <tr>
+            <td>Doris Wilder</td>
+            <td>Sales Assistant</td>
+            <td>Sidney</td>
+            <td>23</td>
+            <td>2010/09/20</td>
+            <td>$85,600</td>
+        </tr>
+        <tr>
+            <td>Angelica Ramos</td>
+            <td>Chief Executive Officer (CEO)</td>
+            <td>London</td>
+            <td>47</td>
+            <td>2009/10/09</td>
+            <td>$1,200,000</td>
+        </tr>
+        <tr>
+            <td>Gavin Joyce</td>
+            <td>Developer</td>
+            <td>Edinburgh</td>
+            <td>42</td>
+            <td>2010/12/22</td>
+            <td>$92,575</td>
+        </tr>
+        <tr>
+            <td>Jennifer Chang</td>
+            <td>Regional Director</td>
+            <td>Singapore</td>
+            <td>28</td>
+            <td>2010/11/14</td>
+            <td>$357,650</td>
+        </tr>
+        <tr>
+            <td>Brenden Wagner</td>
+            <td>Software Engineer</td>
+            <td>San Francisco</td>
+            <td>28</td>
+            <td>2011/06/07</td>
+            <td>$206,850</td>
+        </tr>
+        <tr>
+            <td>Fiona Green</td>
+            <td>Chief Operating Officer (COO)</td>
+            <td>San Francisco</td>
+            <td>48</td>
+            <td>2010/03/11</td>
+            <td>$850,000</td>
+        </tr>
+        <tr>
+            <td>Shou Itou</td>
+            <td>Regional Marketing</td>
+            <td>Tokyo</td>
+            <td>20</td>
+            <td>2011/08/14</td>
+            <td>$163,000</td>
+        </tr>
+        <tr>
+            <td>Michelle House</td>
+            <td>Integration Specialist</td>
+            <td>Sidney</td>
+            <td>37</td>
+            <td>2011/06/02</td>
+            <td>$95,400</td>
+        </tr>
+        <tr>
+            <td>Suki Burks</td>
+            <td>Developer</td>
+            <td>London</td>
+            <td>53</td>
+            <td>2009/10/22</td>
+            <td>$114,500</td>
+        </tr>
+        <tr>
+            <td>Prescott Bartlett</td>
+            <td>Technical Author</td>
+            <td>London</td>
+            <td>27</td>
+            <td>2011/05/07</td>
+            <td>$145,000</td>
+        </tr>
+        <tr>
+            <td>Gavin Cortez</td>
+            <td>Team Leader</td>
+            <td>San Francisco</td>
+            <td>22</td>
+            <td>2008/10/26</td>
+            <td>$235,500</td>
+        </tr>
+        <tr>
+            <td>Martena Mccray</td>
+            <td>Post-Sales support</td>
+            <td>Edinburgh</td>
+            <td>46</td>
+            <td>2011/03/09</td>
+            <td>$324,050</td>
+        </tr>
+        <tr>
+            <td>Unity Butler</td>
+            <td>Marketing Designer</td>
+            <td>San Francisco</td>
+            <td>47</td>
+            <td>2009/12/09</td>
+            <td>$85,675</td>
+        </tr>
+        <tr>
+            <td>Howard Hatfield</td>
+            <td>Office Manager</td>
+            <td>San Francisco</td>
+            <td>51</td>
+            <td>2008/12/16</td>
+            <td>$164,500</td>
+        </tr>
+        <tr>
+            <td>Hope Fuentes</td>
+            <td>Secretary</td>
+            <td>San Francisco</td>
+            <td>41</td>
+            <td>2010/02/12</td>
+            <td>$109,850</td>
+        </tr>
+        <tr>
+            <td>Vivian Harrell</td>
+            <td>Financial Controller</td>
+            <td>San Francisco</td>
+            <td>62</td>
+            <td>2009/02/14</td>
+            <td>$452,500</td>
+        </tr>
+        <tr>
+            <td>Timothy Mooney</td>
+            <td>Office Manager</td>
+            <td>London</td>
+            <td>37</td>
+            <td>2008/12/11</td>
+            <td>$136,200</td>
+        </tr>
+        <tr>
+            <td>Jackson Bradshaw</td>
+            <td>Director</td>
+            <td>New York</td>
+            <td>65</td>
+            <td>2008/09/26</td>
+            <td>$645,750</td>
+        </tr>
+        <tr>
+            <td>Olivia Liang</td>
+            <td>Support Engineer</td>
+            <td>Singapore</td>
+            <td>64</td>
+            <td>2011/02/03</td>
+            <td>$234,500</td>
+        </tr>
+        <tr>
+            <td>Bruno Nash</td>
+            <td>Software Engineer</td>
+            <td>London</td>
+            <td>38</td>
+            <td>2011/05/03</td>
+            <td>$163,500</td>
+        </tr>
+        <tr>
+            <td>Sakura Yamamoto</td>
+            <td>Support Engineer</td>
+            <td>Tokyo</td>
+            <td>37</td>
+            <td>2009/08/19</td>
+            <td>$139,575</td>
+        </tr>
+        <tr>
+            <td>Thor Walton</td>
+            <td>Developer</td>
+            <td>New York</td>
+            <td>61</td>
+            <td>2013/08/11</td>
+            <td>$98,540</td>
+        </tr>
+        <tr>
+            <td>Finn Camacho</td>
+            <td>Support Engineer</td>
+            <td>San Francisco</td>
+            <td>47</td>
+            <td>2009/07/07</td>
+            <td>$87,500</td>
+        </tr>
+        <tr>
+            <td>Serge Baldwin</td>
+            <td>Data Coordinator</td>
+            <td>Singapore</td>
+            <td>64</td>
+            <td>2012/04/09</td>
+            <td>$138,575</td>
+        </tr>
+        <tr>
+            <td>Zenaida Frank</td>
+            <td>Software Engineer</td>
+            <td>New York</td>
+            <td>63</td>
+            <td>2010/01/04</td>
+            <td>$125,250</td>
+        </tr>
+        <tr>
+            <td>Zorita Serrano</td>
+            <td>Software Engineer</td>
+            <td>San Francisco</td>
+            <td>56</td>
+            <td>2012/06/01</td>
+            <td>$115,000</td>
+        </tr>
+        <tr>
+            <td>Jennifer Acosta</td>
+            <td>Junior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>43</td>
+            <td>2013/02/01</td>
+            <td>$75,650</td>
+        </tr>
+        <tr>
+            <td>Cara Stevens</td>
+            <td>Sales Assistant</td>
+            <td>New York</td>
+            <td>46</td>
+            <td>2011/12/06</td>
+            <td>$145,600</td>
+        </tr>
+        <tr>
+            <td>Hermione Butler</td>
+            <td>Regional Director</td>
+            <td>London</td>
+            <td>47</td>
+            <td>2011/03/21</td>
+            <td>$356,250</td>
+        </tr>
+        <tr>
+            <td>Lael Greer</td>
+            <td>Systems Administrator</td>
+            <td>London</td>
+            <td>21</td>
+            <td>2009/02/27</td>
+            <td>$103,500</td>
+        </tr>
+        <tr>
+            <td>Jonas Alexander</td>
+            <td>Developer</td>
+            <td>San Francisco</td>
+            <td>30</td>
+            <td>2010/07/14</td>
+            <td>$86,500</td>
+        </tr>
+        <tr>
+            <td>Shad Decker</td>
+            <td>Regional Director</td>
+            <td>Edinburgh</td>
+            <td>51</td>
+            <td>2008/11/13</td>
+            <td>$183,000</td>
+        </tr>
+        <tr>
+            <td>Michael Bruce</td>
+            <td>Javascript Developer</td>
+            <td>Singapore</td>
+            <td>29</td>
+            <td>2011/06/27</td>
+            <td>$183,000</td>
+        </tr>
+        <tr>
+            <td>Donna Snider</td>
+            <td>Customer Support</td>
+            <td>New York</td>
+            <td>27</td>
+            <td>2011/01/25</td>
+            <td>$112,000</td>
+        </tr>
+    </tbody>
+</table>
+<table id="example" class="display" cellspacing="0" width="100%">
+    
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+
+    </thead>
+   
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+        </tr>
+        <tr>
+            <td>Garrett Winters</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+        </tr>
+        <tr>
+            <td>Ashton Cox</td>
+            <td>Junior Technical Author</td>
+            <td>San Francisco</td>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+        </tr>
+        <tr>
+            <td>Cedric Kelly</td>
+            <td>Senior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+        </tr>
+        <tr>
+            <td>Airi Satou</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>33</td>
+            <td>2008/11/28</td>
+            <td>$162,700</td>
+        </tr>
+        <tr>
+            <td>Brielle Williamson</td>
+            <td>Integration Specialist</td>
+            <td>New York</td>
+            <td>61</td>
+            <td>2012/12/02</td>
+            <td>$372,000</td>
+        </tr>
+        <tr>
+            <td>Herrod Chandler</td>
+            <td>Sales Assistant</td>
+            <td>San Francisco</td>
+            <td>59</td>
+            <td>2012/08/06</td>
+            <td>$137,500</td>
+        </tr>
+        <tr>
+            <td>Rhona Davidson</td>
+            <td>Integration Specialist</td>
+            <td>Tokyo</td>
+            <td>55</td>
+            <td>2010/10/14</td>
+            <td>$327,900</td>
+        </tr>
+        <tr>
+            <td>Colleen Hurst</td>
+            <td>Javascript Developer</td>
+            <td>San Francisco</td>
+            <td>39</td>
+            <td>2009/09/15</td>
+            <td>$205,500</td>
+        </tr>
+        <tr>
+            <td>Sonya Frost</td>
+            <td>Software Engineer</td>
+            <td>Edinburgh</td>
+            <td>23</td>
+            <td>2008/12/13</td>
+            <td>$103,600</td>
+        </tr>
+        <tr>
+            <td>Jena Gaines</td>
+            <td>Office Manager</td>
+            <td>London</td>
+            <td>30</td>
+            <td>2008/12/19</td>
+            <td>$90,560</td>
+        </tr>
+        <tr>
+            <td>Quinn Flynn</td>
+            <td>Support Lead</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2013/03/03</td>
+            <td>$342,000</td>
+        </tr>
+        <tr>
+            <td>Charde Marshall</td>
+            <td>Regional Director</td>
+            <td>San Francisco</td>
+            <td>36</td>
+            <td>2008/10/16</td>
+            <td>$470,600</td>
+        </tr>
+        <tr>
+            <td>Haley Kennedy</td>
+            <td>Senior Marketing Designer</td>
+            <td>London</td>
+            <td>43</td>
+            <td>2012/12/18</td>
+            <td>$313,500</td>
+        </tr>
+        <tr>
+            <td>Tatyana Fitzpatrick</td>
+            <td>Regional Director</td>
+            <td>London</td>
+            <td>19</td>
+            <td>2010/03/17</td>
+            <td>$385,750</td>
+        </tr>
+        <tr>
+            <td>Michael Silva</td>
+            <td>Marketing Designer</td>
+            <td>London</td>
+            <td>66</td>
+            <td>2012/11/27</td>
+            <td>$198,500</td>
+        </tr>
+        <tr>
+            <td>Paul Byrd</td>
+            <td>Chief Financial Officer (CFO)</td>
+            <td>New York</td>
+            <td>64</td>
+            <td>2010/06/09</td>
+            <td>$725,000</td>
+        </tr>
+        <tr>
+            <td>Gloria Little</td>
+            <td>Systems Administrator</td>
+            <td>New York</td>
+            <td>59</td>
+            <td>2009/04/10</td>
+            <td>$237,500</td>
+        </tr>
+        <tr>
+            <td>Bradley Greer</td>
+            <td>Software Engineer</td>
+            <td>London</td>
+            <td>41</td>
+            <td>2012/10/13</td>
+            <td>$132,000</td>
+        </tr>
+        <tr>
+            <td>Dai Rios</td>
+            <td>Personnel Lead</td>
+            <td>Edinburgh</td>
+            <td>35</td>
+            <td>2012/09/26</td>
+            <td>$217,500</td>
+        </tr>
+        <tr>
+            <td>Jenette Caldwell</td>
+            <td>Development Lead</td>
+            <td>New York</td>
+            <td>30</td>
+            <td>2011/09/03</td>
+            <td>$345,000</td>
+        </tr>
+        <tr>
+            <td>Yuri Berry</td>
+            <td>Chief Marketing Officer (CMO)</td>
+            <td>New York</td>
+            <td>40</td>
+            <td>2009/06/25</td>
+            <td>$675,000</td>
+        </tr>
+        <tr>
+            <td>Caesar Vance</td>
+            <td>Pre-Sales Support</td>
+            <td>New York</td>
+            <td>21</td>
+            <td>2011/12/12</td>
+            <td>$106,450</td>
+        </tr>
+        <tr>
+            <td>Doris Wilder</td>
+            <td>Sales Assistant</td>
+            <td>Sidney</td>
+            <td>23</td>
+            <td>2010/09/20</td>
+            <td>$85,600</td>
+        </tr>
+        <tr>
+            <td>Angelica Ramos</td>
+            <td>Chief Executive Officer (CEO)</td>
+            <td>London</td>
+            <td>47</td>
+            <td>2009/10/09</td>
+            <td>$1,200,000</td>
+        </tr>
+        <tr>
+            <td>Gavin Joyce</td>
+            <td>Developer</td>
+            <td>Edinburgh</td>
+            <td>42</td>
+            <td>2010/12/22</td>
+            <td>$92,575</td>
+        </tr>
+        <tr>
+            <td>Jennifer Chang</td>
+            <td>Regional Director</td>
+            <td>Singapore</td>
+            <td>28</td>
+            <td>2010/11/14</td>
+            <td>$357,650</td>
+        </tr>
+        <tr>
+            <td>Brenden Wagner</td>
+            <td>Software Engineer</td>
+            <td>San Francisco</td>
+            <td>28</td>
+            <td>2011/06/07</td>
+            <td>$206,850</td>
+        </tr>
+        <tr>
+            <td>Fiona Green</td>
+            <td>Chief Operating Officer (COO)</td>
+            <td>San Francisco</td>
+            <td>48</td>
+            <td>2010/03/11</td>
+            <td>$850,000</td>
+        </tr>
+        <tr>
+            <td>Shou Itou</td>
+            <td>Regional Marketing</td>
+            <td>Tokyo</td>
+            <td>20</td>
+            <td>2011/08/14</td>
+            <td>$163,000</td>
+        </tr>
+        <tr>
+            <td>Michelle House</td>
+            <td>Integration Specialist</td>
+            <td>Sidney</td>
+            <td>37</td>
+            <td>2011/06/02</td>
+            <td>$95,400</td>
+        </tr>
+        <tr>
+            <td>Suki Burks</td>
+            <td>Developer</td>
+            <td>London</td>
+            <td>53</td>
+            <td>2009/10/22</td>
+            <td>$114,500</td>
+        </tr>
+        <tr>
+            <td>Prescott Bartlett</td>
+            <td>Technical Author</td>
+            <td>London</td>
+            <td>27</td>
+            <td>2011/05/07</td>
+            <td>$145,000</td>
+        </tr>
+        <tr>
+            <td>Gavin Cortez</td>
+            <td>Team Leader</td>
+            <td>San Francisco</td>
+            <td>22</td>
+            <td>2008/10/26</td>
+            <td>$235,500</td>
+        </tr>
+        <tr>
+            <td>Martena Mccray</td>
+            <td>Post-Sales support</td>
+            <td>Edinburgh</td>
+            <td>46</td>
+            <td>2011/03/09</td>
+            <td>$324,050</td>
+        </tr>
+        <tr>
+            <td>Unity Butler</td>
+            <td>Marketing Designer</td>
+            <td>San Francisco</td>
+            <td>47</td>
+            <td>2009/12/09</td>
+            <td>$85,675</td>
+        </tr>
+        <tr>
+            <td>Howard Hatfield</td>
+            <td>Office Manager</td>
+            <td>San Francisco</td>
+            <td>51</td>
+            <td>2008/12/16</td>
+            <td>$164,500</td>
+        </tr>
+        <tr>
+            <td>Hope Fuentes</td>
+            <td>Secretary</td>
+            <td>San Francisco</td>
+            <td>41</td>
+            <td>2010/02/12</td>
+            <td>$109,850</td>
+        </tr>
+        <tr>
+            <td>Vivian Harrell</td>
+            <td>Financial Controller</td>
+            <td>San Francisco</td>
+            <td>62</td>
+            <td>2009/02/14</td>
+            <td>$452,500</td>
+        </tr>
+        <tr>
+            <td>Timothy Mooney</td>
+            <td>Office Manager</td>
+            <td>London</td>
+            <td>37</td>
+            <td>2008/12/11</td>
+            <td>$136,200</td>
+        </tr>
+        <tr>
+            <td>Jackson Bradshaw</td>
+            <td>Director</td>
+            <td>New York</td>
+            <td>65</td>
+            <td>2008/09/26</td>
+            <td>$645,750</td>
+        </tr>
+        <tr>
+            <td>Olivia Liang</td>
+            <td>Support Engineer</td>
+            <td>Singapore</td>
+            <td>64</td>
+            <td>2011/02/03</td>
+            <td>$234,500</td>
+        </tr>
+        <tr>
+            <td>Bruno Nash</td>
+            <td>Software Engineer</td>
+            <td>London</td>
+            <td>38</td>
+            <td>2011/05/03</td>
+            <td>$163,500</td>
+        </tr>
+        <tr>
+            <td>Sakura Yamamoto</td>
+            <td>Support Engineer</td>
+            <td>Tokyo</td>
+            <td>37</td>
+            <td>2009/08/19</td>
+            <td>$139,575</td>
+        </tr>
+        <tr>
+            <td>Thor Walton</td>
+            <td>Developer</td>
+            <td>New York</td>
+            <td>61</td>
+            <td>2013/08/11</td>
+            <td>$98,540</td>
+        </tr>
+        <tr>
+            <td>Finn Camacho</td>
+            <td>Support Engineer</td>
+            <td>San Francisco</td>
+            <td>47</td>
+            <td>2009/07/07</td>
+            <td>$87,500</td>
+        </tr>
+        <tr>
+            <td>Serge Baldwin</td>
+            <td>Data Coordinator</td>
+            <td>Singapore</td>
+            <td>64</td>
+            <td>2012/04/09</td>
+            <td>$138,575</td>
+        </tr>
+        <tr>
+            <td>Zenaida Frank</td>
+            <td>Software Engineer</td>
+            <td>New York</td>
+            <td>63</td>
+            <td>2010/01/04</td>
+            <td>$125,250</td>
+        </tr>
+        <tr>
+            <td>Zorita Serrano</td>
+            <td>Software Engineer</td>
+            <td>San Francisco</td>
+            <td>56</td>
+            <td>2012/06/01</td>
+            <td>$115,000</td>
+        </tr>
+        <tr>
+            <td>Jennifer Acosta</td>
+            <td>Junior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>43</td>
+            <td>2013/02/01</td>
+            <td>$75,650</td>
+        </tr>
+        <tr>
+            <td>Cara Stevens</td>
+            <td>Sales Assistant</td>
+            <td>New York</td>
+            <td>46</td>
+            <td>2011/12/06</td>
+            <td>$145,600</td>
+        </tr>
+        <tr>
+            <td>Hermione Butler</td>
+            <td>Regional Director</td>
+            <td>London</td>
+            <td>47</td>
+            <td>2011/03/21</td>
+            <td>$356,250</td>
+        </tr>
+        <tr>
+            <td>Lael Greer</td>
+            <td>Systems Administrator</td>
+            <td>London</td>
+            <td>21</td>
+            <td>2009/02/27</td>
+            <td>$103,500</td>
+        </tr>
+        <tr>
+            <td>Jonas Alexander</td>
+            <td>Developer</td>
+            <td>San Francisco</td>
+            <td>30</td>
+            <td>2010/07/14</td>
+            <td>$86,500</td>
+        </tr>
+        <tr>
+            <td>Shad Decker</td>
+            <td>Regional Director</td>
+            <td>Edinburgh</td>
+            <td>51</td>
+            <td>2008/11/13</td>
+            <td>$183,000</td>
+        </tr>
+        <tr>
+            <td>Michael Bruce</td>
+            <td>Javascript Developer</td>
+            <td>Singapore</td>
+            <td>29</td>
+            <td>2011/06/27</td>
+            <td>$183,000</td>
+        </tr>
+        <tr>
+            <td>Donna Snider</td>
+            <td>Customer Support</td>
+            <td>New York</td>
+            <td>27</td>
+            <td>2011/01/25</td>
+            <td>$112,000</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+    @section pageleveljs{
+
+        <script src="@Scripts.Url("~/assets/js/plugins/bs3wizard")"></script>
+        <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+        <script src="@Scripts.Url("~/assets/js/plugins/timepicker")"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/parsley/dist/parsley.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+<script src="~/Content/ColorAdmin/assets/plugins/flot/jquery.flot.min.js"></script>
+@*<script src="~/Content/ColorAdmin/assets/plugins/flot/jquery.flot.time.min.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/flot/jquery.flot.resize.min.js"></script>*@
+@*<script src="~/Content/ColorAdmin/assets/plugins/flot/jquery.flot.pie.min.js"></script>*@
+@*<script src="~/Content/ColorAdmin/assets/plugins/flot/jquery.flot.stack.min.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/flot/jquery.flot.crosshair.min.js"></script>
+<script src="~/Content/ColorAdmin/assets/plugins/flot/jquery.flot.categories.js"></script>*@
+
+        
+        <script>
+
+
+            var FormWizard = function () {
+                "use strict";
+                return {
+                    //main function
+                    init: function () {
+                        handleBootstrapWizardsValidation();
+                    }
+                };
+            }();
+
+            function page_init() {
+                FormWizard.init();
+                Chart.init();
+                //$('#Birthday').datetimepicker({
+                //    format: 'YYYY-MM-DD',
+                //    locale: 'zh-cn'
+                //});
+            }
+            var handleBootstrapWizardsValidation = function () { "use strict"; $("#wizard").bwizard({ validating: function (e, t) { if (t.index == 0) { if (false === $('form[name="form-wizard"]').parsley().validate("wizard-step-1")) { return false } } else if (t.index == 1) { if (false === $('form[name="form-wizard"]').parsley().validate("wizard-step-2")) { return false } } else if (t.index == 2) { if (false === $('form[name="form-wizard"]').parsley().validate("wizard-step-3")) { return false } } } }) }; var FormWizardValidation = function () { "use strict"; return { init: function () { handleBootstrapWizardsValidation() } } }()
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                // Setup - add a text input to each footer cell
+             
+                $('#tbUser tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text"  class="form-control "  id="filter' + title + '"  placeholder="Search ' + title + '" />');
+                });
+
+                $('#tbUser tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text"  class="form-control "  id="filter1' + title + '"  placeholder="Search ' + title + '" />');
+                });
+                // DataTable
+                var table = $('#tbUser').DataTable();
+
+                // Apply the search
+                table.columns().every(function () {
+                    var that = this;
+
+                    $('input', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            });
+
+            function filterGlobal() {
+                $('#example1').DataTable().search(
+                    $('#global_filter').val(),
+                    $('#global_regex').prop('checked'),
+                    $('#global_smart').prop('checked')
+                ).draw();
+            }
+
+            function filterColumn(i) {
+                $('#example1').DataTable().column(i).search(
+                    $('#col' + i + '_filter').val(),
+                    $('#col' + i + '_regex').prop('checked'),
+                    $('#col' + i + '_smart').prop('checked')
+                ).draw();
+            }
+
+            $(document).ready(function () {
+                $('#example1').DataTable();
+
+                $('input.global_filter').on('keyup click', function () {
+                    filterGlobal();
+                });
+
+                $('input.column_filter').on('keyup click', function () {
+                    filterColumn($(this).parents('tr').attr('data-column'));
+                });
+            });
+        </script>
+        <script>
+            var blue = "#2196F3", blueLight = "#64B5F6", blueDark = "#1976D2", aqua = "#03A9F4", aquaLight = "#4FC3F7", aquaDark = "#0288D1", green = "#009688", greenLight = "#4DB6AC", greenDark = "#00796B", orange = "#FF9800", orangeLight = "#FFB74D", orangeDark = "#F57C00", dark = "#212121", grey = "#9E9E9E", purple = "#673AB7", purpleLight = "#9575CD", purpleDark = "#512DA8", orange = "#FF9800", pink = "#E91E63", red = "#F44336",
+                //handleBasicChart = function () { "use strict"; for (var a = [], r = 0; r < 2 * Math.PI; r += .25) a.push([r, Math.sin(r)]); for (var e = [], t = 0; t < 2 * Math.PI; t += .25) e.push([t, Math.cos(t)]); for (var o = [], l = 0; l < 2 * Math.PI; l += .1) o.push([l, Math.tan(l)]); 0 !== $("#basic-chart").length && $.plot($("#basic-chart"), [{ label: "data 1", data: a, color: purple, shadowSize: 0 }, { label: "data 2", data: e, color: green, shadowSize: 0 }, { label: "data 3", data: o, color: dark, shadowSize: 0 }], { series: { lines: { show: !0 }, points: { show: !1 } }, xaxis: { tickColor: "#E0E0E0" }, yaxis: { min: -3, max: 3, tickColor: "#E0E0E0" }, grid: { borderColor: "#E0E0E0", borderWidth: 0 } }) },
+                //handleStackedChart = function () { "use strict"; function a(a, r, e) { $('<div id="tooltip" class="flot-tooltip">' + e + "</div>").css({ top: r, left: a + 35 }).appendTo("body").fadeIn(200) } for (var r = [], e = 0; 5 >= e; e += 1) r.push([e, parseInt(5 * Math.random())]); for (var t = [], o = 0; 5 >= o; o += 1) t.push([o, parseInt(5 * Math.random() + 5)]); for (var l = [], i = 0; 5 >= i; i += 1) l.push([i, parseInt(5 * Math.random() + 5)]); for (var n = [], s = 0; 5 >= s; s += 1) n.push([s, parseInt(5 * Math.random() + 5)]); for (var h = [], d = 0; 5 >= d; d += 1) h.push([d, parseInt(5 * Math.random() + 5)]); for (var c = [], u = 0; 5 >= u; u += 1) c.push([u, parseInt(5 * Math.random() + 5)]); var p = [[0, "Mon"], [1, "Tue"], [2, "Wed"], [3, "Thur"], [4, "Fri"], [5, "Sat"]], g = { xaxis: { tickColor: "transparent", ticks: p }, yaxis: { tickColor: "#E0E0E0", ticksLength: 10 }, grid: { hoverable: !0, tickColor: "#ccc", borderWidth: 0, borderColor: "rgba(0,0,0,0.2)" }, series: { stack: !0, lines: { show: !1, fill: !1, steps: !1 }, bars: { show: !0, barWidth: .5, align: "center", fillColor: null }, highlightColor: "rgba(0,0,0,0.8)" }, legend: { show: !0, labelBoxBorderColor: "#ccc", position: "ne", noColumns: 1 } }, f = [{ data: r, color: purpleDark, label: "China", bars: { fillColor: purpleDark } }, { data: t, color: purple, label: "Russia", bars: { fillColor: purple } }, { data: l, color: purpleLight, label: "Canada", bars: { fillColor: purpleLight } }, { data: n, color: blueDark, label: "Japan", bars: { fillColor: blueDark } }, { data: h, color: blue, label: "USA", bars: { fillColor: blue } }, { data: c, color: blueLight, label: "Others", bars: { fillColor: blueLight } }]; $.plot("#stacked-chart", f, g); var b = null, v = null; $("#stacked-chart").bind("plothover", function (r, e, t) { if (t) { var o = t.datapoint[1] - t.datapoint[2]; (b != t.series.label || o != v) && (b = t.series.label, v = o, $("#tooltip").remove(), a(t.pageX, t.pageY, o + " " + t.series.label)) } else $("#tooltip").remove(), b = null, v = null }) },
+                //handleTrackingChart = function () { "use strict"; function a() { i = null; var a = n, r = o.getAxes(); if (!(a.x < r.xaxis.min || a.x > r.xaxis.max || a.y < r.yaxis.min || a.y > r.yaxis.max)) { var e, t, s = o.getData(); for (e = 0; e < s.length; ++e) { var h = s[e]; for (t = 0; t < h.data.length && !(h.data[t][0] > a.x) ; ++t); var d, c = h.data[t - 1], u = h.data[t]; d = null === c ? u[1] : null === u ? c[1] : c[1] + (u[1] - c[1]) * (a.x - c[0]) / (u[0] - c[0]), l.eq(e).text(h.label.replace(/=.*/, "= " + d.toFixed(2))) } } } for (var r = [], e = [], t = 0; 14 > t; t += .1) r.push([t, Math.sin(t)]), e.push([t, Math.cos(t)]); if (0 !== $("#tracking-chart").length) { var o = $.plot($("#tracking-chart"), [{ data: r, label: "Series1", color: pink, shadowSize: 0 }, { data: e, label: "Series2", color: dark, shadowSize: 0 }], { series: { lines: { show: !0 } }, crosshair: { mode: "x", color: grey }, grid: { hoverable: !0, autoHighlight: !1, borderColor: "#ccc", borderWidth: 0 }, xaxis: { tickLength: 0 }, yaxis: { tickColor: "#E0E0E0" }, legend: { labelBoxBorderColor: "#E0E0E0", color: "#fff", show: !0 } }), l = $("#tracking-chart .legendLabel"); l.each(function () { $(this).css("width", $(this).width()) }); var i = null, n = null; $("#tracking-chart").bind("plothover", function (r) { n = r, i || (i = setTimeout(a, 50)) }) } },
+                //handleBarChart = function () { "use strict"; if (0 !== $("#bar-chart").length) { var a = [["January", 10], ["February", 8], ["March", 4], ["April", 13], ["May", 17], ["June", 9]]; $.plot("#bar-chart", [{ data: a, color: purple }], { series: { bars: { show: !0, barWidth: .4, align: "center", fill: !0, fillColor: purple, zero: !0 } }, xaxis: { mode: "categories", tickColor: "#E0E0E0", tickLength: 0 }, grid: { borderWidth: 0 } }) } },
+                //handleInteractivePieChart = function () { "use strict"; if (0 !== $("#interactive-pie-chart").length) { for (var a = [], r = 3, e = [purple, dark, grey], t = 0; r > t; t++) a[t] = { label: "Series" + (t + 1), data: Math.floor(100 * Math.random()) + 1, color: e[t] }; $.plot($("#interactive-pie-chart"), a, { series: { pie: { show: !0 } }, grid: { hoverable: !0, clickable: !0 }, legend: { labelBoxBorderColor: "#E0E0E0", backgroundColor: "none" } }) } },
+                //handleDonutChart = function () { "use strict"; if (0 !== $("#donut-chart").length) { for (var a = [], r = 3, e = [dark, green, purple], t = ["Unique Visitor", "Bounce Rate", "Total Page Views", "Avg Time On Site", "% New Visits"], o = [20, 14, 12, 31, 23], l = 0; r > l; l++) a[l] = { label: t[l], data: o[l], color: e[l] }; $.plot($("#donut-chart"), a, { series: { pie: { innerRadius: .5, show: !0, combine: { color: "#999", threshold: .1 } } }, grid: { borderWidth: 0, hoverable: !0, clickable: !0 }, legend: { show: !1 } }) } },
+
+                handleInteractiveChart = function () { "use strict"; function a(a, r, e) { $('<div id="tooltip" class="flot-tooltip">' + e + "</div>").css({ top: r - 45, left: a - 55 }).appendTo("body").fadeIn(200) } if (0 !== $("#interactive-chart").length) { var r = [[0, 42], [1, 53], [2, 66], [3, 60], [4, 68], [5, 66], [6, 71], [7, 75], [8, 69], [9, 70], [10, 68], [11, 72], [12, 78], [13, 86]], e = [[0, 12], [1, 26], [2, 13], [3, 18], [4, 35], [5, 23], [6, 18], [7, 35], [8, 24], [9, 14], [10, 14], [11, 29], [12, 30], [13, 43]]; $.plot($("#interactive-chart"), [{ data: r, label: "Page Views", color: purple, lines: { show: !0, fill: !1, lineWidth: 2 }, points: { show: !1, radius: 5, fillColor: "#fff" }, shadowSize: 0 }, { data: e, label: "Visitors", color: green, lines: { show: !0, fill: !1, lineWidth: 2, fillColor: "" }, points: { show: !1, radius: 3, fillColor: "#fff" }, shadowSize: 0 }], { xaxis: { tickColor: "#E0E0E0", tickSize: 2 }, yaxis: { tickColor: "#E0E0E0", tickSize: 20 }, grid: { hoverable: !0, clickable: !0, tickColor: "#ccc", borderWidth: 0, borderColor: "#E0E0E0" }, legend: { labelBoxBorderColor: "#E0E0E0", margin: 0, noColumns: 1, show: !0 } }); var t = null; $("#interactive-chart").bind("plothover", function (r, e, o) { if ($("#x").text(e.x.toFixed(2)), $("#y").text(e.y.toFixed(2)), o) { if (t !== o.dataIndex) { t = o.dataIndex, $("#tooltip").remove(); var l = o.datapoint[1].toFixed(2), i = o.series.label + " " + l; a(o.pageX, o.pageY, i) } } else $("#tooltip").remove(), t = null; r.preventDefault() }) } },
+                //handleLiveUpdatedChart = function () { "use strict"; function a() { i.setData([r()]), i.draw(), setTimeout(a, o) } function r() { for (e.length > 0 && (e = e.slice(1)) ; e.length < t;) { var a = e.length > 0 ? e[e.length - 1] : 50, r = a + 10 * Math.random() - 5; 0 > r && (r = 0), r > 100 && (r = 100), e.push(r) } for (var o = [], l = 0; l < e.length; ++l) o.push([l, e[l]]); return o } if (0 !== $("#live-updated-chart").length) { var e = [], t = 150, o = 1e3; $("#updateInterval").val(o).change(function () { var a = $(this).val(); a && !isNaN(+a) && (o = +a, 1 > o && (o = 1), o > 2e3 && (o = 2e3), $(this).val("" + o)) }); var l = { series: { shadowSize: 0, color: purple, lines: { show: !0, fill: !0 } }, yaxis: { min: 0, max: 100, tickColor: "#E0E0E0" }, xaxis: { show: !0, tickColor: "#E0E0E0" }, grid: { borderWidth: 0, borderColor: "#E0E0E0" } }, i = $.plot($("#live-updated-chart"), [r()], l); a() } },
+                //Chart = function () { "use strict"; return { init: function () { handleBasicChart(), handleStackedChart(), handleTrackingChart(), handleBarChart(), handleInteractivePieChart(), handleDonutChart(), handleInteractiveChart(), handleLiveUpdatedChart() } } }();
+                  Chart = function () { "use strict"; return { init: function () { handleInteractiveChart() } } }();
+
+        </script>
+    }
+

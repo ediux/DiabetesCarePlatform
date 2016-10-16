@@ -1,0 +1,332 @@
+﻿@using DiabetesCarePlatform.Models
+@model DCCare_BloodSugarPage
+
+@{
+    ViewBag.Title = "血糖紀錄";
+}
+@Html.Action("DCIndexMenu")
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="panel-body">
+            <div class="row">
+                @using (Html.BeginForm("PatientBloodSugarPost", "DCCare", FormMethod.Post, new { name = "form-wizard" }))
+                {
+                    <div class="col-md-6">
+                        <label>
+                            查詢天數：
+                        </label>
+                        @{var check1 = ""; var check2 = ""; var check3 = "";
+                        if (Model.GlucoseDay == 7) { check1 = "checked"; }
+                        else if (Model.GlucoseDay == 14) { check2 = "checked"; }
+                        else { check3 = "checked"; }
+                        }
+                        <label style="margin-left:20px">
+                            <input type="radio" name="GlucoseDay" @check1 value="7" id="rGlucose7" />
+                            7天
+                        </label>
+                        <label style="margin-left:20px">
+                            <input type="radio" name="GlucoseDay" @check2 value="14" id="rGlucose14" />
+                            14天
+                        </label>
+                        <label style="margin-left:20px">
+                            <input type="radio" name="GlucoseDay" @check3 value="30" id="rGlucose30" />
+                            30天
+                        </label>
+                        <input type="hidden" name="PatientID" value="@Model.PatientID" />
+                        <button type="submit" class="btn btn-info" style="margin-left:20px">
+                            查詢
+                        </button>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="panel-heading">
+            統計
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class=" col-md-4 col-sm-3">
+
+                    <div>
+                        <table class="table table-striped table-bordered" id="tbGlucose">
+                            <thead>
+                                <tr>
+                                    <th>最高</th>
+                                    <th>最低</th>
+                                    <th>平均</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.TopHighValue</td>
+                                    <td>@Model.TopLowValue</td>
+                                    <td>@Model.AvgValue</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <canvas id="SectionCountChart" height="100" width="300"></canvas>
+                    </div>
+                </div>
+                <div class=" col-md-6 col-sm-3">
+                    <table class="table table-striped table-bordered" id="tbGlucose">
+                        <tbody>
+                            <tr>
+                                <td>過低</td>
+                                <td>@Model.LowerCount</td>
+                                <td rowspan="4">
+                                    <canvas id="BoundCountChart" width="300" height="300" />
+                                    <div id="BoundCountChartLegend" class="chart-legend"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>過高</td>
+                                <td>@Model.HigherCount</td>
+
+                            </tr>
+                            <tr>
+                                <td>良好</td>
+                                <td>@Model.GoodCount</td>
+                            </tr>
+                            <tr>
+                                <td>總數</td>
+                                <td>@Model.TotalCount</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            趨勢圖
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>
+                        查詢時段：
+                    </label>
+                    <label style="margin-left:20px">
+                        <input type="radio" name="GlucoseTime" value="0" checked="checked" id="rGlucoseAll" />
+                        全部
+                    </label>
+                    @foreach (var item in Model.MealTimingType)
+                    {
+                        <label style="margin-left:20px">
+                            <input type="radio" name="GlucoseTime" value="@item.MealTypeID-@item.TimingTypeID" />
+                            @item.MealTypeName@item.TimingTypeName
+                        </label>
+                    }
+                    <div class="btn btn-info" style="margin-left:20px" onclick="SelectTiming()">
+                        查詢
+                    </div>
+                </div>
+            </div>
+            <div class="=row">
+                <div class="col-md-12">
+                    <div id="TrenArea">
+                        <canvas id="TrendChart" width="900" height="400"></canvas>
+                    </div>
+                    <div id="TrendChartLegend" class="chart-legend"></div>
+                </div>
+            </div>
+            <div class="=row">
+                <div class="col-md-6">
+                    <canvas id="BeforeAfterMealTrendChart"></canvas>
+                    <div id="BeforeAfterMealTrendChartLegend" class="chart-legend"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            數據
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <table class="table  table-bordered" id="tbGlucose">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            @foreach (var item in Model.MealTimingType)
+                            {
+                                <th>@item.MealTypeName@item.TimingTypeName</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        @foreach (var item in Model.TableData.Foot)
+                        {
+                            <tr>
+                                <td>@item.RecordDate</td>
+                                @foreach (var value in item.Value)
+                                {
+                                    <td>@value</td>
+                                }
+                            </tr>
+                        }
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.TableData.Body)
+                        {
+                            <tr class="active">
+                                <td>@item.RecordDate</td>
+                                @foreach (var record in item.RecordValue)
+                                {
+
+                                    if (record != null)
+                                    {
+                                        <td>
+                                            @record.ResultValue.ToString()
+                                            @if (record.PictrueUrl != null || record.Note != null)
+                                            {
+                                                <a class="link" href="#dayInfo" type="button" role="button" data-toggle="modal" onclick="ShowInfo('@record.Note','@record.PictrueUrl')">&nbsp;*&nbsp;</a>
+                                            }
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--預覽資訊-->
+<div class="modal fade" id="dayInfo" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:40%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    資訊
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div id="infoNote" style="font-size:18px"></div>
+                <img id="infoPicture" />
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="CloseInfo()">
+                    確認
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="../Content/ColorAdmin/assets/plugins/chart-js/Chart.js"></script>
+    <script src="../Content/HorizontalBar/Chart.HorizontalBar.js"></script>
+    <script>var SectionCountData=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.SectionCountData));</script>
+    <script>var BoundCountData=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BoundCountData));</script>
+    <script>var TrendData=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.TrendData));</script>
+    <script>var BeforeAfterMealData=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BeforeAfterMealData));</script>
+    <style>
+        .chart-legend li span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            color: black;
+        }
+        .chart-legend li {
+            margin-right: 5px;
+            color: black;
+            display:inline;
+        }
+    </style>
+
+    <script>
+
+        var optionsBoundCountChart ={
+            tooltipTemplate: "<%= label %> :" + "<%= value %>" + "%",
+            onAnimationComplete: function () {this.showTooltip(this.segments, true);},
+            showTooltips: true
+        }
+        var optionLineChart={
+            onResize:function(){}
+        }
+        var handleChartJs = function () {
+            $(window).load(function () {
+                var SectionCountChart = document.getElementById("SectionCountChart").getContext("2d");
+                var chart = new Chart(SectionCountChart).HorizontalBar(SectionCountData, {
+                    responsive: true,
+                    barShowStroke: false
+                });
+                var BoundCountChart = document.getElementById("BoundCountChart").getContext("2d");
+                var myBoundCountChart = new Chart(BoundCountChart).Doughnut(BoundCountData, optionsBoundCountChart);
+                document.getElementById('BoundCountChartLegend').innerHTML = myBoundCountChart.generateLegend();
+
+                var TrendChart= document.getElementById('TrendChart').getContext('2d');
+                var myTrendChart = new Chart(TrendChart).Line(TrendData,optionLineChart);
+                document.getElementById('TrendChartLegend').innerHTML = myTrendChart.generateLegend();
+
+                var BeforeAfterMealTrendChart = document.getElementById("BeforeAfterMealTrendChart").getContext("2d");
+                var myBeforeAfterMealTrendChart = new Chart(BeforeAfterMealTrendChart).Bar(BeforeAfterMealData, {
+                    responsive: true,
+                    barShowStroke: false
+                });
+                document.getElementById('BeforeAfterMealTrendChartLegend').innerHTML = myBeforeAfterMealTrendChart.generateLegend();
+            });
+        };
+        var ChartJs = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleChartJs();
+                }
+            };
+        }();
+        $(document).ready(function () {
+            App.init();
+            ChartJs.init();
+        });
+    </script>
+    <script>
+        function SelectTiming(){
+            var value= $('input:radio:checked[name="GlucoseTime"]').val();
+            var chartdata=new Object();;
+            if(value=='0'){
+                chartdata=TrendData;
+            }else{
+                chartdata.labels=TrendData.labels;
+                var data;
+                for (var i = 0; i < TrendData.datasets.length; i++) {
+                    if(TrendData.datasets[i].metadata==value){
+                        data=TrendData.datasets[i];
+                        break;
+                    }
+                }
+                chartdata.datasets=new Array();
+                chartdata.datasets.push(data);
+            }
+            $('#TrenArea').empty();
+            $('#TrenArea').html('<canvas id="TrendChart" width="900" height="400"></canvas>');
+            var TrendChart= document.getElementById('TrendChart').getContext('2d');
+            var myTrendChart = new Chart(TrendChart).Line(chartdata,optionLineChart);
+            document.getElementById('TrendChartLegend').innerHTML = myTrendChart.generateLegend();
+        }
+        function ShowInfo(Note,PictureUrl){
+            if(PictureUrl.length>0){
+                $('#infoPicture').attr("src", "../UploadImg/"+PictureUrl);
+                $('#infoPicture').show();
+            }
+            else{
+                $('#infoPicture').hide();
+            }
+            $('#infoNote').html(Note);
+        }
+        function CloseInfo(){
+            $('#dayInfo').modal('hide');
+        }
+    </script>
+}

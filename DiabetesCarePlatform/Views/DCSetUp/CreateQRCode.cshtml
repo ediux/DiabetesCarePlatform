@@ -1,0 +1,13 @@
+﻿@using DiabetesCarePlatform.Helpers.QRCode
+@{
+    ViewBag.Title = "QRCode";
+}
+<div class="form-group clearfix">
+    <label class="col-md-3 control-label " for="cellphone">您的帳戶已被啟用！請掃描以下QRCODE！</label>
+    
+</div>
+<div class="form-group clearfix">
+    
+    @Html.GenerateQrCode(@ViewData["Code"].ToString())
+    @*<img src="~/Img/QRCodeDemoImg.png" style="height:300px;width:300px;" />*@
+</div>

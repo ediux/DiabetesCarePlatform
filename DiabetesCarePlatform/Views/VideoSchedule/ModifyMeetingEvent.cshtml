@@ -1,0 +1,78 @@
+﻿@model DiabetesCarePlatform.Models.Common.FullCalendarEventObjectModel
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">修改會議內容</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("ModifyMeetingEventDialog", "VideoSchedule", FormMethod.Post, new { @id = "modifyeventform", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("ShiftDate", Model.extraData.ShiftDate)
+                @Html.Hidden("UserKey", Model.extraData.UserID)
+                @Html.Hidden("roomid", Model.extraData.room_id)
+                @Html.Hidden("uuid", Model.extraData.uuid)
+                @Html.Hidden("meetingid", Model.extraData.meeting_id)
+                @Html.Hidden("TimeSectionId", Model.extraData.TimeSectionId)
+                <fieldset>
+                    <legend>原始會議預約紀錄</legend>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">日期</label>
+                        <div class="col-md-6">
+                            <label class="form-control-static">@DateTime.Parse(Model.start).ToShortDateString()</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">服務時間</label>
+                        <div class="col-md-6">
+                            <label class="form-control-static">@DateTime.Parse(Model.start).ToUniversalTime().ToShortTimeString()～ @DateTime.Parse(Model.end).ToUniversalTime().ToShortTimeString()</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>新會議預約時間</legend>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">日期</label>
+                        <div class="col-md-6">
+                            <div class="input-group date" data-date-format="yyyy/mm/dd" data-date="" data-date-startdate="@(DateTime.Parse(Model.start).ToString("yyyy/mm/dd"))">
+                                <input type="text" class="form-control" value="@(DateTime.Parse(Model.start).ToString("yyyy/MM/dd"))" placeholder="Select Date" id="selecteddate" name="NewShiftDate">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="DynServiceTime">                       
+                      @Html.Action("DynamicFetchServiceTimesDropDownList", new { @DayOfWeek = (int)ViewBag.DW })
+                    </div>
+                </fieldset>
+            }
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">關閉</a>
+            <a href="javascript:$('#modifyeventform').submit();" class="btn btn-sm btn-success">送出</a>
+        </div>
+    </div>
+</div>
+<script>
+    function partial_init() {
+        $(".date").css('z-index', '1151');
+        $('#selecteddate').datepicker({
+            todayHighlight: !0,
+            startDate: '+0d',
+            language: "zh-CN",
+            autoclose: true
+        }).on('changeDate', function (e) {
+            // `e` here contains the extra attributes
+            var date=$(this).datepicker('getDate');
+            console.log(e);
+            $('#DynServiceTime').load('@Url.Action("DynamicFetchServiceTimesDropDownList")?DayOfWeek=' + encodeURI(date.getDay().toString()), function (response, status, xhr) {
+                $(this).empty();
+                $(this).append(response);
+            });
+
+
+        });
+    }
+
+</script>

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "通知";
+}
+
+<li class="dropdown">
+    <a href="#" class="icon notification waves-effect waves-light" data-toggle="dropdown">
+        <i class="fa fa-comments "></i> @if (Html.GetNotiftionCount() > 0)
+        { <span class="label label-notification">@Html.GetNotiftionCountDisplay() </span>}
+    </a>
+    <!--列表-->
+    <ul id="notify_ul" class="dropdown-menu media-list pull-right animated fadeInDown" style="width:300px">
+        <li class="dropdown-header active">訊息數(@Html.GetNotiftionCountDisplay())</li>
+        <li class="media">
+            <a href="@Url.Action("Messages", "Notify", new { ID=3,Type=2})" data-toggle="modal" data-target="#myModal">
+                <div class="media-left" align="center">
+                    <img src="@Url.Content("~/Content/ColorAdmin/assets/img/user-1.jpg")" class="media-object rounded-corner" alt="" />
+                    <span class="text-muted f-s-11 pull-right">10:14</span>
+                </div>
+                <div class="media-body">
+                    <p class="media-heading">王OO</p>
+                    <p>謝謝</p>
+                </div>
+            </a>
+        </li>
+        <li class="media">
+            <a href="@Url.Action("Messages", "Notify", new { ID=1,Type=2})">
+                <div class="media-left" align="center">
+                    <img src="@Url.Content("~/Content/ColorAdmin/assets/img/user-2.jpg")" class="media-object rounded-corner" alt="" />
+                    <span class="text-muted f-s-11">10月1日</span>
+                </div>
+                <div class="media-body">
+                    <p class="media-heading">林OO</p>
+                    <p>你好</p>
+                </div>
+            </a>
+        </li>
+        <li class="media">
+            <a href="@Url.Action("Messages", "Notify", new { ID=1,Type=1})">
+                <div class="media-left" align="center">
+                    <img src="@Url.Content("~/Content/ColorAdmin/assets/img/user-3.jpg")" class="media-object rounded-corner" alt="" />
+                    <span class="text-muted f-s-11 pull-right">9月28日</span>
+                </div>
+                <div class="media-body">
+                    <p class="media-heading">MrBrown</p>
+                    <p>明天麻煩你了</p>
+                </div>
+            </a>
+        </li>
+        <li class="media">
+            <a href="@Url.Action("Messages", "Notify", new { ID=1,Type=0})">
+                <div class="media-left" align="center">
+                    <img src="@Url.Content("~/Content/ColorAdmin/assets/img/user-4.jpg")" class="media-object rounded-corner" alt="" />
+                    <span class="text-muted f-s-11 pull-right">9月25日</span>
+                </div>
+                <div class="media-body">
+                    <p class="media-heading">糖特照护团队(A)特特特特特特特特特特</p>
+                    <p>訊息公布：gher;fjeruop'jf'aenvu[qur'pqv'qfie'fieyafpajfp]....</p>
+                </div>
+            </a>
+        </li>
+        <li class="dropdown-footer text-center">
+            <a href="@Url.Action("Messages", "Notify", new { ID=0,Type=0})">查看全部</a>
+        </li>
+    </ul>
+</li>
+

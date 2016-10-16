@@ -1,0 +1,459 @@
+﻿@using DiabetesCarePlatform.Models
+@model MedicalTeamViewModel
+@{
+    ViewBag.Title = "CreateMedicalTeam";
+}
+
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/jvectormap")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/bs3wizard")" rel="stylesheet" />
+    <link href="@Styles.Url("~/Content/ColorAdmin/assets/plugins/switchery/switchery.min.css")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/plugins/dataTables/media/bs")" rel="stylesheet" />
+    <style>
+        tfoot {
+            display: table-header-group;
+        }
+
+        .dataTables_filter, .dataTables_info {
+            display: none;
+        }
+    </style>
+}
+<div class="widget widget-stats bg-blue-grey-50 row">
+    <a class="btn btn-success" href="@Url.Action("Index", "DCGroup", new { Tabs = 1})">返回個案管理</a>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-3">
+           
+
+          @using (Html.BeginForm("AddGroup", "DCGroup", FormMethod.Post))
+          {
+            <label class="col-md-3 control-label">管理階層</label>
+            <select name="ParentUnitID" id="ParentID" class="form-control">
+                <option value="-1" selected>無</option>
+                @foreach (var item in Model.UnitList)
+                {
+                    <option value="@item.UnitID">@item.UnitName</option>
+                }
+            </select>
+    
+    <label class="col-md-3 control-label">團隊名稱</label>
+
+    <input class="form-control required" id="Group" name="Group" maxlength="20" type="text" required>
+
+                <table class="table table-striped table-bordered" id="dataTables1" name="dsAdd">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            
+                            <th>姓名</th>
+                            <th>性別</th>
+                            <th>職稱</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            <input type="hidden" name="AddUserID" id="hAddUserID">
+              <input type="submit" class="btn btn-success" value="建立" onclick="return  checkValue();" />
+
+          }
+            </div>
+        <div class="col-md-9">
+            <div class="form-group clearfix">
+                <div class="col-md-1">
+                    狀態
+                    <div class="row">
+                        <input type="checkbox" data-render="switchery" data-theme="default" checked name="Enable" id="editEnable" data-change="check-switchery-state-text" />
+                        <label data-id="switchery-state-text">未分派</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    @*<label class="col-md-1 control-label">姓</label>*@
+                    姓名
+                    <input class="form-control" id="Name" name="Name" type="text" >
+
+                </div>
+
+                <div class="col-md-2">
+                    性別
+                    <select name="SexID" class="form-control form-group " id="SexID">
+                        <option value="-1" selected>不限</option>
+                        @foreach (var item in Model.SexTypeList)
+                        {
+                            <option value="@item.SexID">@item.SexName</option>
+                        }
+                    </select>
+
+                </div>
+                <div class="col-md-2">
+                   種族
+                    <select name="RaceTypeID" id="RaceTypeID" class="form-control">
+                        <option value="-1"  selected>@Reslang.Resource.PleaseChoose</option>
+                        @foreach (var item in Model.RaceTypeList)
+                        {
+                            <option value="@item.RaceTypeID">@item.RaceTypeName</option>
+                        }
+                    </select>
+
+
+                </div>
+                <div class="col-md-2">
+                    語言
+                    <select name="LanguageTypeID" id="LanguageTypeID" class="form-control">
+                        <option value="-1"  selected>@Reslang.Resource.PleaseChoose</option>
+                        @foreach (var item in Model.LanguageTypeList)
+                        {
+                            <option value="@item.LanguageTypeID">@item.Description</option>
+                        }
+                    </select>
+
+
+
+                </div>
+                <div class="col-md-2">
+                  職稱
+                        <input type="text" id="JobTitle" class="form-control" name="JobTitle" />
+                 
+                </div>
+                
+                <div class="col-md-1">
+                    <br/>
+                    <a class="btn btn-success" href="javascript:;" data-toggle="modal"  id="Query" onclick="QueryResult();">查詢</a>
+
+                </div>
+              
+            </div>
+
+
+
+
+
+            <table style="width: 67%; margin: 0 auto 2em auto;display:none" border="0" cellpadding="3" cellspacing="0" >
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>姓名</td>
+                        <td align="center" id="filter_col2" data-column="1"><input class="form-control column_filter" id="col1_filter" type="text"></td>
+                        <td>性別</td>
+                        <td align="center" id="filter_col3" data-column="2"><input class="form-control column_filter" id="col2_filter" type="text"></td>
+                        <td>職稱</td>
+                        <td align="center" id="filter_col4" data-column="3"><input class="form-control column_filter" id="col3_filter" type="text"></td>
+                        <td>所屬團隊</td>
+                        <td align="center" id="filter_col5" data-column="4"><input class="form-control column_filter" id="col4_filter" type="text"></td>
+                        <td>種族</td>
+                        <td align="center" id="filter_col6" data-column="5"><input class="form-control column_filter" id="col5_filter" type="text"></td>
+                        <td>語言</td>
+                        <td align="center" id="filter_col7" data-column="6"><input class="form-control column_filter" id="col6_filter" type="text"></td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+
+            <table class="table table-striped table-bordered" id="dataTables">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th >ID</th>
+                        <th>@Reslang.Resource.Account</th>
+                        <th>@Reslang.Resource.Name</th>
+                        <th>@Reslang.Resource.Sex</th>
+                        <th>職稱</th>
+                        <th>種族</th>
+                        <th>語言</th>
+                        @*<th>種族</th>
+                        <th>語言</th>*@
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section pageleveljs{
+<script src="@Styles.Url("~/Content/ColorAdmin/assets/plugins/switchery/switchery.min.js")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/bs3wizard")"></script>
+    <script src="@Scripts.Url("~/assets/js/bootstrap/datepicker")"></script>
+    <script src="@Scripts.Url("~/assets/js/plugins/timepicker")"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/ColorAdmin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+     <!--Switcher-->
+<script>
+    var green = '#00acac',
+        red = '#ff5b57',
+        blue = '#348fe2',
+        purple = '#727cb6',
+        orange = '#f59c1a',
+        black = '#2d353c';
+    var renderSwitcher = function () {
+        if ($('[data-render=switchery]').length !== 0) {
+            $('[data-render=switchery]').each(function () {
+                var themeColor = green;
+                if ($(this).attr('data-theme')) {
+                    switch ($(this).attr('data-theme')) {
+                        case 'red':
+                            themeColor = red;
+                            break;
+                        case 'blue':
+                            themeColor = blue;
+                            break;
+                        case 'purple':
+                            themeColor = purple;
+                            break;
+                        case 'orange':
+                            themeColor = orange;
+                            break;
+                        case 'black':
+                            themeColor = black;
+                            break;
+                    }
+                }
+                var option = {};
+                option.color = themeColor;
+                option.secondaryColor = ($(this).attr('data-secondary-color')) ? $(this).attr('data-secondary-color') : '#dfdfdf';
+                option.className = ($(this).attr('data-classname')) ? $(this).attr('data-classname') : 'switchery';
+                option.disabled = ($(this).attr('data-disabled')) ? true : false;
+                option.disabledOpacity = ($(this).attr('data-disabled-opacity')) ? parseFloat($(this).attr('data-disabled-opacity')) : 0.5;
+                option.speed = ($(this).attr('data-speed')) ? $(this).attr('data-speed') : '0.5s';
+                var switchery = new Switchery(this, option);
+            });
+        }
+    };
+    var checkSwitcherState = function () {
+        $('[data-change="check-switchery-state-text"]').live('change', function () {
+            var stateText = $(this).prop('checked') == true ? '未分派' : '全部';
+            $('[data-id="switchery-state-text"]').text(stateText);
+        });
+    };
+    var FormSliderSwitcher = function () {
+        "use strict";
+        return {
+            init: function () {
+                renderSwitcher();
+                checkSwitcherState();
+
+            }
+        };
+    }(); </script>
+
+    <script>
+
+        var chkdIDArray = [];
+        function removeA(arr) {
+            var what, a = arguments, L = a.length, ax;
+            while (L > 1 && arr.length) {
+                what = a[--L];
+                while ((ax = arr.indexOf(what)) !== -1) {
+                    arr.splice(ax, 1);
+                }
+            }
+            return arr;
+        }
+        
+      
+                function filterColumn(i) {
+                    $('#dataTables').DataTable().column(i).search(
+                        $('#col' + i + '_filter').val(),
+                        $('#col' + i + '_regex').prop('checked'),
+                        $('#col' + i + '_smart').prop('checked')
+                    ).draw();
+                }
+
+                function QueryResult() {
+                    example_table.ajax.reload();
+                }
+                var example_table = $('#dataTables').DataTable({
+                    responsive: true,
+                    autoWidth: false,
+                    paging: false,
+                    language: {
+                        "zeroRecords": "查無資料"
+                    },
+                    fixedColumns: true
+                           , "columnDefs": [{ "orderable": false, "targets": 0 }]
+                            //,"columnDefs": [{ "targets": 0,
+                            //    "data": null,
+                            //    "defaultContent": "<button>選取</button>"
+                            //}]
+                    ,
+                    'ajax': {
+                        "type": "POST",
+                        "url": '/DCGroup/GetQueryResult',
+                        "data": function (d) {
+                            d.Name = $('#Name').val();
+                            d.JobTitle = $('#JobTitle').val();
+                            d.RaceTypeID = $("#RaceTypeID").val();
+                            d.LanguageTypeID = $("#LanguageTypeID").val();
+                            d.SexID = $("#SexID").val();
+                            d.Status = $("#editEnable").prop("checked");
+                        },
+                        "dataSrc": ""
+                        
+                    },
+                   
+                    "aoColumns": [
+            
+              { "mData": null },
+            { "mData": "UserID" },
+            { "mData": "Account" },
+            { "mData": "Name" },
+            { "mData": "SexName" },
+            { "mData": "JobTitle" },
+            { "mData": "RaceTypeName" }, { "mData": "LanguageTypeName" }]
+                    ,
+      "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+          
+          var chk = chkdIDArray.indexOf(aData.UserID);
+         // var resObj;
+          if (chk == -1) {
+              //resObj = ' <button type="button">選取</button>';
+              $('td', nRow).eq(0).html('<button type="button">選取</button>');
+          } else {
+              $('td', nRow).eq(0).html( '<button type="button" disabled>已選取</button>');
+              $(nRow).addClass('selected');
+          }
+        
+      }
+                });
+
+                $(document).ready(function () {
+                    FormSliderSwitcher.init();
+                    document.getElementById("editEnable").setAttribute("checked", "checked");
+                    document.getElementById("editEnable").checked = true;
+                    $('[data-id="switchery-state-text"]').text('未分派');
+
+
+                    $('#dataTables1').DataTable(
+                      {
+                          responsive: true,
+                          paging: false,
+                          autoWidth: false,
+                          fixedColumns: true
+                          // , "columnDefs": [{ "orderable": false, "targets": 0 }]
+                          , "columnDefs": [{
+                              "targets": 0,
+                              "data": null,
+                              "defaultContent": "<button>移除</button>"
+                          }]
+
+                      }
+                      );
+
+                    //$('#dataTables').DataTable(
+                    //    {
+                    //        responsive: true,
+                    //        paging: false,
+                    //        fixedColumns: true
+                    //       , "columnDefs": [{ "orderable": false, "targets": 0 }]
+                    //        ,"columnDefs": [{ "targets": 0,
+                    //            "data": null,
+                    //            "defaultContent": "<button>選取</button>"
+                    //        }]
+                            
+                    //    }
+                    //    );
+
+                    $('input.global_filter').on('keyup click', function () {
+                        filterGlobal();
+                    });
+
+                    $('input.column_filter').on('keyup click', function () {
+                        filterColumn($(this).parents('td').attr('data-column'));
+                    });
+                    var oldT = $('#dataTables').DataTable();
+                    var NewT = $('#dataTables1').DataTable();
+                   
+                    $('#dataTables tbody').on('click', 'button', function () {
+                        var data = oldT.row($(this).parents('tr')).data();
+                        var row = oldT.row($(this).parents('tr'));
+                        $(this).closest('tr').addClass('selected');
+                        $(this).text('已選取');
+                        $(this).prop("disabled", true);
+                        //var rowNode = row.node();
+                        //row.remove().draw(false);
+                        var chk = -1;
+                        NewT.column(1)
+                            .data()
+                            .each(function (value, index) {
+                                if (value == data[1]) {
+                                    chk = value;
+                                    return false;
+                                }
+
+                            });
+                        if (chk == -1)
+                        {
+                            chkdIDArray.push(data.UserID);
+                            // NewT.row.add([null, data[1], data[2], data[3], data[4]]).draw().nodes().to$().addClass('new');
+                            NewT.row.add([null, data.UserID, data.Name, data.SexName, data.JobTitle]).draw().nodes().to$().addClass('new');
+                            //cf.UserID, cf.Account, cf.Name, cf.SexName, cf.JobTitle
+                        }
+                        
+                       
+                    });
+
+                    $('#dataTables1 tbody').on('click', 'button', function () {
+                        var data = NewT.row($(this).parents('tr')).data();
+                        var row = NewT.row($(this).parents('tr'));
+                        var rowNode = row.node();
+                        row.remove().draw(false);
+                        ChangeItem(data[1]);
+                        removeA(chkdIDArray, parseInt(data[1]));
+                       // NewT.row.add([null, data[1], data[2], data[3]]).draw().nodes().to$().addClass('new');
+                      
+                    });
+
+                    function ChangeItem(id) {
+                        var index = -1;
+                        oldT.column(1)
+                            .data()
+                            .each(function (value, index) {
+                                if (value == id)
+                                {
+                                    var table = $("#dataTables")[0];
+                                    var row1 = table.rows[index + 1];
+                                    var cell = table.rows[index + 1].cells[0];
+                                    $(row1).removeClass('selected');
+                                   
+                                    $(cell).html('<button>選取</button>');
+                                    
+                                    return false;
+                                }
+                                
+                            });
+                        
+                        if (index > -1) return index;
+                        else return null;
+                    }
+                   
+
+                });
+              
+                function checkValue() {
+                    var s="";
+                    for (i = 0; i < chkdIDArray.length; i++) {
+                      s = s+ chkdIDArray[i] + ",";
+                    }
+                    $("#hAddUserID").val(s);
+                        return true;
+                    
+                }
+    </script>
+}
+

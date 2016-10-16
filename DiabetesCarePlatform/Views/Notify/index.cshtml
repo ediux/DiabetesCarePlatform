@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "通知設定";
+}
+@section pagelevelcss{
+    <link href="@Styles.Url("~/assets/css/jvectormap")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/datepicker3")" rel="stylesheet" />
+    <link href="@Styles.Url("~/assets/css/gritter")" rel="stylesheet" />
+  <link href="@Styles.Url("~/Content/ColorAdmin/assets/plugins/switchery/switchery.min.css")" rel="stylesheet" />
+<link href="@Styles.Url("~/Content/ColorAdmin/assets/plugins/switchery/switchery.css")" rel="stylesheet" />
+<link href="@Styles.Url("~/Content/ColorAdmin/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" />
+}
+
+
+<div class="col-md-4">
+    <table class="table" id="tbGlucose">
+        <thead>
+            <tr>
+                <th>通知</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>極低血糖</td>
+                <td>
+                        <input type="checkbox" data-classname="switchery"  data-render="switchery" data-theme="blue" data-change="check-switchery-state-text1" checked />
+                        <a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-theme="default" data-id="switchery-state-text1">true</a>
+                    
+                </td>
+            </tr>
+
+            <tr>
+                <td>極高血糖</td>
+                <td><input type="checkbox" data-classname="switchery"  data-render="switchery" data-theme="blue" data-change="check-switchery-state-text2" checked />
+<a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-theme="default" data-id="switchery-state-text2">true</a></td>
+            </tr>
+            <tr>
+                <td>一周內連續多次高血糖</td>
+                <td>
+
+                    <input type="checkbox" data-classname="switchery" data-render="switchery" data-theme="blue" data-change="check-switchery-state-text3" checked />
+                    <a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-theme="default" data-id="switchery-state-text3">true</a>
+                </td>
+            </tr>
+            <tr>
+                <td>一周內連續多次低血糖</td>
+                <td>
+                    <input type="checkbox" data-classname="switchery" data-render="switchery" data-theme="blue" data-change="check-switchery-state-text4" checked />
+                    <a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-theme="default" data-id="switchery-state-text4">true</a>
+                </td>
+            </tr>
+            <tr>
+                <td>單一時段血糖連續偏低</td>
+                <td>
+                    <input type="checkbox" data-classname="switchery" data-render="switchery" data-theme="blue" data-change="check-switchery-state-text5" checked />
+                    <a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-theme="default" data-id="switchery-state-text5">true</a>
+                </td>
+            <tr>
+                <td>單一時段血糖連續偏高</td>
+                <td>
+                    <input type="checkbox" data-classname="switchery" data-render="switchery" data-theme="blue" data-change="check-switchery-state-text6" checked />
+                    <a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-theme="default" data-id="switchery-state-text6">true</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="col-md-4">
+    <table class="table" id="tbGlucose">
+        <thead>
+            <tr>
+                <th>範圍設定</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>血糖值低於</td>
+                <td> 50 mg/dl </td>
+            </tr>
+            <tr>
+                <td>血糖值高於</td>
+                <td> 500 mg/dl </td>
+            </tr>
+            <tr>
+                <td>連續次數</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+@section pageleveljs{
+@*<script src="~/Content/ColorAdmin/assets/plugins/pace/pace.min.js"></script>*@
+<script src="~/Content/ColorAdmin/assets/plugins/switchery/switchery.min.js"></script>
+@*<script src="~/Content/ColorAdmin/assets/plugins/switchery/form-slider-switcher.demo.min.js"></script>*@
+<script src="~/Content/ColorAdmin/assets/plugins/switchery/switchery.js"></script>
+    <script>
+        var green = "#009688", red = "#F44336", blue = "#2196F3", purple = "#673AB7", orange = "#FF9800", black = "#212121",
+   renderSwitcher = function () { 0 !== $("[data-render=switchery]").length && $("[data-render=switchery]").each(function () { var t = green; if ($(this).attr("data-theme")) switch ($(this).attr("data-theme")) { case "red": t = red; break; case "blue": t = blue; break; case "purple": t = purple; break; case "orange": t = orange; break; case "black": t = black } var a = {}; a.color = t, a.secondaryColor = $(this).attr("data-secondary-color") ? $(this).attr("data-secondary-color") : "#dfdfdf", a.className = $(this).attr("data-classname") ? $(this).attr("data-classname") : "switchery", a.disabled = $(this).attr("data-disabled") ? !0 : !1, a.disabledOpacity = $(this).attr("data-disabled-opacity") ? parseFloat($(this).attr("data-disabled-opacity")) : .5, a.speed = $(this).attr("data-speed") ? $(this).attr("data-speed") : "0.5s"; new Switchery(this, a) }) },
+   checkSwitcherState = function () {
+
+       //$('[data-change="check-switchery-state-text"]').live("change", function () {
+       //    $('[data-id="switchery-state-text"]').text($(this).prop("checked"))}
+       //),
+       $('[data-change="check-switchery-state-text1"]').live("change", function () {
+           $('[data-id="switchery-state-text1"]').text($(this).prop("checked"))}
+       ),
+       $('[data-change="check-switchery-state-text2"]').live("change", function () {
+           $('[data-id="switchery-state-text2"]').text($(this).prop("checked"))}
+       ),
+       $('[data-change="check-switchery-state-text3"]').live("change", function () {
+           $('[data-id="switchery-state-text3"]').text($(this).prop("checked"))}
+       ),
+       $('[data-change="check-switchery-state-text4"]').live("change", function () {
+           $('[data-id="switchery-state-text4"]').text($(this).prop("checked"))}
+       ),
+       $('[data-change="check-switchery-state-text5"]').live("change", function () {
+           $('[data-id="switchery-state-text5"]').text($(this).prop("checked"))}
+       ),
+       $('[data-change="check-switchery-state-text6"]').live("change", function () {
+           $('[data-id="switchery-state-text6"]').text($(this).prop("checked"))}
+       )
+
+   },
+   renderPowerRangeSlider = function () { 0 !== $('[data-render="powerange-slider"]').length && $('[data-render="powerange-slider"]').each(function () { var t = {}; t.decimal = $(this).attr("data-decimal") ? $(this).attr("data-decimal") : !1, t.disable = $(this).attr("data-disable") ? $(this).attr("data-disable") : !1, t.disableOpacity = $(this).attr("data-disable-opacity") ? parseFloat($(this).attr("data-disable-opacity")) : .5, t.hideRange = $(this).attr("data-hide-range") ? $(this).attr("data-hide-range") : !1, t.klass = $(this).attr("data-class") ? $(this).attr("data-class") : "", t.min = $(this).attr("data-min") ? parseInt($(this).attr("data-min")) : 0, t.max = $(this).attr("data-max") ? parseInt($(this).attr("data-max")) : 100, t.start = $(this).attr("data-start") ? parseInt($(this).attr("data-start")) : null, t.step = $(this).attr("data-step") ? parseInt($(this).attr("data-step")) : null, t.vertical = $(this).attr("data-vertical") ? $(this).attr("data-vertical") : !1, $(this).attr("data-height") && $(this).closest(".slider-wrapper").height($(this).attr("data-height")); new Switchery(this, t), new Powerange(this, t) }) },
+    FormSliderSwitcher = function () {
+        "use strict"; return {
+            init: function () {
+                renderSwitcher(),checkSwitcherState() , renderPowerRangeSlider()
+            }
+        }
+    }();
+        $('[data-change="check-switchery-state-text"]').live("change", function () {
+            $('[data-id="switchery-state-text"]').text($(this).prop("checked"))
+        }
+        );
+        //$('[data-change="check-switchery-state-text"]').live("change", function () {
+        //    $('[data-id="switchery-state-text"]').text($(this).prop("checked"))
+        //}
+        //);
+        function page_init() {
+           
+            FormSliderSwitcher.init();
+        }
+    </script>
+}
+
+
