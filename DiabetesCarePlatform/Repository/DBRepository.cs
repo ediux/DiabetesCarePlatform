@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DataAccess;
+//using DataAccess;
 using System.Data;
 using System.Reflection;
 using DiabetesCarePlatform.Models.Common;
@@ -14,22 +14,25 @@ namespace DiabetesCarePlatform.Repository
 {
     public class DBRepository
     {
-        DB_Dapper Dap = new DB_Dapper();
+        //DB_Dapper Dap = new DB_Dapper();
         BaseRepository BaseDap = new BaseRepository();
 
         #region Login
-        public Dictionary<String, Object> SP_UserLogin(int UnitID, string Account, string Password, string IP)
+        public string SP_UserLogin(int UnitID, string Account, string Password, string IP)
         {
-            Dictionary<String, Object> field = new Dictionary<string, object>();
-            field.Add("UnitID", UnitID);
-            field.Add("Account", Account);
-            field.Add("Password", Password);
-            field.Add("IP", IP);
-            Dictionary<String, DbType> Outputparam = new Dictionary<string, DbType>();
-            Outputparam.Add("UserKey", DbType.String);
-            Dictionary<String, Object> output;
-            Dap.NonQuerySPOutput("Web_UserLogin", field, Outputparam,out output);
-            return output;
+            System.Data.Entity.Core.Objects.ObjectParameter output = new System.Data.Entity.Core.Objects.ObjectParameter("UserKey", "");
+            BaseDap.Database.Web_UserLogin(UnitID, Account, Password, IP, output);
+
+            //Dictionary<String, Object> field = new Dictionary<string, object>();
+            //field.Add("UnitID", UnitID);
+            //field.Add("Account", Account);
+            //field.Add("Password", Password);
+            //field.Add("IP", IP);
+            //Dictionary<String, DbType> Outputparam = new Dictionary<string, DbType>();
+            //Outputparam.Add("UserKey", DbType.String);
+            //Dictionary<String, Object> output;
+            //Dap.NonQuerySPOutput("Web_UserLogin", field, Outputparam,out output);
+            return output.Value as string;
         }
         public UserInfo Web_GetUserInfo(string UserKey)
         {

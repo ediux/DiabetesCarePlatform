@@ -117,6 +117,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -370,29 +372,1065 @@
     <Compile Include="Data\Web_AddWorkShiftResult.cs" />
     <Compile Include="Data\Web_Get_VideoScheduleResult.cs" />
     <Compile Include="Models\AddressViewModels.cs" />
-    <Compile Include="Models\APP_User.cs" />
+    <Compile Include="Models\API_Account_GetChronicSubType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Account_GetChronicSubType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Account_GetSexType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Account_GetSexType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Account_GetUserInfo_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Account_GetUserInfo_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetFoodRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetFoodRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetFoodType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetFoodType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetMealType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetMealType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetMedicineType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetMedicineType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetPressureRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetPressureRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetSugarRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetSugarRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetTimingType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetTimingType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetWeightRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Health_GetWeightRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetFoodRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetFoodRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetPartnerList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetPartnerList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetPressureRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetPressureRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetSugarRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetSugarRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetWeightRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Partner_GetWeightRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetExaminationDetails_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetExaminationDetails_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetExaminationList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetExaminationList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetHealthEducationDetails_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetHealthEducationDetails_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetHealthEducationList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetHealthEducationList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetPathologyDetails_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetPathologyDetails_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetPathologyList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Query_GetPathologyList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetDateList_20160924_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetDateList_20160924_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetDateList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetDateList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetTimeList_20160924_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetTimeList_20160924_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetTimeList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetTimeList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetUnit_20160924_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetUnit_20160924_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetUnit_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\API_Service_GetUnit_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APPHT_Partner.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APPHT_Partner.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APPHT_User.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APPHT_User.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_InviteCode.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_InviteCode.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_LoginUser.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_LoginUser.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_Partner.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_Partner.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_User.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_User.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_VerifyCode.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_VerifyCode.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_VerifyNumber.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APP_VerifyNumber.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BasicInformationDetailModel.cs" />
     <Compile Include="Models\BloodPressureViewModel.cs" />
-    <Compile Include="Models\CG_ServiceRecord.cs" />
-    <Compile Include="Models\CMR_DiabetesAlertConfig.cs" />
-    <Compile Include="Models\CMR_DiabetesPlan.cs" />
+    <Compile Include="Models\CGHT_Appointment.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_Appointment.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_CareGroup.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_CareGroup.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_HealthEducation.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_HealthEducation.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_Message.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_Message.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_ServiceRecord.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CGHT_ServiceRecord.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_Appointment.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_Appointment.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_CareGroup.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_CareGroup.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_HealthEducation.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_HealthEducationOrder.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_HealthEducationOrder.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_MeetingRecordHead.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_MeetingRecordHead.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_Message.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_Message.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_ServiceRecord.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_ServiceRecord.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_WorkShift.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_WorkShift.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_WorkShiftBase.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_WorkShiftBase.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChronicCare.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChronicCare.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChronicCare.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChronicCare.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChronicCare.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMRHT_PatientBase.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMRHT_PatientBase.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMRHT_PatientDetails.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMRHT_PatientDetails.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMRHT_PatientKey.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMRHT_PatientKey.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_ContactPerson.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesAlert.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesAlert.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesAlertConfig.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesAlertConfig.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesMessage.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesMessage.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesPlan.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_DiabetesPlan.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_PatientBase.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_PatientDetails.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_PatientKey.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Common\SYSParamaterModel.cs" />
+    <Compile Include="Models\C_APP_医事人员APP绑定.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_医事人员APP绑定.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_卫教讯息.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_卫教讯息.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_卫教讯息精选.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_卫教讯息精选.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_好友绑定.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_好友绑定.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_病患APP绑定.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_APP_病患APP绑定.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__RefactorLog.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__RefactorLog.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_个案与APP绑定验证码.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_个案与APP绑定验证码.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_产生病患ID对应基本以及明细资料.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_产生病患ID对应基本以及明细资料.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_基本资料.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_基本资料.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_明细资料.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_个案建立_明细资料.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_关怀服务资料建立.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_关怀服务资料建立.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_关怀群组与APP使用者关连图.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_关怀群组与APP使用者关连图.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_排班表.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_排班表.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_约定视讯以及状态.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_关怀群组_约定视讯以及状态.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_医事人员_指派单位关连图.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_医事人员_指派单位关连图.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_医事单位_关连图.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_医事单位_关连图.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_权限1_从人员_单位对应到权限与功能.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_权限1_从人员_单位对应到权限与功能.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_权限2_从人员对应到权限与功能.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_权限2_从人员对应到权限与功能.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_检验资料_检验报告资料建立.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_检验资料_检验报告资料建立.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_病史资料_病史资料建立.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_病史资料_病史资料建立.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_病史资料_门诊用药.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_病史资料_门诊用药.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_病患建立_家属_联络人.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_病患建立_家属_联络人.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_糖尿病警示_糖尿病测量计画.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_糖尿病警示_糖尿病测量计画.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_糖尿病警示_糖尿病警报.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_糖尿病警示_糖尿病警报.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DCCare_BloodPressurePage.cs" />
     <Compile Include="Models\DCCare_BloodSugarPage.cs" />
     <Compile Include="Models\DCCare_ServiceRecordPage.cs" />
     <Compile Include="Models\DCCare_SettingPage.cs" />
-    <Compile Include="Models\SYS_MealType.cs" />
-    <Compile Include="Models\SYS_ServiceRecordType.cs" />
-    <Compile Include="Models\SYS_ServiceResult.cs" />
-    <Compile Include="Models\SYS_ServiceType.cs" />
-    <Compile Include="Models\SYS_TimingType.cs" />
-    <Compile Include="Models\U_BloodPressure.cs" />
-    <Compile Include="Models\U_BloodSugar.cs" />
-    <Compile Include="Models\CG_HealthEducation.cs" />
-    <Compile Include="Models\CMR_ContactPerson.cs" />
-    <Compile Include="Models\CMR_PatientBase.cs" />
-    <Compile Include="Models\CMR_PatientDetails.cs" />
-    <Compile Include="Models\CMR_PatientKey.cs" />
+    <Compile Include="Models\EFGeneratePartialClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FN_GetMeetingRoomsRemainTable_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FN_GetMeetingRoomsRemainTable_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBookingScheduleEvents_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBookingScheduleEvents_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUnitTreeFull_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUnitTreeFull_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUnitTreeLower_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUnitTreeLower_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUnitTreeUpper_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUnitTreeUpper_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRoomAssigned.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRoomAssigned.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRooms.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRooms.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRoomTimeAssigened.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRoomTimeAssigened.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRoomTimes.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_MeetingRoomTimes.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_ZoomMeetings.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MR_ZoomMeetings.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMEHT_ExaminationBody.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMEHT_ExaminationBody.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMEHT_ExaminationHead.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMEHT_ExaminationHead.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_ExaminationBody.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_ExaminationBody.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_ExaminationHead.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_ExaminationHead.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_ExaminationType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_ExaminationType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_TagName.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PME_TagName.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMRHT_PathologyBody.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMRHT_PathologyBody.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMRHT_PathologyHead.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMRHT_PathologyHead.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_Medicine.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_Medicine.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_PathologyBody.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_PathologyHead.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_PathologyType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_PathologyType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_TagName.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_TagName.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddCG_WorkShiftBase_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddCG_WorkShiftBase_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddCG_WorkShift_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddCG_WorkShift_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRoomAssigned_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRoomAssigned_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRooms_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRooms_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRoomTimeAssigened_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRoomTimeAssigened_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRoomTime_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddMR_MeetingRoomTime_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddSYS_Holiday_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_AddSYS_Holiday_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_MeetingRooms_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_MeetingRooms_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_MeetingRoomTimeAssigened_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_MeetingRoomTimeAssigened_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_MeetingRoomTimes_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_MeetingRoomTimes_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_ZoomMeetings_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetAllMR_ZoomMeetings_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetCG_HealthEducationList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetCG_HealthEducationList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetCG_HealthEducation_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetCG_HealthEducation_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetMR_MeetingRooms_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetMR_MeetingRooms_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetMR_MeetingRoomTimeAssigened_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetMR_MeetingRoomTimeAssigened_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetMR_ZoomMeetings_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetMR_ZoomMeetings_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_UpdateMR_MeetingRooms_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_UpdateMR_MeetingRooms_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysDB_CreateKey_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysDB_CreateKey_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_LoginUser.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_LoginUser.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_Unit.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_Unit.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UnitDetails.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UnitDetails.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UnitRole.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UnitRole.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_User.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_User.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UserAssignRole.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UserAssignRole.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UserAssignUnit.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSHT_UserAssignUnit.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_AppointmentStatus.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_AppointmentStatus.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ArecaTypeID.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ArecaTypeID.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_BloodRhType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_BloodRhType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_BloodType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_CaseStatus.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_CaseStatus.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ChronicSubType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ChronicType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ChronicType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_City.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Country.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DiabetesAlertConfig.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DiabetesAlertConfig.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DiabetesAlertType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DiabetesAlertType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DisableType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DisableType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_District.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DrinkTypeID.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_DrinkTypeID.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_EducationLevel.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_FamilyHistoryType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_FamilyHistoryType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_FoodType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_FoodType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Function.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Function.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Holiday.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Holiday.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_LanguageType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_LivingStatus.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_LoginUser.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_LoginUser.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_MaritalStatus.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_MealType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_MealType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Medicine.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Medicine.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_NewsType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_NewsType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ProfessionType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RaceType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RelationshipType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ReligionType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Role.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Role.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RoleFunction.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RoleFunction.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SearchWordInSP_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SearchWordInSP_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ServiceRecordType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ServiceRecordType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ServiceResult.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ServiceResult.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ServiceType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ServiceType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SexType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SmokeType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_State.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_TimingType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_TimingType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Unit.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitAssignRole_Del.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitAssignRole_Del.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitDetails.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitDetails.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitRankType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitRankType.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitTask.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UnitTask.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_User.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UserAssignRole.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UserAssignRole.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UserAssignUnit.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_BloodPressure.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_BloodPressure.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_BloodSugar.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CG_HealthEducation.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_ContactPerson.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_PatientBase.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_PatientDetails.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CMR_PatientKey.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Common\MeetingExtraEventData.cs" />
     <Compile Include="Models\DataTable\CG_HealthEducationResultModel.cs" />
     <Compile Include="Models\DCCareIndexViewModel.cs" />
@@ -405,29 +1443,498 @@
     <Compile Include="Models\Common\FullCalendarEventObjectModel.cs" />
     <Compile Include="Models\MedicalRecordViewModel.cs" />
     <Compile Include="Models\PMRTagNameCBViewModel.cs" />
-    <Compile Include="Models\PMR_PathologyBody.cs" />
-    <Compile Include="Models\PMR_PathologyHead.cs" />
+    <Compile Include="Models\PMR_PathologyBody.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PMR_PathologyHead.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SetUpCreateAcountModel.cs" />
     <Compile Include="Models\SYS_ArecaType.cs" />
-    <Compile Include="Models\SYS_BloodType.cs" />
-    <Compile Include="Models\SYS_ChronicSubType.cs" />
-    <Compile Include="Models\SYS_City.cs" />
-    <Compile Include="Models\SYS_Country.cs" />
-    <Compile Include="Models\SYS_District.cs" />
+    <Compile Include="Models\SYS_BloodType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ChronicSubType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_City.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Country.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_District.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SYS_DrinkType.cs" />
-    <Compile Include="Models\SYS_ProfessionType.cs" />
-    <Compile Include="Models\SYS_LanguageType.cs" />
-    <Compile Include="Models\SYS_LivingStatus.cs" />
-    <Compile Include="Models\SYS_EducationLevel.cs" />
-    <Compile Include="Models\SYS_RaceType.cs" />
-    <Compile Include="Models\SYS_RelationshipType.cs" />
-    <Compile Include="Models\SYS_MaritalStatus.cs" />
-    <Compile Include="Models\SYS_ReligionType.cs" />
-    <Compile Include="Models\SYS_SexType.cs" />
-    <Compile Include="Models\SYS_SmokeType.cs" />
-    <Compile Include="Models\SYS_State.cs" />
-    <Compile Include="Models\SYS_Unit.cs" />
-    <Compile Include="Models\SYS_UserAssignUnit.cs" />
+    <Compile Include="Models\SYS_ProfessionType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_LanguageType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_LivingStatus.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_EducationLevel.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RaceType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_RelationshipType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_MaritalStatus.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_ReligionType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SexType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_SmokeType.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_State.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_Unit.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYS_UserAssignUnit.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_BloodSugar.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_BodyWeight.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_BodyWeight.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_FoodRecord.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_FoodRecord.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_MedicineRecord.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\U_MedicineRecord.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_BasicInformation.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_BasicInformation.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_ContactPerson.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_ContactPerson.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_DMCareMember.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_DMCareMember.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_PMRPathology.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMCare_PMRPathology.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMGroup_DMCaseInfo.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMGroup_DMCaseInfo.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMGroup_SYSUser.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DMGroup_SYSUser.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_AddWorkShift_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_AddWorkShift_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_CheckAddressArea_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_CheckAddressArea_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_DeleteSYSUnitAndUser_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_DeleteSYSUnitAndUser_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAllDMAndUnassignReport_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAllDMAndUnassignReport_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAllUserAndUnassignReport_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAllUserAndUnassignReport_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAPPUserByMail_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAPPUserByMail_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAPPUserInfo_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAPPUserInfo_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAppUserList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetAppUserList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCGServiceRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCGServiceRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRBasicInformation_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRBasicInformation_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRContactPerson_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRContactPerson_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRDiabetesAlertConfig_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRDiabetesAlertConfig_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRDiabetesPlan_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetCMRDiabetesPlan_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetDiabetesType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetDiabetesType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetDMCareMemberByUserID_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetDMCareMemberByUserID_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetDMReportBySYSUnitID_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetDMReportBySYSUnitID_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPatientBloodSugar_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPatientBloodSugar_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPatientMedicineRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPatientMedicineRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPatientPressureRecord_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPatientPressureRecord_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPMRPathology_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPMRPathology_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPMRTagChronicName_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetPMRTagChronicName_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSArecaType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSArecaType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSBloodRhType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSBloodRhType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSBloodType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSBloodType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSCity_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSCity_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSCountry_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSCountry_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSDistrict_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSDistrict_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSDrinkType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSDrinkType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSEducationLevel_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSEducationLevel_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSFunction_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSFunction_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSLanguageType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSLanguageType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSLivingStatus_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSLivingStatus_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSMaritalStatus_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSMaritalStatus_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSMealTypeTimingType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSMealTypeTimingType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSMealType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSMealType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSProfessionType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSProfessionType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSRaceType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSRaceType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSRelationshipType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSRelationshipType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSReligionType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSReligionType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSRole_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSRole_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSServiceRecordType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSServiceRecordType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSServiceResult_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSServiceResult_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSServiceType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSServiceType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSSexType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSSexType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSSmokeType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSSmokeType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSState_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSState_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSTimingType_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSTimingType_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnitReportByRankType11_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnitReportByRankType11_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnitReportByRankType21_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnitReportByRankType21_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnitUserByUnitID_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnitUserByUnitID_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnit_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUnit_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUserByID_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUserByID_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUserList_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetSYSUserList_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetUserInfo_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_GetUserInfo_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Get_VideoSchedule_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Get_VideoSchedule_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_ModifyWorkShift_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_ModifyWorkShift_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_QueryDMCareInfoByUserID_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_QueryDMCareInfoByUserID_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_QueryDMCaseInfo_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_QueryDMCaseInfo_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_QuerySYSUser_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_QuerySYSUser_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Role_GetMainMenu_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Role_GetMainMenu_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Role_GetRoleName_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Role_GetRoleName_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Role_GetSubMenu_Result.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Web_Role_GetSubMenu_Result.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ZoomNetMeeting\ManageMeetingRoomTimeAssignViewModel.cs" />
     <Compile Include="Models\ZoomNetMeeting\MeetingRoomAssignedTimeViewModel.cs" />
     <Compile Include="Models\ZoomNetMeeting\ServiceTimeViewModel.cs" />
@@ -438,7 +1945,9 @@
     <Compile Include="Models\ZoomNetMeeting\ServiceTimeWithRemainRoomAmountViewModel.cs" />
     <Compile Include="Repository\DCCareRepository.cs" />
     <Compile Include="Models\ZoomNetMeeting\ZoomSetting.cs" />
-    <Compile Include="Models\SYS_User.cs" />
+    <Compile Include="Models\SYS_User.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\DCGroupRepository.cs" />
     <Compile Include="Repository\FileIORepository.cs" />
     <Compile Include="Models\UserManagementPage.cs" />
@@ -520,7 +2029,28 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Img\QRCodeDemoImg.png" />
+    <EntityDeploy Include="Models\ChronicCare.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ChronicCare.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ChronicCare.edmx.diagram">
+      <DependentUpon>ChronicCare.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Models\ChronicCare.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ChronicCare.edmx</DependentUpon>
+      <LastGenOutput>ChronicCare.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ChronicCare.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ChronicCare.edmx</DependentUpon>
+      <LastGenOutput>ChronicCare.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EFGeneratePartialClass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EFGeneratePartialClass.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
@@ -4505,10 +6035,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{60d0ebb5-dde7-4046-996a-bb00b59b8024}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -4527,7 +6054,7 @@
           <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties Content_2JSON_2bundles_1json__JSONSchema="" sitemap_1json__JSONSchema="Contact" />
+      <UserProperties sitemap_1json__JSONSchema="Contact" Content_2JSON_2bundles_1json__JSONSchema="" />
     </VisualStudio>
     <MonoDevelop>
       <Properties>
