@@ -1,2 +1,2 @@
 # DiabetesCarePlatform
-糖尿病長期照護網平台的範例版本開放原始碼
+糖尿病長期照護網平台的EntityFramework範例版本開放原始碼
