@@ -1371,6 +1371,9 @@
     <Compile Include="Models\SYS_Unit.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SYS_UnitAssignRole.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SYS_UnitAssignRole_Del.cs">
       <DependentUpon>ChronicCare.tt</DependentUpon>
     </Compile>
@@ -1526,6 +1529,9 @@
     </Compile>
     <Compile Include="Models\U_MedicineRecord.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_DCCare_ContactPerson.cs">
+      <DependentUpon>ChronicCare.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\View_DMCare_BasicInformation.cs">
       <DependentUpon>ChronicCare.tt</DependentUpon>
@@ -6054,7 +6060,7 @@
           <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties sitemap_1json__JSONSchema="Contact" Content_2JSON_2bundles_1json__JSONSchema="" />
+      <UserProperties Content_2JSON_2bundles_1json__JSONSchema="" sitemap_1json__JSONSchema="Contact" />
     </VisualStudio>
     <MonoDevelop>
       <Properties>

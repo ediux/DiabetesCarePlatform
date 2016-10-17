@@ -167,6 +167,8 @@ namespace DiabetesCarePlatform.Models
         public virtual DbSet<View_DMCare_PMRPathology> View_DMCare_PMRPathology { get; set; }
         public virtual DbSet<View_DMGroup_DMCaseInfo> View_DMGroup_DMCaseInfo { get; set; }
         public virtual DbSet<View_DMGroup_SYSUser> View_DMGroup_SYSUser { get; set; }
+        public virtual DbSet<SYS_UnitAssignRole> SYS_UnitAssignRole { get; set; }
+        public virtual DbSet<View_DCCare_ContactPerson> View_DCCare_ContactPerson { get; set; }
     
         [DbFunction("ChronicCareEntities", "FN_GetMeetingRoomsRemainTable")]
         public virtual IQueryable<FN_GetMeetingRoomsRemainTable_Result> FN_GetMeetingRoomsRemainTable(Nullable<System.DateTime> shiftdate)
@@ -2106,7 +2108,7 @@ namespace DiabetesCarePlatform.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SysDB_CreateKey_Result>("SysDB_CreateKey");
         }
     
-        public virtual ObjectResult<Nullable<int>> Web_AddAPPUser(string medicalRecordNumber, string mailAddress, string password, string name, Nullable<int> sexID, Nullable<System.DateTime> birthday, string identityNumber, Nullable<int> chronicSubTypeID, Nullable<System.DateTime> diagnosisDate, Nullable<decimal> bodyHeight, Nullable<decimal> bodyWeight, string mobileNumber, Nullable<bool> enable, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual ObjectResult<Nullable<int>> Web_AddAPPUser(string medicalRecordNumber, string mailAddress, string password, string name, Nullable<int> sexID, Nullable<System.DateTime> birthday, string identityNumber, Nullable<int> chronicSubTypeID, Nullable<System.DateTime> diagnosisDate, Nullable<decimal> bodyHeight, Nullable<decimal> bodyWeight, string mobileNumber, Nullable<bool> enable, Nullable<int> lastUserID)
         {
             var medicalRecordNumberParameter = medicalRecordNumber != null ?
                 new ObjectParameter("MedicalRecordNumber", medicalRecordNumber) :
@@ -2160,15 +2162,11 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("Enable", enable) :
                 new ObjectParameter("Enable", typeof(bool));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
     
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_AddAPPUser", medicalRecordNumberParameter, mailAddressParameter, passwordParameter, nameParameter, sexIDParameter, birthdayParameter, identityNumberParameter, chronicSubTypeIDParameter, diagnosisDateParameter, bodyHeightParameter, bodyWeightParameter, mobileNumberParameter, enableParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_AddAPPUser", medicalRecordNumberParameter, mailAddressParameter, passwordParameter, nameParameter, sexIDParameter, birthdayParameter, identityNumberParameter, chronicSubTypeIDParameter, diagnosisDateParameter, bodyHeightParameter, bodyWeightParameter, mobileNumberParameter, enableParameter, lastUserIDParameter);
         }
     
         public virtual int Web_AddAPPVerifyCode(Nullable<int> patientID, Nullable<int> aPPUserID, string identityNumber, string userKey, string iP, ObjectParameter newUserKey)
@@ -2274,7 +2272,7 @@ namespace DiabetesCarePlatform.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCGServiceRecord", patientIDParameter, serviceDateParameter, startTimeParameter, endTimeParameter, serviceRecordTypeIDParameter, serviceTypeIDParameter, serviceTypeNoteParameter, serviceResultIDParameter, serviceResultNoteParameter, noteParameter, responseMessageParameter, userKeyParameter, iPParameter, newUserKey);
         }
     
-        public virtual int Web_AddCMRContactPerson(Nullable<int> patientID, Nullable<int> relationshipTypeID, string contactName, Nullable<int> contactSexID, string emergencyHomeTelphone, string emergencyOfficeTelphone, string emergencyCellPhone, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual int Web_AddCMRContactPerson(Nullable<int> patientID, Nullable<int> relationshipTypeID, string contactName, Nullable<int> contactSexID, string emergencyHomeTelphone, string emergencyOfficeTelphone, string emergencyCellPhone, Nullable<int> lastUserID)
         {
             var patientIDParameter = patientID.HasValue ?
                 new ObjectParameter("PatientID", patientID) :
@@ -2304,15 +2302,11 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("EmergencyCellPhone", emergencyCellPhone) :
                 new ObjectParameter("EmergencyCellPhone", typeof(string));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
     
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCMRContactPerson", patientIDParameter, relationshipTypeIDParameter, contactNameParameter, contactSexIDParameter, emergencyHomeTelphoneParameter, emergencyOfficeTelphoneParameter, emergencyCellPhoneParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCMRContactPerson", patientIDParameter, relationshipTypeIDParameter, contactNameParameter, contactSexIDParameter, emergencyHomeTelphoneParameter, emergencyOfficeTelphoneParameter, emergencyCellPhoneParameter, lastUserIDParameter);
         }
     
         public virtual int Web_AddCMRPatient(Nullable<int> createUserID, Nullable<int> lastUserID, string medicalRecordNumber, Nullable<int> chronicTypeID, Nullable<int> parentUnitID, Nullable<int> unitID, Nullable<int> appUserID, Nullable<bool> enable, Nullable<int> caseStatus, string patientName, string identityNumber, Nullable<System.DateTime> birthday, Nullable<int> sexID, Nullable<int> raceTypeID, Nullable<int> bloodTypeID, Nullable<int> bloodRhTypeID, string disabledID, Nullable<int> languageTypeID, Nullable<int> religionTypeID, Nullable<int> maritalStatus, Nullable<int> registerCountryID, Nullable<int> registerStateID, Nullable<int> registerCityID, Nullable<int> registerDistrictID, string registerAddress, Nullable<int> educationLevelID, Nullable<decimal> bodyHeight, Nullable<decimal> bodyWeight, Nullable<int> nowCountryID, Nullable<int> nowStateID, Nullable<int> nowCityID, Nullable<int> nowDistrictID, string nowAddress, string homeTelphone, string officeTelphone, string cellPhone, string eMail, Nullable<int> livingStatus, Nullable<int> smokeTypeID, Nullable<int> drinkTypeID, Nullable<int> arecaTypeID, Nullable<System.DateTime> inspectionDate, Nullable<System.DateTime> diagnosisDate, Nullable<int> chronicSubTypeID, Nullable<int> familyHistoryTypeID, Nullable<int> pathologyID, string resultValue)
@@ -2508,7 +2502,7 @@ namespace DiabetesCarePlatform.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCMRPatient", createUserIDParameter, lastUserIDParameter, medicalRecordNumberParameter, chronicTypeIDParameter, parentUnitIDParameter, unitIDParameter, appUserIDParameter, enableParameter, caseStatusParameter, patientNameParameter, identityNumberParameter, birthdayParameter, sexIDParameter, raceTypeIDParameter, bloodTypeIDParameter, bloodRhTypeIDParameter, disabledIDParameter, languageTypeIDParameter, religionTypeIDParameter, maritalStatusParameter, registerCountryIDParameter, registerStateIDParameter, registerCityIDParameter, registerDistrictIDParameter, registerAddressParameter, educationLevelIDParameter, bodyHeightParameter, bodyWeightParameter, nowCountryIDParameter, nowStateIDParameter, nowCityIDParameter, nowDistrictIDParameter, nowAddressParameter, homeTelphoneParameter, officeTelphoneParameter, cellPhoneParameter, eMailParameter, livingStatusParameter, smokeTypeIDParameter, drinkTypeIDParameter, arecaTypeIDParameter, inspectionDateParameter, diagnosisDateParameter, chronicSubTypeIDParameter, familyHistoryTypeIDParameter, pathologyIDParameter, resultValueParameter);
         }
     
-        public virtual int Web_AddCMRPatientBase(Nullable<int> patientID, string patientName, string identityNumber, Nullable<System.DateTime> birthday, Nullable<int> sexID, Nullable<int> raceTypeID, Nullable<int> bloodTypeID, Nullable<int> bloodRhTypeID, string disabledID, Nullable<int> languageTypeID, Nullable<int> religionTypeID, Nullable<int> maritalStatus, Nullable<int> registerCountryID, Nullable<int> registerStateID, Nullable<int> registerCityID, Nullable<int> registerDistrictID, string registerAddress, Nullable<int> educationLevelID, Nullable<decimal> bodyHeight, Nullable<decimal> bodyWeight, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual int Web_AddCMRPatientBase(Nullable<int> patientID, string patientName, string identityNumber, Nullable<System.DateTime> birthday, Nullable<int> sexID, Nullable<int> raceTypeID, Nullable<int> bloodTypeID, Nullable<int> bloodRhTypeID, string disabledID, Nullable<int> languageTypeID, Nullable<int> religionTypeID, Nullable<int> maritalStatus, Nullable<int> registerCountryID, Nullable<int> registerStateID, Nullable<int> registerCityID, Nullable<int> registerDistrictID, string registerAddress, Nullable<int> educationLevelID, Nullable<decimal> bodyHeight, Nullable<decimal> bodyWeight, Nullable<int> createUserID, Nullable<int> lastUserID)
         {
             var patientIDParameter = patientID.HasValue ?
                 new ObjectParameter("PatientID", patientID) :
@@ -2590,18 +2584,18 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("BodyWeight", bodyWeight) :
                 new ObjectParameter("BodyWeight", typeof(decimal));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
+            var createUserIDParameter = createUserID.HasValue ?
+                new ObjectParameter("CreateUserID", createUserID) :
+                new ObjectParameter("CreateUserID", typeof(int));
     
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCMRPatientBase", patientIDParameter, patientNameParameter, identityNumberParameter, birthdayParameter, sexIDParameter, raceTypeIDParameter, bloodTypeIDParameter, bloodRhTypeIDParameter, disabledIDParameter, languageTypeIDParameter, religionTypeIDParameter, maritalStatusParameter, registerCountryIDParameter, registerStateIDParameter, registerCityIDParameter, registerDistrictIDParameter, registerAddressParameter, educationLevelIDParameter, bodyHeightParameter, bodyWeightParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCMRPatientBase", patientIDParameter, patientNameParameter, identityNumberParameter, birthdayParameter, sexIDParameter, raceTypeIDParameter, bloodTypeIDParameter, bloodRhTypeIDParameter, disabledIDParameter, languageTypeIDParameter, religionTypeIDParameter, maritalStatusParameter, registerCountryIDParameter, registerStateIDParameter, registerCityIDParameter, registerDistrictIDParameter, registerAddressParameter, educationLevelIDParameter, bodyHeightParameter, bodyWeightParameter, createUserIDParameter, lastUserIDParameter);
         }
     
-        public virtual int Web_AddCMRPatientDetails(Nullable<int> patientID, Nullable<int> nowCountryID, Nullable<int> nowStateID, Nullable<int> nowCityID, Nullable<int> nowDistrictID, string nowAddress, string homeTelphone, string officeTelphone, string cellPhone, string eMail, Nullable<int> livingStatus, Nullable<int> smokeTypeID, Nullable<int> drinkTypeID, Nullable<int> arecaTypeID, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual int Web_AddCMRPatientDetails(Nullable<int> patientID, Nullable<int> nowCountryID, Nullable<int> nowStateID, Nullable<int> nowCityID, Nullable<int> nowDistrictID, string nowAddress, string homeTelphone, string officeTelphone, string cellPhone, string eMail, Nullable<int> livingStatus, Nullable<int> smokeTypeID, Nullable<int> drinkTypeID, Nullable<int> arecaTypeID, Nullable<int> lastUserID)
         {
             var patientIDParameter = patientID.HasValue ?
                 new ObjectParameter("PatientID", patientID) :
@@ -2659,19 +2653,23 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("ArecaTypeID", arecaTypeID) :
                 new ObjectParameter("ArecaTypeID", typeof(int));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
     
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCMRPatientDetails", patientIDParameter, nowCountryIDParameter, nowStateIDParameter, nowCityIDParameter, nowDistrictIDParameter, nowAddressParameter, homeTelphoneParameter, officeTelphoneParameter, cellPhoneParameter, eMailParameter, livingStatusParameter, smokeTypeIDParameter, drinkTypeIDParameter, arecaTypeIDParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddCMRPatientDetails", patientIDParameter, nowCountryIDParameter, nowStateIDParameter, nowCityIDParameter, nowDistrictIDParameter, nowAddressParameter, homeTelphoneParameter, officeTelphoneParameter, cellPhoneParameter, eMailParameter, livingStatusParameter, smokeTypeIDParameter, drinkTypeIDParameter, arecaTypeIDParameter, lastUserIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Web_AddCMRPatientKey(string medicalRecordNumber, Nullable<int> chronicTypeID, Nullable<int> parentUnitID, Nullable<int> unitID, Nullable<int> appUserID, Nullable<bool> enable, Nullable<int> caseStatus, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual ObjectResult<Nullable<int>> Web_AddCMRPatientKey(Nullable<int> createUserID, Nullable<int> lastUserID, string medicalRecordNumber, Nullable<int> chronicTypeID, Nullable<int> parentUnitID, Nullable<int> unitID, Nullable<int> appUserID, Nullable<bool> enable, Nullable<int> caseStatus)
         {
+            var createUserIDParameter = createUserID.HasValue ?
+                new ObjectParameter("CreateUserID", createUserID) :
+                new ObjectParameter("CreateUserID", typeof(int));
+    
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
+    
             var medicalRecordNumberParameter = medicalRecordNumber != null ?
                 new ObjectParameter("MedicalRecordNumber", medicalRecordNumber) :
                 new ObjectParameter("MedicalRecordNumber", typeof(string));
@@ -2700,15 +2698,7 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("CaseStatus", caseStatus) :
                 new ObjectParameter("CaseStatus", typeof(int));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
-    
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_AddCMRPatientKey", medicalRecordNumberParameter, chronicTypeIDParameter, parentUnitIDParameter, unitIDParameter, appUserIDParameter, enableParameter, caseStatusParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_AddCMRPatientKey", createUserIDParameter, lastUserIDParameter, medicalRecordNumberParameter, chronicTypeIDParameter, parentUnitIDParameter, unitIDParameter, appUserIDParameter, enableParameter, caseStatusParameter);
         }
     
         public virtual int Web_AddOrDeleteUserAssignUnit(Nullable<int> sTATUS, Nullable<int> unitID, Nullable<int> userID, string userKey, string iP, ObjectParameter newUserKey)
@@ -2736,7 +2726,7 @@ namespace DiabetesCarePlatform.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddOrDeleteUserAssignUnit", sTATUSParameter, unitIDParameter, userIDParameter, userKeyParameter, iPParameter, newUserKey);
         }
     
-        public virtual int Web_AddPMRPathologyBody(Nullable<int> patientID, Nullable<int> headID, Nullable<int> pathologyID, string resultValue, Nullable<System.DateTime> inspectionDate, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual int Web_AddPMRPathologyBody(Nullable<int> patientID, Nullable<int> headID, Nullable<int> pathologyID, string resultValue, Nullable<System.DateTime> inspectionDate, Nullable<int> createUserID, Nullable<int> lastUserID)
         {
             var patientIDParameter = patientID.HasValue ?
                 new ObjectParameter("PatientID", patientID) :
@@ -2758,18 +2748,18 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("InspectionDate", inspectionDate) :
                 new ObjectParameter("InspectionDate", typeof(System.DateTime));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
+            var createUserIDParameter = createUserID.HasValue ?
+                new ObjectParameter("CreateUserID", createUserID) :
+                new ObjectParameter("CreateUserID", typeof(int));
     
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddPMRPathologyBody", patientIDParameter, headIDParameter, pathologyIDParameter, resultValueParameter, inspectionDateParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddPMRPathologyBody", patientIDParameter, headIDParameter, pathologyIDParameter, resultValueParameter, inspectionDateParameter, createUserIDParameter, lastUserIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Web_AddPMRPathologyHead(Nullable<int> patientID, Nullable<int> chronicTypeID, Nullable<System.DateTime> inspectionDate, Nullable<System.DateTime> diagnosisDate, Nullable<int> chronicSubTypeID, Nullable<int> familyHistoryTypeID, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual ObjectResult<Nullable<int>> Web_AddPMRPathologyHead(Nullable<int> patientID, Nullable<int> chronicTypeID, Nullable<System.DateTime> inspectionDate, Nullable<System.DateTime> diagnosisDate, Nullable<int> chronicSubTypeID, Nullable<int> familyHistoryTypeID, Nullable<int> createUserID, Nullable<int> lastUserID)
         {
             var patientIDParameter = patientID.HasValue ?
                 new ObjectParameter("PatientID", patientID) :
@@ -2795,15 +2785,15 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("FamilyHistoryTypeID", familyHistoryTypeID) :
                 new ObjectParameter("FamilyHistoryTypeID", typeof(int));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
+            var createUserIDParameter = createUserID.HasValue ?
+                new ObjectParameter("CreateUserID", createUserID) :
+                new ObjectParameter("CreateUserID", typeof(int));
     
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_AddPMRPathologyHead", patientIDParameter, chronicTypeIDParameter, inspectionDateParameter, diagnosisDateParameter, chronicSubTypeIDParameter, familyHistoryTypeIDParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_AddPMRPathologyHead", patientIDParameter, chronicTypeIDParameter, inspectionDateParameter, diagnosisDateParameter, chronicSubTypeIDParameter, familyHistoryTypeIDParameter, createUserIDParameter, lastUserIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> Web_AddSYSUnit(string unitName, Nullable<int> parentUnitID, Nullable<int> unitRankTypeID, string userKey, string iP, ObjectParameter newUserKey)
@@ -3556,21 +3546,13 @@ namespace DiabetesCarePlatform.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetDiabetesType_Result>("Web_GetDiabetesType");
         }
     
-        public virtual ObjectResult<Web_GetDMCareMemberByUserID_Result> Web_GetDMCareMemberByUserID(Nullable<int> patientID, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual ObjectResult<Web_GetDMCareMemberByUserID_Result> Web_GetDMCareMemberByUserID(Nullable<int> patientID)
         {
             var patientIDParameter = patientID.HasValue ?
                 new ObjectParameter("PatientID", patientID) :
                 new ObjectParameter("PatientID", typeof(int));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
-    
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetDMCareMemberByUserID_Result>("Web_GetDMCareMemberByUserID", patientIDParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetDMCareMemberByUserID_Result>("Web_GetDMCareMemberByUserID", patientIDParameter);
         }
     
         public virtual ObjectResult<Web_GetDMReportBySYSUnitID_Result> Web_GetDMReportBySYSUnitID(Nullable<int> cGUnitID, string userKey, string iP, ObjectParameter newUserKey)
@@ -4088,7 +4070,7 @@ namespace DiabetesCarePlatform.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_QueryDMCareInfoByUserID_Result>("Web_QueryDMCareInfoByUserID", nameParameter, sexIdParameter, medicalRecordNumberParameter, homeTelphoneParameter, cellPhoneParameter, userKeyParameter, iPParameter, newUserKey);
         }
     
-        public virtual ObjectResult<Web_QueryDMCaseInfo_Result> Web_QueryDMCaseInfo(string name, Nullable<int> sexId, Nullable<int> status, Nullable<int> raceTypeID, Nullable<System.DateTime> birthday, string medicalRecordNumber)
+        public virtual ObjectResult<Web_QueryDMCaseInfo_Result> Web_QueryDMCaseInfo(string name, Nullable<int> sexId, Nullable<int> raceTypeID, Nullable<System.DateTime> birthday, string medicalRecordNumber)
         {
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
@@ -4097,10 +4079,6 @@ namespace DiabetesCarePlatform.Models
             var sexIdParameter = sexId.HasValue ?
                 new ObjectParameter("SexId", sexId) :
                 new ObjectParameter("SexId", typeof(int));
-    
-            var statusParameter = status.HasValue ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(int));
     
             var raceTypeIDParameter = raceTypeID.HasValue ?
                 new ObjectParameter("RaceTypeID", raceTypeID) :
@@ -4114,10 +4092,10 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("MedicalRecordNumber", medicalRecordNumber) :
                 new ObjectParameter("MedicalRecordNumber", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_QueryDMCaseInfo_Result>("Web_QueryDMCaseInfo", nameParameter, sexIdParameter, statusParameter, raceTypeIDParameter, birthdayParameter, medicalRecordNumberParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_QueryDMCaseInfo_Result>("Web_QueryDMCaseInfo", nameParameter, sexIdParameter, raceTypeIDParameter, birthdayParameter, medicalRecordNumberParameter);
         }
     
-        public virtual ObjectResult<Web_QuerySYSUser_Result> Web_QuerySYSUser(string name, Nullable<int> sexId, Nullable<int> languageTypeID, Nullable<int> raceTypeID, string jobTitle, Nullable<int> status)
+        public virtual ObjectResult<Web_QuerySYSUser_Result> Web_QuerySYSUser(string name, Nullable<int> sexId, Nullable<int> languageTypeID, Nullable<int> raceTypeID, string jobTitle)
         {
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
@@ -4139,11 +4117,7 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("JobTitle", jobTitle) :
                 new ObjectParameter("JobTitle", typeof(string));
     
-            var statusParameter = status.HasValue ?
-                new ObjectParameter("Status", status) :
-                new ObjectParameter("Status", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_QuerySYSUser_Result>("Web_QuerySYSUser", nameParameter, sexIdParameter, languageTypeIDParameter, raceTypeIDParameter, jobTitleParameter, statusParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_QuerySYSUser_Result>("Web_QuerySYSUser", nameParameter, sexIdParameter, languageTypeIDParameter, raceTypeIDParameter, jobTitleParameter);
         }
     
         public virtual int Web_RemoveCGCareGroup(Nullable<int> patientID, Nullable<int> unitID, string userKey, string iP, ObjectParameter newUserKey)
@@ -4252,7 +4226,7 @@ namespace DiabetesCarePlatform.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_Role_SetUserRole", userIDParameter, roleIDParameter, userKeyParameter, iPParameter, newUserKey);
         }
     
-        public virtual int Web_UpdateAPPUser(string medicalRecordNumber, Nullable<int> appUserID, string name, Nullable<int> sexID, Nullable<System.DateTime> birthday, string identityNumber, Nullable<int> chronicSubTypeID, Nullable<System.DateTime> diagnosisDate, Nullable<decimal> bodyHeight, Nullable<decimal> bodyWeight, string mobileNumber, Nullable<bool> enable, string userKey, string iP, ObjectParameter newUserKey)
+        public virtual int Web_UpdateAPPUser(string medicalRecordNumber, Nullable<int> appUserID, string name, Nullable<int> sexID, Nullable<System.DateTime> birthday, string identityNumber, Nullable<int> chronicSubTypeID, Nullable<System.DateTime> diagnosisDate, Nullable<decimal> bodyHeight, Nullable<decimal> bodyWeight, string mobileNumber, Nullable<bool> enable, Nullable<int> lastUserID)
         {
             var medicalRecordNumberParameter = medicalRecordNumber != null ?
                 new ObjectParameter("MedicalRecordNumber", medicalRecordNumber) :
@@ -4302,15 +4276,11 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("Enable", enable) :
                 new ObjectParameter("Enable", typeof(bool));
     
-            var userKeyParameter = userKey != null ?
-                new ObjectParameter("UserKey", userKey) :
-                new ObjectParameter("UserKey", typeof(string));
+            var lastUserIDParameter = lastUserID.HasValue ?
+                new ObjectParameter("LastUserID", lastUserID) :
+                new ObjectParameter("LastUserID", typeof(int));
     
-            var iPParameter = iP != null ?
-                new ObjectParameter("IP", iP) :
-                new ObjectParameter("IP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_UpdateAPPUser", medicalRecordNumberParameter, appUserIDParameter, nameParameter, sexIDParameter, birthdayParameter, identityNumberParameter, chronicSubTypeIDParameter, diagnosisDateParameter, bodyHeightParameter, bodyWeightParameter, mobileNumberParameter, enableParameter, userKeyParameter, iPParameter, newUserKey);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_UpdateAPPUser", medicalRecordNumberParameter, appUserIDParameter, nameParameter, sexIDParameter, birthdayParameter, identityNumberParameter, chronicSubTypeIDParameter, diagnosisDateParameter, bodyHeightParameter, bodyWeightParameter, mobileNumberParameter, enableParameter, lastUserIDParameter);
         }
     
         public virtual int Web_UpdateSYSUnit(Nullable<int> unitID, Nullable<int> parentUnitID, string unitName, string userKey, string iP, ObjectParameter newUserKey)
@@ -4357,6 +4327,11 @@ namespace DiabetesCarePlatform.Models
                 new ObjectParameter("IP", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_UserLogin", unitIDParameter, accountParameter, passwordParameter, iPParameter, userKey);
+        }
+    
+        public virtual int Web_AddContactPerson()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_AddContactPerson");
         }
     }
 }

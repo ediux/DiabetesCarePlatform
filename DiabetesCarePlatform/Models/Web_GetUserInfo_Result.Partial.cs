@@ -6,6 +6,7 @@ namespace DiabetesCarePlatform.Models
     [MetadataType(typeof(Web_GetUserInfo_ResultMetaData))]
     public partial class Web_GetUserInfo_Result
     {
+        
     }
     
     public partial class Web_GetUserInfo_ResultMetaData

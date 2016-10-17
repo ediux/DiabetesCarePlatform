@@ -21,5 +21,9 @@ namespace DiabetesCarePlatform.Models
         public System.DateTime CreateDate { get; set; }
         public int LastUserID { get; set; }
         public System.DateTime LastUpdate { get; set; }
+        public bool CanRead { get; set; }
+        public bool CanAdd { get; set; }
+        public bool CanUpdate { get; set; }
+        public bool CanDelete { get; set; }
     }
 }

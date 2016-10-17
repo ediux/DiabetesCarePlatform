@@ -1,5 +1,4 @@
-﻿using DataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,11 +8,11 @@ namespace DiabetesCarePlatform.Repository
 {
     public class WorkShiftRepository
     {
-        private DB_Dapper Dap;
+        private Models.ChronicCareEntities Dap;
 
         public WorkShiftRepository()
         {
-            Dap = new DB_Dapper();
+            Dap = new Models.ChronicCareEntities();
         }
 
         #region 會議室預約時段資料表存取
@@ -23,14 +22,13 @@ namespace DiabetesCarePlatform.Repository
         /// <param name="starttime">預約起始時間</param>
         /// <param name="endtime">預約結束時間</param>
         /// <returns>傳回已建立的預約時段</returns>
-        public IEnumerable<MR_MeetingRoomTimes> SP_AddMR_MeetingRoomTime(TimeSpan starttime, TimeSpan endtime)
+        public IEnumerable<Models.SP_AddMR_MeetingRoomTime_Result> SP_AddMR_MeetingRoomTime(TimeSpan starttime, TimeSpan endtime)
         {
             Dictionary<String, Object> param = new Dictionary<string, object>();
 
             param.Add("@starttime", starttime);
             param.Add("@endtime", endtime);
-
-            return Dap.ModelListSP<MR_MeetingRoomTimes>("SP_AddMR_MeetingRoomTime", param);
+            return Dap.SP_AddMR_MeetingRoomTime(starttime, endtime).AsEnumerable();
         }
 
         public void SP_DeleteMR_MeetingRoomTime(int TimeSectionId)

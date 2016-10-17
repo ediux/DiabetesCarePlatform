@@ -145,6 +145,8 @@
         <EntityTypeShape EntityType="ChronicCareModel.View_DMCare_PMRPathology" Width="1.5" PointX="18.75" PointY="31.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChronicCareModel.View_DMGroup_DMCaseInfo" Width="1.5" PointX="20.75" PointY="31.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChronicCareModel.View_DMGroup_SYSUser" Width="1.5" PointX="22.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChronicCareModel.SYS_UnitAssignRole" Width="1.5" PointX="25.375" PointY="31.75" />
+        <EntityTypeShape EntityType="ChronicCareModel.View_DCCare_ContactPerson" Width="1.5" PointX="27.375" PointY="31.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
