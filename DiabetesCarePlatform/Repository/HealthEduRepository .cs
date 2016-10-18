@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DataAccess;
 using DiabetesCarePlatform.Models;
 using DiabetesCarePlatform.Models.DataTable;
 using DiabetesCarePlatform.Repository;

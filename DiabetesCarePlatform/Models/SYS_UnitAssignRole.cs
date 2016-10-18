@@ -10,16 +10,13 @@
 namespace DiabetesCarePlatform.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class Web_QueryDMCareInfoByUserID_Result
+    public partial class SYS_UnitAssignRole
     {
-        public Nullable<int> PatientID { get; set; }
-        public string PatientName { get; set; }
-        public string HomeTelphone { get; set; }
-        public string CellPhone { get; set; }
-        public string MedicalRecordNumber { get; set; }
-        public string SexName { get; set; }
-        public string GroupName { get; set; }
-        public string GroupID { get; set; }
+        public int UnitID { get; set; }
+        public int RoleID { get; set; }
+        public int LastUserID { get; set; }
+        public System.DateTime LastUpdate { get; set; }
     }
 }

@@ -22,7 +22,5 @@ namespace DiabetesCarePlatform.Models
         public string MedicalRecordNumber { get; set; }
         public string ChronicSubName { get; set; }
         public string SexName { get; set; }
-        public int CGUnitID { get; set; }
-        public int SexID { get; set; }
     }
 }

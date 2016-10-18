@@ -27,7 +27,5 @@ namespace DiabetesCarePlatform.Models
         public int Diastolic { get; set; }
         [Required]
         public int Heartbeat { get; set; }
-        [Required]
-        public System.DateTime RecordTime { get; set; }
     }
 }

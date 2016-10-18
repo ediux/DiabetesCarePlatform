@@ -12,17 +12,17 @@ using DiabetesCarePlatform.Helpers.MVCExtras;
 
 namespace DiabetesCarePlatform.Repository
 {
-    public class DBRepository
+    public class DBRepository : BaseRepository
     {
-        //DB_Dapper Dap = new DB_Dapper();
-        BaseRepository BaseDap = new BaseRepository();
+        
 
         #region Login
         public string SP_UserLogin(int UnitID, string Account, string Password, string IP)
         {
-            System.Data.Entity.Core.Objects.ObjectParameter output = new System.Data.Entity.Core.Objects.ObjectParameter("UserKey", "");
-            BaseDap.Database.Web_UserLogin(UnitID, Account, Password, IP, output);
-
+             System.Data.Entity.Core.Objects.ObjectParameter output = new System.Data.Entity.Core.Objects.ObjectParameter("UserKey", typeof(string));
+             
+            Dap.SP_UserLogin((int?)UnitID, Account, Password, IP, output);
+           
             //Dictionary<String, Object> field = new Dictionary<string, object>();
             //field.Add("UnitID", UnitID);
             //field.Add("Account", Account);
@@ -34,15 +34,17 @@ namespace DiabetesCarePlatform.Repository
             //Dap.NonQuerySPOutput("Web_UserLogin", field, Outputparam,out output);
             return output.Value as string;
         }
+
         public UserInfo Web_GetUserInfo(string UserKey)
         {
-            Dictionary<String, Object> field = new Dictionary<string, object>();
-            field.Add("UserKey", UserKey);
-            return Dap.ModelListSP<UserInfo>("Web_GetUserInfo", field).FirstOrDefault();
+            var result = Dap.Web_GetUserInfo(UserKey);
+            var info= result.SingleOrDefault() as UserInfo;
+            return info;
         }
 
         public string GetUserKeyById(int UserId)
         {
+            
             Dictionary<String, Object> field = new Dictionary<string, object>();
             field.Add("userid", UserId);
             return Dap.QueryList<string>("Select dbo.GetUserKeyById(@userid)", field).FirstOrDefault();
@@ -56,23 +58,23 @@ namespace DiabetesCarePlatform.Repository
 
         #region DMSetUp Wonda
 
-      
+
         public List<PMRTagNameCBViewModel> Web_GetPMRTagChronicName()
         {
             Dictionary<String, Object> field = new Dictionary<string, object>();
             return Dap.ModelListSP<PMRTagNameCBViewModel>("Web_GetPMRTagChronicName", field);
         }
-          
+
 
         public List<AddressViewModels> Web_CheckAddressArea(int stateID, int cityID, int districtID)
         {
-         
+
             Dictionary<String, Object> field = new Dictionary<string, object>();
             field.Add("StateID", stateID);
             field.Add("CityID", cityID);
             field.Add("DistrictID", districtID);
             return Dap.ModelListSP<AddressViewModels>("Web_CheckAddressArea", field);
-       
+
         }
 
         public int Web_AddCMRPatient(CMR_PatientKey mCMR_PatientKey, CMR_PatientBase mCMR_PatientBase, CMR_PatientDetails mCMR_PatientDetails, PMR_PathologyHead mPMR_PathologyHead, List<PMR_PathologyBody> lPMR_PathologyBody, List<CMR_ContactPerson> lCMR_ContactPerson, APP_User mAppUser, int action)
@@ -81,19 +83,19 @@ namespace DiabetesCarePlatform.Repository
             int nPatientID = 0;
             try
             {
-        #region Web_AddCMRPatient
+                #region Web_AddCMRPatient
                 //[Web_AddCMRPatient]
                 Dictionary<String, Object> field1 = new Dictionary<string, object>();
-	            field1.Add("MedicalRecordNumber", mCMR_PatientKey.MedicalRecordNumber);
-	            field1.Add("ChronicTypeID", mCMR_PatientKey.ChronicTypeID);
-	            field1.Add("ParentUnitID", mCMR_PatientKey.ParentUnitID);
-	            field1.Add("UnitID", mCMR_PatientKey.UnitID);
-	            field1.Add("AppUserID", mCMR_PatientKey.AppUserID);
-	            field1.Add("Enable", 1);
+                field1.Add("MedicalRecordNumber", mCMR_PatientKey.MedicalRecordNumber);
+                field1.Add("ChronicTypeID", mCMR_PatientKey.ChronicTypeID);
+                field1.Add("ParentUnitID", mCMR_PatientKey.ParentUnitID);
+                field1.Add("UnitID", mCMR_PatientKey.UnitID);
+                field1.Add("AppUserID", mCMR_PatientKey.AppUserID);
+                field1.Add("Enable", 1);
                 field1.Add("CaseStatus", 1);
                 var lPID = BaseDap.ModelListSP<int>("Web_AddCMRPatientKey", field1);
                 nPatientID = lPID.FirstOrDefault();
-          
+
                 if (nPatientID > 0)
                 {
                     mCMR_PatientBase.PatientID = nPatientID;
@@ -127,30 +129,30 @@ namespace DiabetesCarePlatform.Repository
                 field2.Add("BodyHeight", mCMR_PatientBase.BodyHeight);
                 field2.Add("BodyWeight", mCMR_PatientBase.BodyWeight);
                 BaseDap.NonQuerySP("Web_AddCMRPatientBase", field2);
-        #endregion 
-        #region Web_AddCMRPatientDetails
+                #endregion
+                #region Web_AddCMRPatientDetails
                 Dictionary<String, Object> field6 = new Dictionary<string, object>();
-                field6.Add("PatientID",mCMR_PatientDetails.PatientID);
-	            field6.Add("NowCountryID",mCMR_PatientDetails.NowCountryID);
-                field6.Add("NowStateID",mCMR_PatientDetails.NowStateID);
-                field6.Add("NowCityID",mCMR_PatientDetails.NowCityID);
-                field6.Add("NowDistrictID",mCMR_PatientDetails.NowDistrictID);
-                field6.Add("NowAddress",mCMR_PatientDetails.NowAddress);
-                field6.Add("HomeTelphone",mCMR_PatientDetails.HomeTelphone);
-                field6.Add("OfficeTelphone",mCMR_PatientDetails.OfficeTelphone);
-                field6.Add("CellPhone",mCMR_PatientDetails.CellPhone);
+                field6.Add("PatientID", mCMR_PatientDetails.PatientID);
+                field6.Add("NowCountryID", mCMR_PatientDetails.NowCountryID);
+                field6.Add("NowStateID", mCMR_PatientDetails.NowStateID);
+                field6.Add("NowCityID", mCMR_PatientDetails.NowCityID);
+                field6.Add("NowDistrictID", mCMR_PatientDetails.NowDistrictID);
+                field6.Add("NowAddress", mCMR_PatientDetails.NowAddress);
+                field6.Add("HomeTelphone", mCMR_PatientDetails.HomeTelphone);
+                field6.Add("OfficeTelphone", mCMR_PatientDetails.OfficeTelphone);
+                field6.Add("CellPhone", mCMR_PatientDetails.CellPhone);
                 field6.Add("eMail", mCMR_PatientDetails.eMail);
-                field6.Add("LivingStatus",mCMR_PatientDetails.LivingStatus);
-                field6.Add("SmokeTypeID",mCMR_PatientDetails.SmokeTypeID);
+                field6.Add("LivingStatus", mCMR_PatientDetails.LivingStatus);
+                field6.Add("SmokeTypeID", mCMR_PatientDetails.SmokeTypeID);
                 field6.Add("DrinkTypeID", (int?)null);
                 field6.Add("ArecaTypeID", (int?)null);
                 BaseDap.NonQuerySP("Web_AddCMRPatientDetails", field6);
-        #endregion
-        #region Web_AddContactPerson
+                #endregion
+                #region Web_AddContactPerson
                 //[Web_AddContactPerson]
                 foreach (CMR_ContactPerson item in lCMR_ContactPerson)
-	            {
-		             Dictionary<String, Object> field3 = new Dictionary<string, object>();
+                {
+                    Dictionary<String, Object> field3 = new Dictionary<string, object>();
                     field3.Add("PatientID", nPatientID);
                     field3.Add("RelationshipTypeID", item.RelationshipTypeID);
                     field3.Add("ContactName", item.ContactName);
@@ -159,9 +161,9 @@ namespace DiabetesCarePlatform.Repository
                     field3.Add("EmergencyOfficeTelphone", item.OfficeTelphone);
                     field3.Add("EmergencyCellPhone", item.CellPhone);
                     BaseDap.NonQuerySP("Web_AddCMRContactPerson", field3);
-	            }
-          #endregion           
-        #region Web_AddPMRPathologyHead
+                }
+                #endregion
+                #region Web_AddPMRPathologyHead
                 //Web_AddPMRPathologyHead
                 Dictionary<String, Object> field4 = new Dictionary<string, object>();
                 field4.Add("PatientID", mPMR_PathologyHead.PatientID);
@@ -176,10 +178,10 @@ namespace DiabetesCarePlatform.Repository
                 {
                     return -1;
                 }
-                
-          #endregion
-        #region  Web_AddPMRPathologyBody
-                 //Web_AddPMRPathologyBody
+
+                #endregion
+                #region  Web_AddPMRPathologyBody
+                //Web_AddPMRPathologyBody
                 foreach (PMR_PathologyBody item in lPMR_PathologyBody)
                 {
                     Dictionary<String, Object> field5 = new Dictionary<string, object>();
@@ -190,9 +192,9 @@ namespace DiabetesCarePlatform.Repository
                     field5.Add("InspectionDate", item.InspectionDate);
                     BaseDap.NonQuerySP("Web_AddPMRPathologyBody", field5);
                 }
-        #endregion            
+                #endregion
 
-                if(action ==0)
+                if (action == 0)
                 {
                     //新增APPUser
                     Dictionary<String, Object> field7 = new Dictionary<string, object>();
@@ -217,7 +219,7 @@ namespace DiabetesCarePlatform.Repository
                     field9.Add("PatientID", nPatientID);
                     field9.Add("APPUserID", nAppUserID);
                     field9.Add("IdentityNumber", mCMR_PatientBase.IdentityNumber);
-                    BaseDap.NonQuerySP("Web_AddAPPVerifyCode", field9); 
+                    BaseDap.NonQuerySP("Web_AddAPPVerifyCode", field9);
 
                 }
                 else
@@ -243,7 +245,7 @@ namespace DiabetesCarePlatform.Repository
                 Dictionary<String, Object> field10 = new Dictionary<string, object>();
                 field10.Add("PatientID", nPatientID);
                 BaseDap.NonQuerySP("Web_APP_GenerateCode", field10);
-        
+
             }
             catch (Exception ex)
             {
@@ -252,8 +254,8 @@ namespace DiabetesCarePlatform.Repository
             return nPatientID;
 
         }
-       
-        
+
+
         public int Web_AddAPPUser(APP_User mAppUser)
         {
             int nAppUserID = 0;
@@ -287,7 +289,7 @@ namespace DiabetesCarePlatform.Repository
 
         public void Web_UpdateAPPUser(APP_User mAppUser)
         {
-           
+
             try
             {
                 Dictionary<String, Object> field = new Dictionary<string, object>();
@@ -302,27 +304,27 @@ namespace DiabetesCarePlatform.Repository
                 field.Add("MobileNumber", mAppUser.MobileNumber);
                 field.Add("Enable", 1);
                 field.Add("LastUserID", 0);
-                 Dap.NonQuerySP("Web_UpdateAPPUser", field);
-               
+                Dap.NonQuerySP("Web_UpdateAPPUser", field);
+
             }
             catch (Exception ex)
             {
                 throw;
             }
-            
+
         }
 
         public bool Web_GetMedicalRecordNumber(string medicalRecordNumber)
         {
             bool bchk = false;
             try
-            { 
+            {
                 int nPatientID = 0;
                 Dictionary<String, Object> field = new Dictionary<string, object>();
                 field.Add("MedicalRecordNumber", medicalRecordNumber);
                 var lAppUserID = Dap.ModelListSP<int>("Web_GetMedicalRecordNumber", field);
                 nPatientID = lAppUserID.FirstOrDefault();
-                if(nPatientID>0)
+                if (nPatientID > 0)
                 {
                     bchk = true;
                 }
@@ -353,24 +355,24 @@ namespace DiabetesCarePlatform.Repository
 
         public List<APP_User> Web_GetAPPUserByMail(string mail)
         {
-            
-                Dictionary<String, Object> field = new Dictionary<string, object>();
-                field.Add("MailAddress", mail);
-                return Dap.ModelListSP<APP_User>("Web_GetAPPUserByMail", field);
-           
+
+            Dictionary<String, Object> field = new Dictionary<string, object>();
+            field.Add("MailAddress", mail);
+            return Dap.ModelListSP<APP_User>("Web_GetAPPUserByMail", field);
+
         }
 
         public List<APP_User> Web_GetAPPUserInfo(int appUserID)
         {
-                Dictionary<String, Object> field = new Dictionary<string, object>();
-                field.Add("AppUserID", appUserID);
-                return Dap.ModelListSP<APP_User>("Web_GetAPPUserInfo", field);
-            
+            Dictionary<String, Object> field = new Dictionary<string, object>();
+            field.Add("AppUserID", appUserID);
+            return Dap.ModelListSP<APP_User>("Web_GetAPPUserInfo", field);
+
         }
 
 
         #endregion
-        
+
         #region 取得系統參數
 
         public List<SYS_SexType> Web_GetSYSSexType()

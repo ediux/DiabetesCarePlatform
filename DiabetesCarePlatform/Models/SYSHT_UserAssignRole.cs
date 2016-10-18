@@ -18,7 +18,5 @@ namespace DiabetesCarePlatform.Models
         public int RoleID { get; set; }
         public int LastUserID { get; set; }
         public System.DateTime LastUpdate { get; set; }
-        public int RemoveUserID { get; set; }
-        public System.DateTime RemoveDate { get; set; }
     }
 }

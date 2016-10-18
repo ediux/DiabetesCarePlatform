@@ -15,14 +15,23 @@ namespace DiabetesCarePlatform.Models
     {
         public int UserID { get; set; }
         public string Account { get; set; }
+        public string Password { get; set; }
         public string Name { get; set; }
         public string JobTitle { get; set; }
         public string IdentityNumber { get; set; }
+        public string Birthday { get; set; }
         public string SexName { get; set; }
         public string RaceTypeName { get; set; }
-        public int GroupCount { get; set; }
-        public Nullable<int> SexID { get; set; }
-        public Nullable<int> LanguageTypeID { get; set; }
-        public Nullable<int> RaceTypeID { get; set; }
+        public string LanguageTypeName { get; set; }
+        public string CountryName { get; set; }
+        public string StateName { get; set; }
+        public string CityName { get; set; }
+        public string DistrictName { get; set; }
+        public string Address { get; set; }
+        public string HomeTelphone { get; set; }
+        public string OfficeTelphone { get; set; }
+        public string CellPhone { get; set; }
+        public string eMail { get; set; }
+        public bool Enable { get; set; }
     }
 }

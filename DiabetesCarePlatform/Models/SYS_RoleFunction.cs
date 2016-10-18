@@ -16,7 +16,10 @@ namespace DiabetesCarePlatform.Models
     {
         public int RoleID { get; set; }
         public int FunctionID { get; set; }
-        public int ControlLevel { get; set; }
+        public bool CanRead { get; set; }
+        public bool CanAdd { get; set; }
+        public bool CanUpdate { get; set; }
+        public bool CanDelete { get; set; }
         public int CreateUserID { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int LastUserID { get; set; }

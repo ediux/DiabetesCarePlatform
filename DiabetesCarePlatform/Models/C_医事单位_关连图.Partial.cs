@@ -25,6 +25,6 @@ namespace DiabetesCarePlatform.Models
         [Required]
         public int LastUserID { get; set; }
         [Required]
-        public System.DateTime LasUpdate { get; set; }
+        public System.DateTime LastUpdate { get; set; }
     }
 }

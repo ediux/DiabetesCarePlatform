@@ -15,9 +15,7 @@ namespace DiabetesCarePlatform.Models
     public partial class SYS_Function
     {
         public int FunctionID { get; set; }
-        public int ParentFunctionID { get; set; }
         public string Title { get; set; }
-        public string ButtonID { get; set; }
         public string Area { get; set; }
         public string ActionName { get; set; }
         public string ControllerName { get; set; }

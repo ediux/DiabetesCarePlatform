@@ -20,6 +20,6 @@ namespace DiabetesCarePlatform.Models
         public int UnitRankTypeID { get; set; }
         public bool Enable { get; set; }
         public int LastUserID { get; set; }
-        public System.DateTime LasUpdate { get; set; }
+        public System.DateTime LastUpdate { get; set; }
     }
 }

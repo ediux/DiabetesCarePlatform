@@ -16,11 +16,9 @@ namespace DiabetesCarePlatform.Models
         [Required]
         public int PatientID { get; set; }
         [Required]
-        public int ParentUnitID { get; set; }
-        [Required]
-        public int MealTypeID { get; set; }
-        [Required]
         public int TimingTypeID { get; set; }
+        [Required]
+        public int ParentUnitID { get; set; }
         [Required]
         public int LastUserID { get; set; }
         [Required]

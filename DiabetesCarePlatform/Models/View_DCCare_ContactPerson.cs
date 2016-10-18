@@ -10,10 +10,17 @@
 namespace DiabetesCarePlatform.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class Web_Role_GetRoleName_Result
+    public partial class View_DCCare_ContactPerson
     {
-        public int RoleID { get; set; }
-        public string RoleName { get; set; }
+        public int PatientID { get; set; }
+        public string ContactName { get; set; }
+        public string Description { get; set; }
+        public string SexName { get; set; }
+        public string HomeTelphone { get; set; }
+        public string OfficeTelphone { get; set; }
+        public string CellPhone { get; set; }
+        public string MailAddress { get; set; }
     }
 }

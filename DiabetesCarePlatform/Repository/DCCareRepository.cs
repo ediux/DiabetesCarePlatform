@@ -3,15 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DataAccess;
 
 namespace DiabetesCarePlatform.Repository
 {
-    public class DCCareRepository
+    public class DCCareRepository : BaseRepository
     {
-        DB_Dapper Dap = new DB_Dapper();
-        BaseRepository BaseDap = new BaseRepository();
-
         #region [Basic Information Detail]
 
         // Basic Infotmation

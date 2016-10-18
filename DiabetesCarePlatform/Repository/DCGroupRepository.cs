@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DataAccess;
 using System.Data;
 using System.Reflection;
 using DiabetesCarePlatform.Models.Common;
@@ -13,9 +12,9 @@ namespace DiabetesCarePlatform.Repository
     public class DCGroupRepository
     {
         BaseRepository Dap = new BaseRepository();
-        DB_Dapper Dap1 = new DB_Dapper();
+        
         UserRepository UserDap = new UserRepository();
-        public List<SYS_User_Extend> Web_QuerySYSUser(string name, int sexID , int raceTypeID, int langID, string jobTitle,int assignStatus )
+        public List<Web_QuerySYSUser_Result> Web_QuerySYSUser(string name, int sexID , int raceTypeID, int langID, string jobTitle,int assignStatus )
         {
             Dictionary<String, Object> field = new Dictionary<string, object>();
             field.Add("Name", name);

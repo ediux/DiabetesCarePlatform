@@ -16,7 +16,13 @@ namespace DiabetesCarePlatform.Models
         [Required]
         public int FunctionID { get; set; }
         [Required]
-        public int ControlLevel { get; set; }
+        public bool CanRead { get; set; }
+        [Required]
+        public bool CanAdd { get; set; }
+        [Required]
+        public bool CanUpdate { get; set; }
+        [Required]
+        public bool CanDelete { get; set; }
         [Required]
         public int CreateUserID { get; set; }
         [Required]

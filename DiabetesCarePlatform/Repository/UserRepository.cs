@@ -1,5 +1,4 @@
-﻿using DataAccess;
-using DiabetesCarePlatform.Models;
+﻿using DiabetesCarePlatform.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;

@@ -14,6 +14,6 @@ namespace DiabetesCarePlatform.Models
     
     public partial class C_检验资料_检验报告资料建立
     {
-        public int PatientID { get; set; }
+        public long HeadID { get; set; }
     }
 }

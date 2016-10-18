@@ -36,9 +36,5 @@ namespace DiabetesCarePlatform.Models
         [StringLength(5, ErrorMessage="欄位長度不得大於 5 個字元")]
         [Required]
         public string SexName { get; set; }
-        [Required]
-        public int CGUnitID { get; set; }
-        [Required]
-        public int SexID { get; set; }
     }
 }

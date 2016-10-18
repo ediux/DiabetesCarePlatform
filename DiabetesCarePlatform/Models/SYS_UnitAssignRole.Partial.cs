@@ -4,12 +4,12 @@ namespace DiabetesCarePlatform.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     
-    [MetadataType(typeof(SYS_UnitAssignRole_DelMetaData))]
-    public partial class SYS_UnitAssignRole_Del
+    [MetadataType(typeof(SYS_UnitAssignRoleMetaData))]
+    public partial class SYS_UnitAssignRole
     {
     }
     
-    public partial class SYS_UnitAssignRole_DelMetaData
+    public partial class SYS_UnitAssignRoleMetaData
     {
         [Required]
         public int UnitID { get; set; }

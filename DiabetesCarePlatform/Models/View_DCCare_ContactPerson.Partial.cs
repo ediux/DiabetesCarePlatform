@@ -4,12 +4,12 @@ namespace DiabetesCarePlatform.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     
-    [MetadataType(typeof(View_DMCare_ContactPersonMetaData))]
-    public partial class View_DMCare_ContactPerson
+    [MetadataType(typeof(View_DCCare_ContactPersonMetaData))]
+    public partial class View_DCCare_ContactPerson
     {
     }
     
-    public partial class View_DMCare_ContactPersonMetaData
+    public partial class View_DCCare_ContactPersonMetaData
     {
         [Required]
         public int PatientID { get; set; }
